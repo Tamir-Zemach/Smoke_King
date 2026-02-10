@@ -5,7 +5,7 @@ using Interfaces;
 namespace Utilities
 {
     /// <summary>
-    /// Build a dictionary for getting a visual data - O(1) look time 
+    ///     Build a dictionary for getting a visual data - O(1) look time
     /// </summary>
     public static class VisualLookupBuilder
     {
@@ -13,14 +13,9 @@ namespace Utilities
         {
             var dict = new Dictionary<StateType, T>();
 
-            foreach (var item in list)
-            {
-                dict.TryAdd(item.Type, item);
-            }
+            foreach (var item in list) dict.TryAdd(item.Type, item);
 
             return dict;
         }
-    }  
+    }
 }
-
-

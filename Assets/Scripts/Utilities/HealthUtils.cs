@@ -20,7 +20,7 @@ namespace Utilities
         {
             Debug.Log($"{label} — Current: {current}, Max: {max}");
         }
-        
+
         public static IEnumerator Invisibility(IInvincible target, float time)
         {
             target.IsInvincible = true;

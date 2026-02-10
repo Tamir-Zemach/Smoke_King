@@ -1,20 +1,19 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Enums;
 using Interfaces;
 using Structs;
 using UnityEngine;
 
-namespace Managers
+namespace Managers.Boss
 {
     public class BossAttacksManager : MonoBehaviour
     {
-        public Action OnAttackFinished; 
-        public List<BossAttack> BossAttacks; 
+        public List<BossAttack> BossAttacks;
 
         private Dictionary<BossAttacksTypes, GameObject> _attackInstances;
-        
+        public Action OnAttackFinished;
+
         public void Init()
         {
             _attackInstances = new Dictionary<BossAttacksTypes, GameObject>();
@@ -26,22 +25,16 @@ namespace Managers
                 instance.transform.SetParent(transform);
 
                 _attackInstances.Add(attack.AttacksType, instance);
-                
             }
         }
-        
+
         public void TriggerAttack(BossAttacksTypes attacksType)
         {
             var attackInstance = _attackInstances[attacksType];
 
             attackInstance.SetActive(true);
 
-            if (attackInstance.TryGetComponent(out IBossAttack attack))
-            {
-                attack.PreformAttack(OnAttackFinished);
-            }
+            if (attackInstance.TryGetComponent(out IBossAttack attack)) attack.PreformAttack(OnAttackFinished);
         }
-        
-        
     }
 }

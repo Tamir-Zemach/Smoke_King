@@ -1,19 +1,20 @@
+using Boss.BossAttacks;
 using UnityEditor;
 
 namespace Editor
 {
-    [CustomEditor(typeof(Boss.BossAttacks.LinearCannon))]
+    [CustomEditor(typeof(LinearCannon))]
     public class LinearCannonEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
 
-            SerializedProperty tracking = serializedObject.FindProperty("Tracking");
-            SerializedProperty linearData = serializedObject.FindProperty("LinearCannonData");
-            SerializedProperty trackingData = serializedObject.FindProperty("TrackingCannonData");
-            SerializedProperty beam = serializedObject.FindProperty("Beam");
-            SerializedProperty index = serializedObject.FindProperty("SpriteRendererIndex");
+            var tracking = serializedObject.FindProperty("Tracking");
+            var linearData = serializedObject.FindProperty("LinearCannonData");
+            var trackingData = serializedObject.FindProperty("TrackingCannonData");
+            var beam = serializedObject.FindProperty("Beam");
+            var index = serializedObject.FindProperty("SpriteRendererIndex");
 
             // Always show these
             EditorGUILayout.PropertyField(beam);

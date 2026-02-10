@@ -6,17 +6,17 @@ namespace Player
     public class PlayerAttackManager : InputBehaviour
     {
         [SerializeField] private BoxCollider2D _attackCollider;
-        [SerializeField] private Transform _rightSideTransform; 
+        [SerializeField] private Transform _rightSideTransform;
         [SerializeField] private Transform _leftSideTransform;
         [SerializeField] private Transform _upTransform;
-        
+
         private bool _isAttacking;
 
         private void Attack()
         {
             TryStartAttack(false);
         }
-        
+
         private void UpAttack()
         {
             TryStartAttack(true);
@@ -52,7 +52,7 @@ namespace Player
                 return;
             }
 
-            _attackCollider.transform.position = 
+            _attackCollider.transform.position =
                 Input.FacingRight ? _rightSideTransform.position : _leftSideTransform.position;
         }
 

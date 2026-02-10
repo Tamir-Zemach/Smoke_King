@@ -1,9 +1,10 @@
+using System;
 using Enums;
 using UnityEngine;
 
 namespace Structs
 {
-    [System.Serializable]
+    [Serializable]
     public struct BossAttack
     {
         public BossAttacksTypes AttacksType;

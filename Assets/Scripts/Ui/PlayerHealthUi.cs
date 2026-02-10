@@ -1,4 +1,3 @@
-using System;
 using Player;
 using TMPro;
 using UnityEngine;
@@ -29,6 +28,5 @@ namespace Ui
         {
             _text.text = $"Player Health: {_playerHealthManager.CurrentHealth}/{_playerHealthManager.MaxHealth}";
         }
-        
     }
 }

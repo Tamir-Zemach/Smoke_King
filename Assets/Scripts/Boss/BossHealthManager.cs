@@ -1,19 +1,16 @@
 using System;
 using Core;
-using Interfaces;
 using Enums;
+using Interfaces;
 using UnityEngine;
 using Utilities;
 
 namespace Boss
 {
-    public class BossHealthManager : HealthBase, IDamageable , IInvincible
+    public class BossHealthManager : HealthBase, IDamageable, IInvincible
     {
         [SerializeField] private float InvisibilityTime = 1;
-        public event Action OnBossDied;
         public Action OnBossHit;
-        public int maxHealth { get; set; }
-        public bool IsInvincible { get; set; }
 
         protected override void Awake()
         {
@@ -22,6 +19,8 @@ namespace Boss
             _currentHealth = _maxHealth;
         }
 
+        public int maxHealth { get; set; }
+
 
         public void TakeDamage(int damage, StateType stateType)
         {
@@ -29,24 +28,26 @@ namespace Boss
             Debug.Log($"took {damage} damage, current health is {_currentHealth}");
             SubtractHealth(damage);
             OnBossHit?.Invoke();
-            StartCoroutine(HealthUtils.Invisibility(this, InvisibilityTime));            
+            StartCoroutine(HealthUtils.Invisibility(this, InvisibilityTime));
         }
-        
+
+        public bool IsInvincible { get; set; }
+
+        public void OnInvincibleStart()
+        {
+        }
+
+        public void OnInvincibleEnd()
+        {
+        }
+
+        public event Action OnBossDied;
+
 
         protected override void HandleDeath()
         {
             Debug.Log("Boss died!");
             OnBossDied?.Invoke();
-        }
-
-        public void OnInvincibleStart()
-        {
-            
-        }
-
-        public void OnInvincibleEnd()
-        {
-            
         }
     }
 }

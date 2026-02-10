@@ -11,25 +11,25 @@ namespace Boss.BossAttacks
 {
     public class LinearCannon : MonoBehaviour
     {
-        [Header("General")]
-        public bool Tracking = false;
-        private PlayerHealthManager _player;
+        [Header("General")] public bool Tracking;
+
         public TrackingCannonData TrackingCannonData;
         public CannonAttackData LinearCannonData;
-        public Transform Beam; 
+        public Transform Beam;
         public SpriteRenderer SpriteRendererIndex;
+        private Gradient _colorGradient;
 
-        private CannonAttackData ActiveData => Tracking ? TrackingCannonData : LinearCannonData;
+        private float _currentLength;
+        private DamageGiver _damageGiver;
+        private LineRenderer _lineRenderer;
 
         private Action _onFinish;
-        private StateType _state;
-        private Gradient _colorGradient;
-        private LineRenderer _lineRenderer;
-        private DamageGiver _damageGiver;
-
-        private float _currentLength = 0f;
-        private float _targetLength = 0f;
+        private PlayerHealthManager _player;
         private ObjectPool<LinearCannon> _pool;
+        private StateType _state;
+        private float _targetLength;
+
+        private CannonAttackData ActiveData => Tracking ? TrackingCannonData : LinearCannonData;
 
         private void Awake()
         {
@@ -38,16 +38,19 @@ namespace Boss.BossAttacks
             _lineRenderer.positionCount = 2;
         }
 
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawRay(transform.position, transform.up * ActiveData.MaxDistance);
+        }
+
         public void Init(Vector3 position, Quaternion rotation, Action onFinished = null)
         {
             _onFinish = onFinished;
             transform.position = position;
             transform.rotation = rotation;
 
-            if (Tracking)
-            {
-                _player = FindAnyObjectByType<PlayerHealthManager>();
-            }
+            if (Tracking) _player = FindAnyObjectByType<PlayerHealthManager>();
 
             SetRandomState();
             ResetStates();
@@ -86,13 +89,9 @@ namespace Boss.BossAttacks
 
             // If tracking is enabled → rotate toward player first
             if (Tracking)
-            {
                 yield return StartCoroutine(TrackingRoutine());
-            }
             else
-            {
                 yield return new WaitForSeconds(ActiveData.DelayBeforeFire);
-            }
 
             // Fire phase
             ComputeTargetLength();
@@ -104,12 +103,11 @@ namespace Boss.BossAttacks
             yield return new WaitForSeconds(ActiveData.BeamDuration);
 
             _onFinish?.Invoke();
-            
         }
 
         private IEnumerator TrackingRoutine()
         {
-            TrackingCannonData data = ActiveData as TrackingCannonData;
+            var data = ActiveData as TrackingCannonData;
 
             if (data == null)
             {
@@ -117,7 +115,7 @@ namespace Boss.BossAttacks
                 yield break;
             }
 
-            float timer = 0f;
+            var timer = 0f;
 
             // 1. Rotate toward player
             while (timer < data.TrackingDuration)
@@ -126,10 +124,10 @@ namespace Boss.BossAttacks
 
                 if (_player != null)
                 {
-                    Vector3 dir = (_player.transform.position - transform.position).normalized;
-                    float targetAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90f;
+                    var dir = (_player.transform.position - transform.position).normalized;
+                    var targetAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90f;
 
-                    float angle = Mathf.MoveTowardsAngle(
+                    var angle = Mathf.MoveTowardsAngle(
                         transform.eulerAngles.z,
                         targetAngle,
                         data.RotationSpeed * Time.deltaTime
@@ -169,12 +167,6 @@ namespace Boss.BossAttacks
 
                 yield return null;
             }
-        }
-
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawRay(transform.position, transform.up * ActiveData.MaxDistance);
         }
     }
 }

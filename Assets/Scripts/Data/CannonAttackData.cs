@@ -10,21 +10,19 @@ namespace Data
     [CreateAssetMenu]
     public class CannonAttackData : ScriptableObject
     {
-        [Header("Pattern Settings")] 
-        public LinearCannon CannonPrefab;
+        [Header("Pattern Settings")] public LinearCannon CannonPrefab;
+
         public float DelayBetweenCannonSpawns = 1;
-        
-        [Header("Beam Settings")]
-        public float MaxDistance = 20f;
-        public float BeamGrowSpeed = 40f; 
+
+        [Header("Beam Settings")] public float MaxDistance = 20f;
+
+        public float BeamGrowSpeed = 40f;
         public float DelayBeforeFire = 1f;
         public float BeamDuration = 1f;
 
-        [Header("References")]
-        public LayerMask WallLayer;
-        
-        [Header("Visuals")]
-        public List<VisualData> Visuals;
+        [Header("References")] public LayerMask WallLayer;
+
+        [Header("Visuals")] public List<VisualData> Visuals;
 
         private Dictionary<StateType, VisualData> _lookup;
 
@@ -37,7 +35,5 @@ namespace Data
         {
             return GenericVisualHelper.Get(_lookup, type);
         }
-
-        
     }
 }

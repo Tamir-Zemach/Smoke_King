@@ -5,17 +5,17 @@ namespace Player
 {
     public class PlayerMovement : InputBehaviour
     {
-        private PlayerHealthManager _playerHealthManager;
-        private Rigidbody2D _rb;
         private CircleCollider2D _collider;
+
+        // NEW — smooth control return
+        private float _controlFactor = 1f; // 0 = no control, 1 = full control
 
         private bool _isGrounded;
         private bool _onWall;
         private bool _onWallLeft;
         private bool _onWallRight;
-
-        // NEW — smooth control return
-        private float _controlFactor = 1f; // 0 = no control, 1 = full control
+        private PlayerHealthManager _playerHealthManager;
+        private Rigidbody2D _rb;
 
 
         protected override void Awake()
@@ -24,6 +24,32 @@ namespace Player
             _rb = GetComponent<Rigidbody2D>();
             _collider = GetComponent<CircleCollider2D>();
             _playerHealthManager = GetComponent<PlayerHealthManager>();
+        }
+
+
+        // -----------------------------
+        // UPDATE
+        // -----------------------------
+        private void Update()
+        {
+            CheckForGround();
+            CheckForWall();
+        }
+
+
+        // -----------------------------
+        // MOVEMENT
+        // -----------------------------
+        private void FixedUpdate()
+        {
+            if (_rb == null) return;
+
+            // Movement uses easing
+            var targetX = Input.Movement.x * _playerData.Speed;
+
+            var easedX = Mathf.Lerp(_rb.linearVelocity.x, targetX, _controlFactor);
+
+            _rb.linearVelocity = new Vector2(easedX, _rb.linearVelocity.y);
         }
 
 
@@ -53,8 +79,8 @@ namespace Player
 
         private IEnumerator EaseControlBack()
         {
-            float t = 0f;
-            
+            var t = 0f;
+
             while (t < _playerData.EaseControlBackDur)
             {
                 t += Time.deltaTime;
@@ -67,37 +93,11 @@ namespace Player
 
 
         // -----------------------------
-        // UPDATE
-        // -----------------------------
-        private void Update()
-        {
-            CheckForGround();
-            CheckForWall();
-        }
-
-
-        // -----------------------------
-        // MOVEMENT
-        // -----------------------------
-        private void FixedUpdate()
-        {
-            if (_rb == null) return;
-
-            // Movement uses easing
-            float targetX = Input.Movement.x * _playerData.Speed;
-
-            float easedX = Mathf.Lerp(_rb.linearVelocity.x, targetX, _controlFactor);
-
-            _rb.linearVelocity = new Vector2(easedX, _rb.linearVelocity.y);
-        }
-
-
-        // -----------------------------
         // WALL & GROUND CHECKS
         // -----------------------------
         private void CheckForWall()
         {
-            float distance = 1f;
+            var distance = 1f;
             Vector2 pos = transform.position;
 
             _onWallLeft = Physics2D.Raycast(pos, Vector2.left, distance, _playerData.WallMask);
@@ -130,9 +130,9 @@ namespace Player
             {
                 _controlFactor = 0f;
 
-                int opposite = _onWallLeft ? 1 : -1;
+                var opposite = _onWallLeft ? 1 : -1;
 
-                Vector2 forceDir = new Vector2(
+                var forceDir = new Vector2(
                     opposite * _playerData.JumpForceFromWallX,
                     _playerData.JumpForceFromWallY
                 );

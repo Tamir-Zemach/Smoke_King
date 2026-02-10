@@ -1,11 +1,10 @@
 using Enums;
 using UnityEngine;
 
-namespace Managers
+namespace Managers.Boss
 {
     public class BossParticlesManager : MonoBehaviour
     {
-        
         [SerializeField] private ParticleSystem _teleportParticles;
         [SerializeField] private ParticleSystem _spawnParticles;
         [SerializeField] private ParticleSystem _hitParticles;

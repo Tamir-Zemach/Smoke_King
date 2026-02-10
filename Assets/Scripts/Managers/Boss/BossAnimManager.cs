@@ -1,21 +1,19 @@
 using System;
 using System.Collections;
-using Boss;
 using Enums;
 using UnityEngine;
 using Utilities;
 
-namespace Managers
+namespace Managers.Boss
 {
-    public class BossAnimManager: MonoBehaviour
+    public class BossAnimManager : MonoBehaviour
     {
-        public Action OnTeleportAnimEnds;
-        public Action OnSpawnAnimEnds;
-        public Action OnTeleportTimerEnd;
-        public Action<BossAttacksTypes> OnStartAttack;
-        public Action <BossParticles>OnParticlesPlay;
-
         private Animator _animator;
+        public Action<BossParticles> OnParticlesPlay;
+        public Action OnSpawnAnimEnds;
+        public Action<BossAttacksTypes> OnStartAttack;
+        public Action OnTeleportAnimEnds;
+        public Action OnTeleportTimerEnd;
 
         private void Awake()
         {
@@ -23,17 +21,29 @@ namespace Managers
         }
 
 
+        public void StartTimerToTeleport(float time)
+        {
+            StartCoroutine(Timer(time));
+        }
+
+        private IEnumerator Timer(float time)
+        {
+            yield return new WaitForSeconds(time);
+            OnTeleportTimerEnd?.Invoke();
+        }
+
+
         #region Trigger Functions
 
         public void TriggerAttackAnimation(BossAttacksTypes attackType)
         {
-            string triggerName = attackType.ToString();
+            var triggerName = attackType.ToString();
 
-            if (!AnimationStringChecker.AnimatorHasString(_animator, triggerName)) return;
+            if (!StringChecker.AnimatorHasString(_animator, triggerName)) return;
 
             _animator.SetTrigger(triggerName);
         }
-        
+
         public void TriggerIntroAnimation()
         {
             _animator.SetTrigger("intro");
@@ -41,31 +51,32 @@ namespace Managers
 
         public void TriggerTeleportAnimation()
         {
-            string triggerName = "Teleport";
-            
-            if (!AnimationStringChecker.AnimatorHasString(_animator, triggerName)) return;
-            
+            var triggerName = "Teleport";
+
+            if (!StringChecker.AnimatorHasString(_animator, triggerName)) return;
+
             _animator.SetTrigger(triggerName);
         }
 
         public void TriggerSpawnAnimation()
         {
-            string triggerName = "Spawn";
-            
-            if (!AnimationStringChecker.AnimatorHasString(_animator, triggerName)) return;
-            
+            var triggerName = "Spawn";
+
+            if (!StringChecker.AnimatorHasString(_animator, triggerName)) return;
+
             _animator.SetTrigger(triggerName);
         }
 
         #endregion
-        
-        
+
+
         #region Animation Events
+
         public void StartAttack(BossAttacksTypes attackType)
         {
             OnStartAttack?.Invoke(attackType);
         }
-        
+
         public void PlayParticles(BossParticles particles)
         {
             OnParticlesPlay?.Invoke(particles);
@@ -83,17 +94,5 @@ namespace Managers
         }
 
         #endregion
-
-
-        public void StartTimerToTeleport(float time)
-        {
-            StartCoroutine(Timer(time));
-        }
-
-        private IEnumerator Timer(float time)
-        {
-            yield return new WaitForSeconds(time);
-            OnTeleportTimerEnd?.Invoke();
-        }
     }
 }

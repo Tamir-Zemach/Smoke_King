@@ -1,10 +1,11 @@
+using System;
 using Enums;
 using Interfaces;
 using UnityEngine;
 
 namespace Structs
 {
-    [System.Serializable]
+    [Serializable]
     public struct VisualData : IStateTyped
     {
         public StateType Type;

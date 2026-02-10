@@ -6,8 +6,6 @@ namespace Core
 {
     public abstract class HealthBase : MonoBehaviour
     {
-        public event Action OnHealthChanged;
-
         protected int _currentHealth;
         protected int _maxHealth;
 
@@ -19,6 +17,8 @@ namespace Core
             _currentHealth = 1;
             _maxHealth = 1;
         }
+
+        public event Action OnHealthChanged;
 
         public virtual void AddHealth(int amount)
         {
@@ -34,11 +34,7 @@ namespace Core
 
             OnHealthChanged?.Invoke();
 
-            if (_currentHealth <= 0)
-            {
-                HandleDeath();
-            }
-            
+            if (_currentHealth <= 0) HandleDeath();
         }
 
         public virtual void IncreaseMaxHealth(int amount)
@@ -66,7 +62,5 @@ namespace Core
 
         // Every subclass MUST define what happens when it dies
         protected abstract void HandleDeath();
-        
-        
     }
 }

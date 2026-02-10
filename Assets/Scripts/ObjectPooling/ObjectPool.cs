@@ -1,5 +1,3 @@
-
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -8,10 +6,10 @@ namespace ObjectPooling
 {
     public class ObjectPool<T> where T : Component
     {
-        private readonly T _prefab;
+        private readonly int _maxPoolSize;
         private readonly Transform _parent;
         private readonly Queue<T> _pool;
-        private readonly int _maxPoolSize;
+        private readonly T _prefab;
 
         public ObjectPool(T prefab, int initialSize, int maxPoolSize, Transform parent)
         {
@@ -20,7 +18,7 @@ namespace ObjectPooling
             _maxPoolSize = maxPoolSize;
             _pool = new Queue<T>(initialSize);
 
-            for (int i = 0; i < initialSize; i++)
+            for (var i = 0; i < initialSize; i++)
             {
                 var obj = Object.Instantiate(_prefab, _parent);
                 obj.gameObject.SetActive(false);
@@ -30,11 +28,11 @@ namespace ObjectPooling
 
         public T Get()
         {
-            T obj = _pool.Count > 0
+            var obj = _pool.Count > 0
                 ? _pool.Dequeue()
                 : Object.Instantiate(_prefab, _parent);
-            
-                obj.gameObject.SetActive(true);
+
+            obj.gameObject.SetActive(true);
             return obj;
         }
 
@@ -50,4 +48,5 @@ namespace ObjectPooling
                 Object.Destroy(obj.gameObject);
             }
         }
-    }}
+    }
+}

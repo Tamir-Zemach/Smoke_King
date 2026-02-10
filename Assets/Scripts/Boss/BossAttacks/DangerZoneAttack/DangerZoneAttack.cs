@@ -4,7 +4,6 @@ using Data;
 using Enums;
 using Interfaces;
 using UnityEngine;
-using UnityEngine.UIElements;
 using Utilities;
 using Random = UnityEngine.Random;
 
@@ -12,14 +11,14 @@ namespace Boss.BossAttacks.DangerZoneAttack
 {
     public class DangerZoneAttack : MonoBehaviour, IBossAttack
     {
-        [SerializeField] private DangerZoneAttackData  _data;
-        
+        [SerializeField] private DangerZoneAttackData _data;
+
         [SerializeField] private Transform _zone1SpawnPoint;
         [SerializeField] private Transform _zone2SpawnPoint;
-        
-        private DangerZone _dangerZone;
-        
+
         private Coroutine _currentCoroutine;
+
+        private DangerZone _dangerZone;
         private StateType _state;
 
 
@@ -28,44 +27,43 @@ namespace Boss.BossAttacks.DangerZoneAttack
             _dangerZone = GetComponentInChildren<DangerZone>();
             Init();
         }
-        private void Init()
-        {
-            _state = EnumUtility.GetRandomValue<StateType>();
-            
-            _dangerZone.SetState(_state);
-            _dangerZone.ActiveZone(false);
-        }
-
 
 
         public void PreformAttack(Action onAttackFinished)
         {
-            
             if (_currentCoroutine != null)
             {
                 StopCoroutine(_currentCoroutine);
                 _currentCoroutine = null;
             }
-            
+
             _currentCoroutine = StartCoroutine(AttackCycle(onAttackFinished));
+        }
+
+        private void Init()
+        {
+            _state = EnumUtility.GetRandomValue<StateType>();
+
+            _dangerZone.SetState(_state);
+            _dangerZone.ActiveZone(false);
         }
 
         private IEnumerator AttackCycle(Action onAttackFinished)
         {
-            float timer = 0f;
+            var timer = 0f;
 
             // Random starting state already chosen in Init()
-            StateType currentState = _state;
+            var currentState = _state;
 
             // Start at a random spawn point too
-            bool useFirstSpawn = Random.value > 0.5f;
+            var useFirstSpawn = Random.value > 0.5f;
             while (timer < _data.AttackDur)
             {
                 // Set state visuals + damage type
                 _dangerZone.SetState(currentState);
 
                 // Pick spawn point
-                Transform spawn = useFirstSpawn ? _zone1SpawnPoint : _zone2SpawnPoint;
+                var spawn = useFirstSpawn ? _zone1SpawnPoint : _zone2SpawnPoint;
                 _dangerZone.transform.position = spawn.position;
 
                 // Show warning
@@ -88,13 +86,14 @@ namespace Boss.BossAttacks.DangerZoneAttack
 
                 timer += _data.DelayBetweenZoneChange;
             }
+
             onAttackFinished?.Invoke();
             gameObject.SetActive(false);
         }
+
         private StateType GetNextState(StateType current)
         {
             return current == StateType.State1 ? StateType.State2 : StateType.State1;
         }
-        
     }
 }

@@ -8,6 +8,5 @@ namespace Utilities
         {
             return new Vector2(1, 1);
         }
-
     }
 }

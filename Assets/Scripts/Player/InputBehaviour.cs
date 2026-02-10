@@ -1,8 +1,4 @@
-using System;
 using Core;
-using Data;
-using Interfaces;
-using UnityEngine;
 
 namespace Player
 {

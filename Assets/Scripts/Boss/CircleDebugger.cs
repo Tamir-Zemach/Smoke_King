@@ -12,15 +12,15 @@ namespace Boss
         {
             Gizmos.color = _color;
 
-            Vector3 center = transform.position;
-            float angleStep = 360f / _segments;
+            var center = transform.position;
+            var angleStep = 360f / _segments;
 
-            Vector3 prevPoint = center + new Vector3(_radius, 0f, 0f);
+            var prevPoint = center + new Vector3(_radius, 0f, 0f);
 
-            for (int i = 1; i <= _segments; i++)
+            for (var i = 1; i <= _segments; i++)
             {
-                float angle = angleStep * i * Mathf.Deg2Rad;
-                Vector3 nextPoint = center + new Vector3(Mathf.Cos(angle) * _radius, Mathf.Sin(angle) * _radius, 0f);
+                var angle = angleStep * i * Mathf.Deg2Rad;
+                var nextPoint = center + new Vector3(Mathf.Cos(angle) * _radius, Mathf.Sin(angle) * _radius, 0f);
 
                 Gizmos.DrawLine(prevPoint, nextPoint);
                 prevPoint = nextPoint;

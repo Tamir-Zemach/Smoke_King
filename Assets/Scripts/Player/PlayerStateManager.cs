@@ -6,16 +6,16 @@ namespace Player
 {
     public class PlayerStateManager : MonoBehaviour
     {
-        private PlayerInput _playerInput;
         public StateType CurrentStateType = StateType.State1;
-    
+
         //sprite change logic for now 
         public Sprite SpriteForState1;
         public Sprite SpriteForState2;
-        private SpriteRenderer _spriteRenderer;
-    
+
         //For particals 
         public UnityEvent OnStateChange;
+        private PlayerInput _playerInput;
+        private SpriteRenderer _spriteRenderer;
 
 
         private void Awake()
@@ -23,6 +23,10 @@ namespace Player
             _playerInput = GetComponent<PlayerInput>();
             _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             _playerInput.OnStateSwitch += OnStateSwitch;
+        }
+
+        private void Update()
+        {
         }
 
         private void OnStateSwitch()
@@ -41,13 +45,6 @@ namespace Player
                     _spriteRenderer.color = Color.red;
                     break;
             }
-        
-        
-        }
-
-        private void Update()
-        {
-        
         }
     }
 }
