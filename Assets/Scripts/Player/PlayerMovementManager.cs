@@ -1,10 +1,14 @@
 using System.Collections;
+using Data;
+using Interfaces;
 using UnityEngine;
 
 namespace Player
 {
-    public class PlayerMovement : InputBehaviour
+    public class PlayerMovementManager : PlayerInputBehavior
     {
+        [SerializeField] private PlayerData _playerData;
+
         private CircleCollider2D _collider;
 
         // NEW — smooth control return
@@ -18,6 +22,8 @@ namespace Player
         private Rigidbody2D _rb;
 
 
+        #region Unity Lifecycle
+
         protected override void Awake()
         {
             base.Awake();
@@ -25,21 +31,26 @@ namespace Player
             _collider = GetComponent<CircleCollider2D>();
             _playerHealthManager = GetComponent<PlayerHealthManager>();
         }
+        protected override void SubscribeToInputEvents()
+        {
+            Input.OnJump += Jump;
+            _playerHealthManager.OnGettingDamage += ApplyKnockBack;
+        }
+
+        protected override void UnSubscribeToInputEvents()
+        {
+            Input.OnJump -= Jump;
+            _playerHealthManager.OnGettingDamage -= ApplyKnockBack;
+        }
 
 
-        // -----------------------------
-        // UPDATE
-        // -----------------------------
+        
         private void Update()
         {
             CheckForGround();
             CheckForWall();
         }
-
-
-        // -----------------------------
-        // MOVEMENT
-        // -----------------------------
+        
         private void FixedUpdate()
         {
             if (_rb == null) return;
@@ -51,6 +62,8 @@ namespace Player
 
             _rb.linearVelocity = new Vector2(easedX, _rb.linearVelocity.y);
         }
+
+        #endregion
 
 
         // -----------------------------
@@ -145,19 +158,6 @@ namespace Player
         }
 
 
-        // -----------------------------
-        // INPUT EVENTS
-        // -----------------------------
-        protected override void SubscribeToInputEvents()
-        {
-            Input.OnJump += Jump;
-            _playerHealthManager.OnGettingDamage += ApplyKnockBack;
-        }
 
-        protected override void UnSubscribeToInputEvents()
-        {
-            Input.OnJump -= Jump;
-            _playerHealthManager.OnGettingDamage -= ApplyKnockBack;
-        }
     }
 }

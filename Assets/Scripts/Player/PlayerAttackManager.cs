@@ -1,16 +1,33 @@
+
 using System.Collections;
+using Data;
 using UnityEngine;
 
 namespace Player
 {
-    public class PlayerAttackManager : InputBehaviour
+    public class PlayerAttackManager : PlayerInputBehavior
     {
+        [SerializeField] private PlayerData _playerData;
+        
         [SerializeField] private BoxCollider2D _attackCollider;
         [SerializeField] private Transform _rightSideTransform;
         [SerializeField] private Transform _leftSideTransform;
         [SerializeField] private Transform _upTransform;
 
         private bool _isAttacking;
+        
+        protected override void SubscribeToInputEvents()
+        {
+            Input.OnAttack += Attack;
+            Input.OnUpAttack += UpAttack;
+        }
+
+        protected override void UnSubscribeToInputEvents()
+        {
+            Input.OnAttack -= Attack;
+            Input.OnUpAttack -= UpAttack;
+        }
+
 
         private void Attack()
         {
@@ -56,16 +73,6 @@ namespace Player
                 Input.FacingRight ? _rightSideTransform.position : _leftSideTransform.position;
         }
 
-        protected override void SubscribeToInputEvents()
-        {
-            Input.OnAttack += Attack;
-            Input.OnUpAttack += UpAttack;
-        }
 
-        protected override void UnSubscribeToInputEvents()
-        {
-            Input.OnAttack -= Attack;
-            Input.OnUpAttack -= UpAttack;
-        }
     }
 }

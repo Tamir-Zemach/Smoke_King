@@ -11,12 +11,12 @@ namespace Player
 {
     public class PlayerHealthManager : HealthBase, IDamageable, IInvincible
     {
+        [SerializeField] private PlayerData _playerData;
+
         public UnityEvent OnInvisible;
         public UnityEvent OnNormal;
 
         public float InvisibilityTime = 1f;
-
-        [SerializeField] private PlayerData _playerData;
 
         private PlayerStateManager _playerStateManager;
         public Action OnDying;

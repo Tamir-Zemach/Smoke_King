@@ -1,14 +1,68 @@
+
+using Interfaces;
+using Managers;
+using Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utilities;
 
 namespace Ui
 {
-    public class UiManager : MonoBehaviour
+    public class UiManager : MonoBehaviour, IInputGetter
     {
+        public PlayerInput Input { get; set; }
+        
+        //TODO: need to change!!!
+        public bool Paused { get; private set; }
+        
+        [SerializeField] private GameObject _pausePanel;
+        [SerializeField] private GameObject _gameOverPanel;
+
+        private void Awake()
+        {
+            Input = FindAnyObjectByType<PlayerInput>();
+        }
+        
+        private void Start()
+        {
+            Input.OnPause += TogglePause;
+            GameManager.Instance.OnGameOver += GameOverUi;
+        }
+
+        private void GameOverUi()
+        {
+            Time.timeScale = 0f;
+            _gameOverPanel.SetActive(true);
+        }
+
+        private void OnDestroy()
+        {
+            Input.OnPause -= TogglePause;
+            GameManager.Instance.OnGameOver -= GameOverUi;
+        }
+
+        private void TogglePause()
+        {
+            Paused = !Paused;
+
+            if (Paused)
+            {
+                Time.timeScale = 0f;
+                _pausePanel.SetActive(true);
+            }
+            else
+            {
+                Time.timeScale = 1f;
+                _pausePanel.SetActive(false);
+            }
+        }
+
+
         public void LoadScene(string sceneName)
         {
+            Time.timeScale = 1f;
             if (StringChecker.SceneExists(sceneName)) SceneManager.LoadScene(sceneName);
         }
+
     }
 }

@@ -1,11 +1,13 @@
 using Core;
+using Interfaces;
+using UnityEngine;
 
 namespace Player
 {
-    public abstract class InputBehaviour : PlayerDataBehaviour
+    public abstract class PlayerInputBehavior : MonoBehaviour, IInputGetter
     {
-        protected PlayerInput Input;
-
+        public PlayerInput Input { get; set; }
+        
         protected virtual void Awake()
         {
             Input = GetComponent<PlayerInput>();
