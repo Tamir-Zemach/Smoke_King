@@ -1,0 +1,440 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &771717315473115174
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4959222735897406466}
+  - component: {fileID: 4044308209940685305}
+  m_Layer: 0
+  m_Name: Point (Lowest) (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4959222735897406466
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771717315473115174}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: 0.87727654, w: -0.4799853}
+  m_LocalPosition: {x: -8, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2528065514813085658}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 237.369}
+--- !u!114 &4044308209940685305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771717315473115174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8ac6fc95abfb6b49ad5609421f0aadf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CannonSpawnPoint
+  Size: 0.5
+  SidesSize: 1.3
+  MaxDistance: 18
+--- !u!1 &3331390806845393642
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2175917949798060223}
+  - component: {fileID: 4575888699764264263}
+  m_Layer: 0
+  m_Name: Point (Lowest) (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2175917949798060223
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3331390806845393642}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: 0.87727654, w: -0.4799853}
+  m_LocalPosition: {x: -8, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2528065514813085658}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 237.369}
+--- !u!114 &4575888699764264263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3331390806845393642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8ac6fc95abfb6b49ad5609421f0aadf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CannonSpawnPoint
+  Size: 0.5
+  SidesSize: 1.3
+  MaxDistance: 18
+--- !u!1 &5502712732722325711
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6864359394036298405}
+  - component: {fileID: 6655185803668540398}
+  m_Layer: 0
+  m_Name: Point (Lowest) (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6864359394036298405
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5502712732722325711}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: 0.87727654, w: -0.4799853}
+  m_LocalPosition: {x: -8, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2528065514813085658}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 237.369}
+--- !u!114 &6655185803668540398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5502712732722325711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8ac6fc95abfb6b49ad5609421f0aadf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CannonSpawnPoint
+  Size: 0.5
+  SidesSize: 1.3
+  MaxDistance: 18
+--- !u!1 &6570988692366101848
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4918269021739240493}
+  - component: {fileID: 2541507378150316931}
+  m_Layer: 0
+  m_Name: Point (Lowest) (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4918269021739240493
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6570988692366101848}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: 0.87727654, w: -0.4799853}
+  m_LocalPosition: {x: -3, y: 4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2528065514813085658}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 237.369}
+--- !u!114 &2541507378150316931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6570988692366101848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8ac6fc95abfb6b49ad5609421f0aadf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CannonSpawnPoint
+  Size: 0.5
+  SidesSize: 1.3
+  MaxDistance: 18
+--- !u!1 &6677401622229816024
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5554302514830498453}
+  - component: {fileID: 1733186898854703942}
+  m_Layer: 0
+  m_Name: Point (Lowest)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5554302514830498453
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6677401622229816024}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: 0.87727654, w: -0.4799853}
+  m_LocalPosition: {x: -8, y: -3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2528065514813085658}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 237.369}
+--- !u!114 &1733186898854703942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6677401622229816024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8ac6fc95abfb6b49ad5609421f0aadf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CannonSpawnPoint
+  Size: 0.5
+  SidesSize: 1.3
+  MaxDistance: 18
+--- !u!1 &7978900532109899136
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2528065514813085658}
+  - component: {fileID: 4082157767982999485}
+  m_Layer: 0
+  m_Name: LinearCannons Pattern 2 (Diagonal)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2528065514813085658
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7978900532109899136}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.28323, y: 0.44047, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5554302514830498453}
+  - {fileID: 2175917949798060223}
+  - {fileID: 6864359394036298405}
+  - {fileID: 4959222735897406466}
+  - {fileID: 8535411272794063434}
+  - {fileID: 4918269021739240493}
+  - {fileID: 1701692683738862089}
+  - {fileID: 6171205276425400994}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4082157767982999485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7978900532109899136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f57e77da289b3414aaa89c3f55c0f6d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CannonPattern
+  _attackData: {fileID: 11400000, guid: 43dd9582dc8314b48af864f4456557e2, type: 2}
+  _cannonSpawnPoints:
+  - {fileID: 5554302514830498453}
+  - {fileID: 2175917949798060223}
+  - {fileID: 6864359394036298405}
+  - {fileID: 4959222735897406466}
+  - {fileID: 8535411272794063434}
+  - {fileID: 4918269021739240493}
+  - {fileID: 1701692683738862089}
+  - {fileID: 6171205276425400994}
+--- !u!1 &8307834668526628199
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6171205276425400994}
+  - component: {fileID: 604611168767969689}
+  m_Layer: 0
+  m_Name: Point (Lowest) (7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6171205276425400994
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8307834668526628199}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: 0.87727654, w: -0.4799853}
+  m_LocalPosition: {x: 3, y: 4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2528065514813085658}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 237.369}
+--- !u!114 &604611168767969689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8307834668526628199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8ac6fc95abfb6b49ad5609421f0aadf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CannonSpawnPoint
+  Size: 0.5
+  SidesSize: 1.3
+  MaxDistance: 18
+--- !u!1 &8547949847008681330
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8535411272794063434}
+  - component: {fileID: 850087557609891623}
+  m_Layer: 0
+  m_Name: Point (Lowest) (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8535411272794063434
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8547949847008681330}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: 0.87727654, w: -0.4799853}
+  m_LocalPosition: {x: -6, y: 4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2528065514813085658}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 237.369}
+--- !u!114 &850087557609891623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8547949847008681330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8ac6fc95abfb6b49ad5609421f0aadf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CannonSpawnPoint
+  Size: 0.5
+  SidesSize: 1.3
+  MaxDistance: 18
+--- !u!1 &8736714242992489086
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1701692683738862089}
+  - component: {fileID: 6504930374574912690}
+  m_Layer: 0
+  m_Name: Point (Lowest) (6)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1701692683738862089
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8736714242992489086}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: 0.87727654, w: -0.4799853}
+  m_LocalPosition: {x: 0, y: 4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2528065514813085658}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 237.369}
+--- !u!114 &6504930374574912690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8736714242992489086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8ac6fc95abfb6b49ad5609421f0aadf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CannonSpawnPoint
+  Size: 0.5
+  SidesSize: 1.3
+  MaxDistance: 18

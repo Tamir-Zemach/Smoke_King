@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3224ec55eb3367a41bcf49027a745b95
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - AttackData: {instanceID: 0}
+  - Beam: {instanceID: 0}
+  - SpriteRendererIndex: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
