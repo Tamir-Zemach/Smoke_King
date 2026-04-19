@@ -83,5 +83,11 @@ namespace Player
                     break;
             }
         }
+        
+        public void ForceFacingDirection(bool faceRight)
+        {
+            FacingRight = faceRight;
+        }
+
     }
 }

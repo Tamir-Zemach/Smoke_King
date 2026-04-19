@@ -9,13 +9,18 @@ namespace Player
     {
         [SerializeField] private PlayerData _playerData;
 
-        private CircleCollider2D _collider;
+        private CapsuleCollider2D _collider;
 
         // NEW — smooth control return
         private float _controlFactor = 1f; // 0 = no control, 1 = full control
 
         private bool _isGrounded;
+        public bool IsGrounded => _isGrounded;
+
         private bool _onWall;
+        
+        public bool IsOnWall => _onWall;
+        
         private bool _onWallLeft;
         private bool _onWallRight;
         private PlayerHealthManager _playerHealthManager;
@@ -28,7 +33,7 @@ namespace Player
         {
             base.Awake();
             _rb = GetComponent<Rigidbody2D>();
-            _collider = GetComponent<CircleCollider2D>();
+            _collider = GetComponent<CapsuleCollider2D>();
             _playerHealthManager = GetComponent<PlayerHealthManager>();
         }
         protected override void SubscribeToInputEvents()
@@ -49,6 +54,7 @@ namespace Player
         {
             CheckForGround();
             CheckForWall();
+            UpdateFacingDirection();
         }
         
         private void FixedUpdate()
@@ -64,6 +70,15 @@ namespace Player
         }
 
         #endregion
+
+        
+        // -----------------------------
+        // FACING DIRECTION
+        // -----------------------------
+        private void UpdateFacingDirection()
+        {
+            transform.localScale = Input.FacingRight ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
+        }
 
 
         // -----------------------------
@@ -121,9 +136,13 @@ namespace Player
 
         private void CheckForGround()
         {
-            var groundCol = Physics2D.OverlapCircle(transform.position, _collider.radius, _playerData.GroundMask);
-            _isGrounded = groundCol != null;
+            Vector2 bottom = (Vector2)transform.position + _collider.offset + Vector2.down * (_collider.size.y / 2f);
+
+            float radius = 0.1f;
+
+            _isGrounded = Physics2D.OverlapCircle(bottom, radius, _playerData.GroundMask);
         }
+
 
 
         // -----------------------------
@@ -152,6 +171,8 @@ namespace Player
 
                 _rb.linearVelocity = Vector2.zero;
                 _rb.AddForce(forceDir, ForceMode2D.Impulse);
+                
+                Input.ForceFacingDirection(_onWallLeft);
 
                 Invoke(nameof(GainControl), 0.25f);
             }
