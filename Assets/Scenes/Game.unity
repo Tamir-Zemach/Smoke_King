@@ -13021,8 +13021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColorState
   CurrentStateType: 0
-  SpriteForState1: {fileID: -2413806693520163455, guid: 0b67eb7419dd2cf4f993e38c6592f88d, type: 3}
-  SpriteForState2: {fileID: 7482667652216324306, guid: 13af27531486acf4eaa5ae55721f16ac, type: 3}
+  PlayerMaterial: {fileID: 2100000, guid: 5e9beab3abc3e49fabe63d61abe75665, type: 2}
   OnStateChange:
     m_PersistentCalls:
       m_Calls: []

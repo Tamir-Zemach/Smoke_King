@@ -1,16 +1,14 @@
 using Enums;
 using UnityEngine;
 using UnityEngine.Events;
+using Utilities;
 
 namespace Player
 {
     public class PlayerStateManager : MonoBehaviour
     {
         public StateType CurrentStateType = StateType.State1;
-
-        //sprite change logic for now 
-        public Sprite SpriteForState1;
-        public Sprite SpriteForState2;
+        public Material PlayerMaterial;
 
         //For particals 
         public UnityEvent OnStateChange;
@@ -21,30 +19,29 @@ namespace Player
         private void Awake()
         {
             _playerInput = GetComponent<PlayerInput>();
-            _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             _playerInput.OnStateSwitch += OnStateSwitch;
         }
-
-        private void Update()
-        {
-        }
+        
 
         private void OnStateSwitch()
         {
+            float targetPolarity;
+
             switch (CurrentStateType)
             {
                 case StateType.State1:
                     CurrentStateType = StateType.State2;
-                    _spriteRenderer.sprite = SpriteForState2;
-                    _spriteRenderer.color = Color.blue;
+                    targetPolarity = 1f;
                     break;
-                case StateType.State2:
+
                 default:
                     CurrentStateType = StateType.State1;
-                    _spriteRenderer.sprite = SpriteForState1;
-                    _spriteRenderer.color = Color.red;
+                    targetPolarity = 0f;
                     break;
             }
+
+            ShaderLerpUtility.LerpFloat(PlayerMaterial, "_Polarity", targetPolarity, 0.3f);
         }
+
     }
 }
