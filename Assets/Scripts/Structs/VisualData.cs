@@ -9,10 +9,9 @@ namespace Structs
     public struct VisualData : IStateTyped
     {
         public StateType Type;
-        public Color SpriteColor;
-        public Sprite IndexSprite;
-        public Color IndexSpriteColor;
-        public Gradient Gradient;
+
+        public Material Material;
+        public Color Color;
 
         StateType IStateTyped.Type => Type;
     }

@@ -14,7 +14,7 @@ namespace Data
 
         public float DelayBetweenCannonSpawns = 1;
 
-        [Header("Beam Settings")] public float MaxDistance = 20f;
+        [Header("ParticleHolder Settings")] public float MaxDistance = 20f;
 
         public float BeamGrowSpeed = 40f;
         public float DelayBeforeFire = 1f;

@@ -27,11 +27,6 @@ namespace Boss.BossAttacks.DangerZoneAttack
             var visual = _data.GetVisual(state);
 
             _damageGiver.StateType = state;
-            _spriteRenderer.color = visual.SpriteColor;
-            _spriteRendererIndex.sprite = visual.IndexSprite;
-            ;
-            _spriteRendererIndex.color = visual.IndexSpriteColor;
-            ;
         }
 
 

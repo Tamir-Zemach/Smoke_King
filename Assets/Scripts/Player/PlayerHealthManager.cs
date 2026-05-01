@@ -41,6 +41,7 @@ namespace Player
             if (_playerStateManager.CurrentStateType == stateType) return;
 
             SubtractHealth(damage);
+            print($"took {damage}  damage");
             OnGettingDamage?.Invoke();
             StartCoroutine(HealthUtils.Invisibility(this, InvisibilityTime));
         }

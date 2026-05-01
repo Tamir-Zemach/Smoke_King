@@ -58,10 +58,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Polarity: 0
+    - _Polarity: 1
     m_Colors:
     - White: {r: 1, g: 1, b: 1, a: 1}
-    - _Color_A: {r: 0.615037, g: 0, b: 1, a: 1}
-    - _Color_B: {r: 0.9433962, g: 0.918885, b: 0.057849765, a: 1}
+    - _Color_A: {r: 0.9427508, g: 1, b: 0, a: 1}
+    - _Color_B: {r: 0.6, g: 0, b: 0.9725491, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

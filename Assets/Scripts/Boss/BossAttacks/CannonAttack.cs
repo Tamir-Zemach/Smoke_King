@@ -18,8 +18,6 @@ namespace Boss.BossAttacks
         private Coroutine _currentCoroutine;
 
         private ObjectPool<LinearCannon> _linearCannonPool;
-        //private IPool<LinearCannon> _linearCannonPool;
-
         private void OnEnable()
         {
             Init();
@@ -48,10 +46,8 @@ namespace Boss.BossAttacks
 
         private IEnumerator AttackCycle(Action onAttackFinished)
         {
-            for (var i = 0; i < _cannonSpawnPoints.Count; i++)
+            foreach (var point in _cannonSpawnPoints)
             {
-                var point = _cannonSpawnPoints[i];
-
                 var nextLaser = _linearCannonPool.Get();
                 nextLaser.Init(point.position, point.rotation, () => _linearCannonPool.Return(nextLaser));
 

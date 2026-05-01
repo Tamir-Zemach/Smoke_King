@@ -20,6 +20,8 @@ namespace Player
         {
             _playerInput = GetComponent<PlayerInput>();
             _playerInput.OnStateSwitch += OnStateSwitch;
+            CurrentStateType = StateType.State1;
+            ShaderLerpUtility.LerpFloat(PlayerMaterial, "_Polarity", 0, 0.001f);
         }
         
 

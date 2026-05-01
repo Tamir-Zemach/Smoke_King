@@ -13,12 +13,10 @@ namespace Editor
             var tracking = serializedObject.FindProperty("Tracking");
             var linearData = serializedObject.FindProperty("LinearCannonData");
             var trackingData = serializedObject.FindProperty("TrackingCannonData");
-            var beam = serializedObject.FindProperty("Beam");
-            var index = serializedObject.FindProperty("SpriteRendererIndex");
+            var beamEffect = serializedObject.FindProperty("SmokeParticle");
 
-            // Always show these
-            EditorGUILayout.PropertyField(beam);
-            EditorGUILayout.PropertyField(index);
+            // Always show SmokeParticle
+            EditorGUILayout.PropertyField(beamEffect);
 
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Mode", EditorStyles.boldLabel);
