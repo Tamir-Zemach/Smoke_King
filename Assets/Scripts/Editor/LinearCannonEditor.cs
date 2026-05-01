@@ -1,5 +1,6 @@
 using Boss.BossAttacks;
 using UnityEditor;
+using UnityEngine;
 
 namespace Editor
 {
@@ -10,13 +11,19 @@ namespace Editor
         {
             serializedObject.Update();
 
+            // Draw the script reference (read‑only)
+            GUI.enabled = false;
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("m_Script"));
+            GUI.enabled = true;
+
             var tracking = serializedObject.FindProperty("Tracking");
             var linearData = serializedObject.FindProperty("LinearCannonData");
             var trackingData = serializedObject.FindProperty("TrackingCannonData");
-            var beamEffect = serializedObject.FindProperty("SmokeParticle");
+            var smokeParticle = serializedObject.FindProperty("SmokeParticle");
+            var trackingSmokeParticle = serializedObject.FindProperty("TrackingSmokeParticleSmokeParticle");
 
             // Always show SmokeParticle
-            EditorGUILayout.PropertyField(beamEffect);
+            EditorGUILayout.PropertyField(smokeParticle);
 
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Mode", EditorStyles.boldLabel);
@@ -24,14 +31,13 @@ namespace Editor
 
             if (tracking.boolValue)
             {
-                // TRACKING MODE
                 EditorGUI.indentLevel++;
                 EditorGUILayout.PropertyField(trackingData);
+                EditorGUILayout.PropertyField(trackingSmokeParticle);
                 EditorGUI.indentLevel--;
             }
             else
             {
-                // NORMAL MODE
                 EditorGUI.indentLevel++;
                 EditorGUILayout.PropertyField(linearData);
                 EditorGUI.indentLevel--;

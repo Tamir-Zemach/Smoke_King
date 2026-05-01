@@ -48,7 +48,8 @@ MonoBehaviour:
   Tracking: 0
   TrackingCannonData: {fileID: 0}
   LinearCannonData: {fileID: 11400000, guid: 740089266126cf7479a080c5135f20b8, type: 2}
-  SmokeParticle: {fileID: 6950582502431295008}
+  SmokeParticle: {fileID: 6262874701279604007}
+  TrackingSmokeParticleSmokeParticle: {fileID: 0}
 --- !u!1001 &5258489344607336638
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57,97 +58,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3880980101791749882}
     m_Modifications:
-    - target: {fileID: 506705026728516898, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 506705026728516898, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 506705026728516898, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1175600562062861619, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
-      propertyPath: m_Intensity
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1175600562062861619, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
-      propertyPath: m_PointLightInnerRadius
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1175600562062861619, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 1.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 1175600562062861619, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
-      propertyPath: m_ApplyToSortingLayers.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1175600562062861619, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
-      propertyPath: 'm_ApplyToSortingLayers.Array.data[0]'
-      value: -1031150273
-      objectReference: {fileID: 0}
-    - target: {fileID: 1175600562062861619, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
-      propertyPath: 'm_ApplyToSortingLayers.Array.data[1]'
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1175600562062861619, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
-      propertyPath: 'm_ApplyToSortingLayers.Array.data[2]'
-      value: -2121162021
-      objectReference: {fileID: 0}
-    - target: {fileID: 1175600562062861619, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
-      propertyPath: 'm_ApplyToSortingLayers.Array.data[3]'
-      value: 591355203
-      objectReference: {fileID: 0}
-    - target: {fileID: 1175600562062861619, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
-      propertyPath: 'm_ApplyToSortingLayers.Array.data[4]'
-      value: -156268857
-      objectReference: {fileID: 0}
     - target: {fileID: 2040246890718593267, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
       propertyPath: m_Name
       value: Smoke Attack
       objectReference: {fileID: 0}
     - target: {fileID: 2655448517006223147, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
-      propertyPath: CollisionModule.type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2655448517006223147, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
-      propertyPath: TriggerModule.enabled
+      propertyPath: CollisionModule.m_Bounce.scalar
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2655448517006223147, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
-      propertyPath: CollisionModule.enabled
-      value: 1
+      propertyPath: CollisionModule.m_EnergyLossOnCollision.scalar
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2655448517006223147, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
-      propertyPath: TriggerModule.radiusScale
-      value: 1
+    - target: {fileID: 2708166715278133213, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
+      propertyPath: FadeTime
+      value: 0.1
       objectReference: {fileID: 0}
-    - target: {fileID: 2655448517006223147, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
-      propertyPath: CollisionModule.collisionMode
-      value: 1
+    - target: {fileID: 2708166715278133213, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
+      propertyPath: PulseTime
+      value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 2655448517006223147, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
-      propertyPath: CollisionModule.collisionMessages
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2655448517006223147, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
-      propertyPath: TriggerModule.primitives.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2655448517006223147, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
-      propertyPath: EmissionModule.rateOverDistance.scalar
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 2655448517006223147, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
-      propertyPath: 'TriggerModule.primitives.Array.data[0]'
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2655448517006223147, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
-      propertyPath: EmissionModule.rateOverDistance.minScalar
-      value: 7
+    - target: {fileID: 2708166715278133213, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
+      propertyPath: PulseScale
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7670395493080928021, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -192,51 +125,21 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2040246890718593267, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6925595045351040444}
-    - targetCorrespondingSourceObject: {fileID: 2040246890718593267, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6950582502431295008}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
 --- !u!4 &2489171444050147243 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7670395493080928021, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
   m_PrefabInstance: {fileID: 5258489344607336638}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6100549617254905933 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2040246890718593267, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
+--- !u!114 &6262874701279604007 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2167317090031244697, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
   m_PrefabInstance: {fileID: 5258489344607336638}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6925595045351040444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6100549617254905933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac3d697a459342a396fae518d965841d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Utilities.ParticleDamage2D
-  StateType: 0
-  Damage: 1
-  HitLayer:
-    serializedVersion: 2
-    m_Bits: 128
---- !u!114 &6950582502431295008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6100549617254905933}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20c4afd125b94da78e9337fbad0a0d6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Particles.SmokeParticleManager
-  MovementData: {fileID: 11400000, guid: 68b441c18b7d9b94c88d653ea6774afc, type: 2}

@@ -37,7 +37,7 @@ namespace Particles
         {
             target.position = pos;
         }
-        
+
         public static Tween MoveInCircle(
             Transform target,
             float radius,
@@ -62,15 +62,47 @@ namespace Particles
 
                         target.localPosition = startLocalPos + offset;
                     },
-                    speedDegPerSec * duration,   // total degrees traveled during this tween
-                    duration                     // how long this tween lasts
+                    speedDegPerSec * duration,
+                    duration
                 )
                 .SetEase(Ease.Linear)
                 .SetLoops(-1, LoopType.Restart);
         }
 
+        // ⭐ NEW: Pulse + Fade tween
+        public static void PulseAndFade(Transform target, float pulseScale = 1.3f, float pulseTime = 0.15f, float fadeTime = 0.3f)
+        {
+            // Pulse scale
+            target.DOScale(pulseScale, pulseTime)
+                .SetEase(Ease.OutQuad)
+                .OnComplete(() =>
+                {
+                    // Fade out material if possible
+                    var renderer = target.GetComponent<ParticleSystemRenderer>();
+                    if (renderer != null)
+                    {
+                        var mat = renderer.material;
+                        if (mat != null && mat.HasProperty("_Color"))
+                        {
+                            Color c = mat.color;
+                            mat.DOColor(new Color(c.r, c.g, c.b, 0f), fadeTime);
+                        }
+                    }
 
+                    // Optional: shrink back to normal
+                    target.DOScale(1f, 0.2f);
+                });
+        }
+        
+        public static void KillAllTweens()
+        {
+            DOTween.KillAll();
+        }
 
+        public static void KillTweens(Transform target)
+        {
+            DOTween.Kill(target);
+        }
 
     }
 }

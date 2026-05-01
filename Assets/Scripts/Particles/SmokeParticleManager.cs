@@ -28,21 +28,42 @@ namespace Particles
             GetParticleComponents();
 
             if (_parRenderer != null)
+            {
                 _parRenderer.material = material;
+            }
 
             if (_parLight != null)
+            {
+                _parLight.enabled = true;
                 _parLight.color = color;
+            }
 
             if (_parDamage != null)
-                _parDamage.StateType = state;
+            {
+                _parDamage.Init(state, material, color, Stop);
+            }
+
 
             SetRateOverDistance();
         }
 
-        public void ResetPosition(Vector3 pos)
+        public void ResetPos(Vector3 pos)
         {
             ParticleMovementUtility.ResetPosition(transform, pos);
         }
+        
+        private void Stop()
+        {
+            if (_parSystem == null|| _parLight == null)
+            {
+                GetParticleComponents();
+            }
+
+            // Stop emitting but let existing particles die naturally
+            _parSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+            _parLight.enabled = false;
+        }
+
 
         public void MoveInCircle(float duration)
         {
@@ -53,7 +74,7 @@ namespace Particles
                 duration
             );
         }
-
+        
 
 
 

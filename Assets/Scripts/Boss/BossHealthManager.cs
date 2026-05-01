@@ -31,6 +31,17 @@ namespace Boss
             StartCoroutine(HealthUtils.Invisibility(this, InvisibilityTime));
         }
 
+        bool IDamageable.IsInvincible()
+        {
+            return IsInvincible;
+        }
+
+        public bool IsSameState(StateType stateType)
+        {
+            return false;
+        }
+
+
         public bool IsInvincible { get; set; }
 
         public void OnInvincibleStart()

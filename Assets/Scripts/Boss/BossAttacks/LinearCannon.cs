@@ -5,6 +5,7 @@ using Enums;
 using ObjectPooling;
 using Particles;
 using Player;
+using Structs;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using Utilities;
@@ -22,11 +23,14 @@ namespace Boss.BossAttacks
         [Header("References")]
         public SmokeParticleManager SmokeParticle; // Holds ParticleSystem + ParticleMovementUtility + ParticleDamage2D
 
+        public TrackingSmokeParticleManager TrackingSmokeParticleSmokeParticle;
+
 
         private Action _onFinish;
         private PlayerHealthManager _player;
         private ObjectPool<LinearCannon> _pool;
         private StateType _state;
+        private VisualData _visualData;
 
         private CannonAttackData ActiveData => Tracking ? TrackingCannonData : LinearCannonData;
 
@@ -37,19 +41,21 @@ namespace Boss.BossAttacks
         }
 
         public void Init(Vector3 position, Quaternion rotation, Action onFinished = null)
-        {
+        { 
             _onFinish = onFinished;
 
             transform.position = position;
             transform.rotation = rotation;
 
+            SetRandomState();
             if (Tracking)
             {
                 _player = FindAnyObjectByType<PlayerHealthManager>();
+                TrackingSmokeParticleSmokeParticle.Init(_visualData.Material);
             }
+            
+            SmokeParticle.Init(_visualData.Color, _visualData.Material, _visualData.Type);
 
-            SetRandomState();
-            ResetStates();
 
             StartCoroutine(FireRoutine());
         }
@@ -59,14 +65,18 @@ namespace Boss.BossAttacks
         private void SetRandomState()
         {
             _state = EnumUtility.GetRandomValue<StateType>();
-            var visual = ActiveData.GetVisual(_state);
-            SmokeParticle.Init(visual.Color, visual.Material, visual.Type);
+            _visualData = ActiveData.GetVisual(_state);
         }
 
 
         private void ResetStates()
         {
-            SmokeParticle.ResetPosition(transform.position);
+            SmokeParticle.ResetPos(transform.position);
+            if (Tracking)
+            {
+                TrackingSmokeParticleSmokeParticle.ResetPos(transform.position);
+            }
+            
         }
 
         private IEnumerator FireRoutine()
@@ -91,6 +101,7 @@ namespace Boss.BossAttacks
             yield return new WaitForSeconds(ActiveData.BeamDuration);
 
             _onFinish?.Invoke();
+            ResetStates();
         }
 
         private IEnumerator TrackingRoutine()
@@ -105,6 +116,8 @@ namespace Boss.BossAttacks
 
             float timer = 0f;
 
+            SmokeParticle.MoveInCircle(data.TrackingDuration);
+            TrackingSmokeParticleSmokeParticle.SetDuration(data.TrackingDuration);
             while (timer < data.TrackingDuration)
             {
                 timer += Time.deltaTime;

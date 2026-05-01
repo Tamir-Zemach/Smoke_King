@@ -39,14 +39,25 @@ namespace Player
         {
             if (IsInvincible) return;
             if (_playerStateManager.CurrentStateType == stateType) return;
-
+            
+            print("TakeDamage");
             SubtractHealth(damage);
-            print($"took {damage}  damage");
             OnGettingDamage?.Invoke();
             StartCoroutine(HealthUtils.Invisibility(this, InvisibilityTime));
         }
 
+        bool IDamageable.IsInvincible()
+        {
+            return IsInvincible;
+        }
+
+        public bool IsSameState(StateType stateType)
+        {
+            return _playerStateManager.CurrentStateType == stateType;
+        }
+
         public bool IsInvincible { get; set; }
+   
 
         public void OnInvincibleStart()
         {

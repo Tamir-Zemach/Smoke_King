@@ -7,5 +7,9 @@ namespace Interfaces
         int maxHealth { get; set; }
         void TakeDamage(int damage, StateType stateType);
         void AddHealth(int amount);
+
+        bool IsInvincible();
+        bool IsSameState(StateType stateType);
     }
+
 }
