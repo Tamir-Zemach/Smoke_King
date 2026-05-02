@@ -11,7 +11,6 @@ namespace Player
             _attack = GetComponentInParent<PlayerAttackManager>();
         }
 
-        // Animation event: when the sword swing reaches the hit frame
         public void EnableHitbox()
         {
             _attack.EnableHitbox();

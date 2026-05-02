@@ -46,8 +46,10 @@ namespace Player
         {
             if (_isAttacking || _isAttackingUp || _movement.IsOnWall) return;
             _attackCollider.gameObject.SetActive(false);
+            _isAttacking = false;
+            _isAttackingUp = false;
             PositionAttackCollider(attackingUp);
-            StartCoroutine(AttackRoutine());
+            
         }
 
         private void PositionAttackCollider(bool attackingUp)
@@ -70,13 +72,10 @@ namespace Player
         {
             // Wait for the attack window
             yield return new WaitForSeconds(_playerData.AttackDuration);
-
-            _attackCollider.gameObject.SetActive(true);
-            yield return new WaitForSeconds(_playerData.AttackBufferTime);
             
-            _attackCollider.gameObject.SetActive(false);
             _isAttacking = false;
             _isAttackingUp = false;
+            _attackCollider.gameObject.SetActive(false);
         }
 
         // -----------------------------
@@ -84,8 +83,8 @@ namespace Player
         // -----------------------------
         public void EnableHitbox()
         {
-
             _attackCollider.gameObject.SetActive(true);
+            StartCoroutine(AttackRoutine());
         }
         
     }

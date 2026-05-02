@@ -14,7 +14,7 @@ namespace Data
         public LayerMask WallMask;
 
 
-        [Header("Attack Parameters")] public float AttackBufferTime = 0.2f;
+        [Header("Attack Parameters")] 
 
         public float AttackDuration = 0.2f;
 
