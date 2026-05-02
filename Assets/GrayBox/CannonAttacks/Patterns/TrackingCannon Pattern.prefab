@@ -189,6 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f57e77da289b3414aaa89c3f55c0f6d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CannonPattern
+  Tracking: 1
   _attackData: {fileID: 11400000, guid: d01c576a8b30c1f48830cc56d856701d, type: 2}
   _cannonSpawnPoints:
   - {fileID: 2175917949798060223}

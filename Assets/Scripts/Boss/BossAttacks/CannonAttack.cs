@@ -2,31 +2,24 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Data;
+using Enums;
 using Interfaces;
 using ObjectPooling;
 using UnityEngine;
+using Utilities;
 
 namespace Boss.BossAttacks
 {
-    //uniTask, addressables 
-
     public class CannonAttack : MonoBehaviour, IBossAttack
     {
+        public bool Tracking;
         [SerializeField] private CannonAttackData _attackData;
         [SerializeField] private List<Transform> _cannonSpawnPoints;
 
         private Coroutine _currentCoroutine;
 
-        private ObjectPool<LinearCannon> _linearCannonPool;
-        private void OnEnable()
-        {
-            Init();
-        }
-
         public void PreformAttack(Action onAttackFinished)
         {
-            Init(); // guard in case OnEnable hasn’t run yet
-
             if (_currentCoroutine != null)
             {
                 StopCoroutine(_currentCoroutine);
@@ -36,20 +29,36 @@ namespace Boss.BossAttacks
             _currentCoroutine = StartCoroutine(AttackCycle(onAttackFinished));
         }
 
-        private void Init()
-        {
-            if (_linearCannonPool != null) return;
-            var parent = new GameObject("LinearCannon pool");
-            _linearCannonPool = new ObjectPool<LinearCannon>(_attackData.CannonPrefab, _cannonSpawnPoints.Count,
-                _cannonSpawnPoints.Count * 2, parent.transform);
-        }
-
         private IEnumerator AttackCycle(Action onAttackFinished)
         {
             foreach (var point in _cannonSpawnPoints)
             {
-                var nextLaser = _linearCannonPool.Get();
-                nextLaser.Init(point.position, point.rotation, () => _linearCannonPool.Return(nextLaser));
+                var randomState = EnumUtility.GetRandomValue<StateType>();
+
+                LinearCannon cannon;
+                if (Tracking)
+                {
+                    cannon = TrackingCannonPool.Instance.Get();
+                    cannon.Init(
+                        point.position,
+                        point.rotation,
+                        randomState,
+                        () => TrackingCannonPool.Instance.Return(cannon)
+                    );
+
+                }
+                else
+                {
+                    cannon = LinearCannonPool.Instance.Get();
+                    cannon.Init(
+                        point.position,
+                        point.rotation,
+                        randomState,
+                        () => LinearCannonPool.Instance.Return(cannon)
+                    );
+                }
+                
+
 
                 yield return new WaitForSeconds(_attackData.DelayBetweenCannonSpawns);
             }

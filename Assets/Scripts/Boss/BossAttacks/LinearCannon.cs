@@ -40,14 +40,13 @@ namespace Boss.BossAttacks
             Gizmos.DrawRay(transform.position, transform.up * ActiveData.MaxDistance);
         }
 
-        public void Init(Vector3 position, Quaternion rotation, Action onFinished = null)
+        public void Init(Vector3 position, Quaternion rotation, StateType state,  Action onFinished = null)
         { 
             _onFinish = onFinished;
-
+            _state = state;
             transform.position = position;
             transform.rotation = rotation;
-
-            SetRandomState();
+            _visualData = ActiveData.GetVisual(_state);
             if (Tracking)
             {
                 _player = FindAnyObjectByType<PlayerHealthManager>();
@@ -61,12 +60,7 @@ namespace Boss.BossAttacks
         }
 
 
-
-        private void SetRandomState()
-        {
-            _state = EnumUtility.GetRandomValue<StateType>();
-            _visualData = ActiveData.GetVisual(_state);
-        }
+        
 
 
         private void ResetStates()

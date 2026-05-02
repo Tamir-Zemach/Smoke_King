@@ -16,7 +16,6 @@ namespace Data
 
         [Header("ParticleHolder Settings")] public float MaxDistance = 20f;
 
-        public float BeamGrowSpeed = 40f;
         public float DelayBeforeFire = 1f;
         public float BeamDuration = 1f;
 

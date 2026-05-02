@@ -4,13 +4,14 @@ namespace Boss.BossAttacks
 {
     public class CannonSpawnPoint : MonoBehaviour
     {
+        public Color Color = Color.yellow;
         public float Size = 1;
         public float SidesSize = 0.7f;
         public float MaxDistance = 5;
 
         private void OnDrawGizmos()
         {
-            Gizmos.color = Color.yellow;
+            Gizmos.color = Color;
 
 
             // Local directions

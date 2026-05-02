@@ -2,9 +2,9 @@ namespace Enums
 {
     public enum BossAttacksTypes
     {
-        CannonAttack,
-        CannonAttackDiagonal,
+        CannonLinear,
+        CannonDiagonal,
         TrackingCannon,
-        DangerZone
+        GroupCannon
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Boss.BossAttacks;
 using Enums;
 using Structs;
 using UnityEngine;
@@ -7,8 +8,9 @@ using Utilities;
 namespace Data
 {
     [CreateAssetMenu]
-    public class DangerZoneAttackData : ScriptableObject
+    public class GroupCannonAttackData : ScriptableObject
     {
+        public LinearCannon Prefab;
         public float AttackDur = 5;
         public float DelayBetweenZoneChange = 1;
         public float DelayBeforeAttack = 0.5f;

@@ -40,7 +40,6 @@ namespace Player
             if (IsInvincible) return;
             if (_playerStateManager.CurrentStateType == stateType) return;
             
-            print("TakeDamage");
             SubtractHealth(damage);
             OnGettingDamage?.Invoke();
             StartCoroutine(HealthUtils.Invisibility(this, InvisibilityTime));

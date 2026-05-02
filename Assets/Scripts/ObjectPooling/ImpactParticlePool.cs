@@ -1,9 +1,8 @@
-using Enums;
-using ObjectPooling;
+using Particles;
 using UnityEngine;
 using Utilities;
 
-namespace Particles
+namespace ObjectPooling
 {
     public class ImpactParticlePool : SingletonMonoBehaviour<ImpactParticlePool>
     {
