@@ -6,6 +6,7 @@ namespace Managers.Boss
     public class BossParticlesManager : MonoBehaviour
     {
         [SerializeField] private ParticleSystem _teleportParticles;
+        [SerializeField] private ParticleSystem _smokeBurstParticles;
         [SerializeField] private ParticleSystem _spawnParticles;
         [SerializeField] private ParticleSystem _hitParticles;
 
@@ -16,6 +17,7 @@ namespace Managers.Boss
             {
                 case BossParticles.Teleport:
                     _teleportParticles.Play();
+                    _smokeBurstParticles.Play();
                     break;
                 case BossParticles.Spawns:
                     _spawnParticles.Play();
@@ -27,6 +29,14 @@ namespace Managers.Boss
                     _teleportParticles.Play();
                     break;
             }
+        }
+
+        public void StopParticles()
+        {
+            _teleportParticles.Stop();
+            _smokeBurstParticles.Stop();
+            _spawnParticles.Stop();
+            _hitParticles.Stop();
         }
     }
 }

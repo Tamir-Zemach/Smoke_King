@@ -42,9 +42,8 @@ namespace Managers.Boss
             if (!_animManager || !_attacksManager) return;
             if (unsubscribe)
             {
-                _animManager.OnSpawnAnimEnds -= NextAttack;
+                _animManager.OnSpawnAnimEnds -= StayInIdleUntilTimer;
                 _animManager.OnStartAttack -= StartTimerAndTriggerAttack;
-                _animManager.OnTeleportTimerEnd -= StartTeleportAnim;
 
                 _animManager.OnTeleportAnimEnds -= SpawnAtRandomSpot;
                 _attacksManager.OnAttackFinished -= PlaySpawnAnim;
@@ -55,9 +54,8 @@ namespace Managers.Boss
                 return;
             }
 
-            _animManager.OnSpawnAnimEnds += NextAttack;
+            _animManager.OnSpawnAnimEnds += StayInIdleUntilTimer;
             _animManager.OnStartAttack += StartTimerAndTriggerAttack;
-            _animManager.OnTeleportTimerEnd += StartTeleportAnim;
 
             _animManager.OnTeleportAnimEnds += SpawnAtRandomSpot;
             _attacksManager.OnAttackFinished += PlaySpawnAnim;
@@ -73,22 +71,29 @@ namespace Managers.Boss
             PlaySpawnAnim();
         }
 
-        private void NextAttack()
+        private void StayInIdleUntilTimer()
         {
             _colliderManager.EnableCol();
             _currentBossAttack = EnumUtility.GetNextValueInEnum(_currentBossAttack);
-            _animManager.TriggerAttackAnimation(_currentBossAttack);
+            StartCoroutine(TimerForAttack(2));
         }
 
+        private IEnumerator TimerForAttack(float time)
+        {
+            yield return new WaitForSeconds(time);
+            _animManager.TriggerAttackAnimation(_currentBossAttack);
 
+            
+        }
         private void StartTimerAndTriggerAttack(BossAttacksTypes attack)
         {
-            _animManager.StartTimerToTeleport(2f);
+            StartCoroutine(TimerForTeleport(2));
             _attacksManager.TriggerAttack(attack);
         }
 
-        private void StartTeleportAnim()
+        private IEnumerator TimerForTeleport(float time)
         {
+            yield return new WaitForSeconds(time);
             _animManager.TriggerTeleportAnimation();
         }
 
@@ -96,6 +101,7 @@ namespace Managers.Boss
         private void SpawnAtRandomSpot()
         {
             _colliderManager.UnAbleCol();
+            _particlesManager.StopParticles();
             var randomIndex = Random.Range(0, _movementManager.TeleportSpots.Count);
             _movementManager.TeleportToSpot(randomIndex);
         }

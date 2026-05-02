@@ -13,24 +13,13 @@ namespace Managers.Boss
         public Action OnSpawnAnimEnds;
         public Action<BossAttacksTypes> OnStartAttack;
         public Action OnTeleportAnimEnds;
-        public Action OnTeleportTimerEnd;
-
         private void Awake()
         {
             _animator = GetComponent<Animator>();
         }
 
+        
 
-        public void StartTimerToTeleport(float time)
-        {
-            StartCoroutine(Timer(time));
-        }
-
-        private IEnumerator Timer(float time)
-        {
-            yield return new WaitForSeconds(time);
-            OnTeleportTimerEnd?.Invoke();
-        }
 
 
         #region Trigger Functions
@@ -88,7 +77,7 @@ namespace Managers.Boss
             OnTeleportAnimEnds?.Invoke();
         }
 
-        public void FinishSpanAnimation()
+        public void FinishSpawnAnimation()
         {
             OnSpawnAnimEnds?.Invoke();
         }

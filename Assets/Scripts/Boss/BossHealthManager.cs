@@ -25,7 +25,7 @@ namespace Boss
         public void TakeDamage(int damage, StateType stateType)
         {
             if (IsInvincible) return;
-            Debug.Log($"took {damage} damage, current health is {_currentHealth}");
+            //Debug.Log($"took {damage} damage, current health is {_currentHealth}");
             SubtractHealth(damage);
             OnBossHit?.Invoke();
             StartCoroutine(HealthUtils.Invisibility(this, _invisibilityTime));
