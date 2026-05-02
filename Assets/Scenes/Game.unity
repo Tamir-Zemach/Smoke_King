@@ -306,7 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82350dc4a44e47e1a5cfaa2daad67ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Managers.BossMovementManager
-  _boss: {fileID: 248274489}
+  _bossTransform: {fileID: 248274492}
   _teleportSpots:
   - {fileID: 1381341787}
   - {fileID: 1489955283}
@@ -444,16 +444,46 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 248274492}
-  - component: {fileID: 248274491}
   - component: {fileID: 248274493}
+  - component: {fileID: 248274495}
+  - component: {fileID: 248274494}
   m_Layer: 8
-  m_Name: Boss
+  m_Name: Boss Health & Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!70 &248274491
+--- !u!4 &248274492
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248274489}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.62, y: -2.95, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 553850791}
+  m_Father: {fileID: 1388260430}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &248274493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248274489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22360315f2d04b20811d64c9deafe7a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Boss.BossHealthManager
+  _invisibilityTime: 1
+--- !u!70 &248274494
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -490,23 +520,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
---- !u!4 &248274492
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 248274489}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.62, y: -2.95, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 553850791}
-  m_Father: {fileID: 1388260430}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &248274493
+--- !u!114 &248274495
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -515,10 +529,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 248274489}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22360315f2d04b20811d64c9deafe7a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b40b6a6b4254f3992671180d4bd876b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Boss.BossHealthManager
-  InvisibilityTime: 0.3
+  m_EditorClassIdentifier: Assembly-CSharp::Managers.Boss.BossColliderManager
+  _collider2D: {fileID: 248274494}
 --- !u!1 &369063390
 GameObject:
   m_ObjectHideFlags: 0
@@ -7255,6 +7269,7 @@ MonoBehaviour:
   _animManager: {fileID: 553850793}
   _particlesManager: {fileID: 691915518}
   _healthManager: {fileID: 248274493}
+  _colliderManager: {fileID: 248274495}
 --- !u!4 &1388260430
 Transform:
   m_ObjectHideFlags: 0

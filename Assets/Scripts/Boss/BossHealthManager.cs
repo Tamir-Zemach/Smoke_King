@@ -9,7 +9,7 @@ namespace Boss
 {
     public class BossHealthManager : HealthBase, IDamageable, IInvincible
     {
-        [SerializeField] private float InvisibilityTime = 1;
+        [SerializeField] private float _invisibilityTime = 1;
         public Action OnBossHit;
 
         protected override void Awake()
@@ -28,7 +28,7 @@ namespace Boss
             Debug.Log($"took {damage} damage, current health is {_currentHealth}");
             SubtractHealth(damage);
             OnBossHit?.Invoke();
-            StartCoroutine(HealthUtils.Invisibility(this, InvisibilityTime));
+            StartCoroutine(HealthUtils.Invisibility(this, _invisibilityTime));
         }
 
         bool IDamageable.IsInvincible()

@@ -14,6 +14,7 @@ namespace Managers.Boss
         [SerializeField] private BossAnimManager _animManager;
         [SerializeField] private BossParticlesManager _particlesManager;
         [SerializeField] private BossHealthManager _healthManager;
+        [SerializeField] private BossColliderManager _colliderManager;
 
 
         private BossAttacksTypes _currentBossAttack;
@@ -74,6 +75,7 @@ namespace Managers.Boss
 
         private void NextAttack()
         {
+            _colliderManager.EnableCol();
             _currentBossAttack = EnumUtility.GetNextValueInEnum(_currentBossAttack);
             _animManager.TriggerAttackAnimation(_currentBossAttack);
         }
@@ -93,6 +95,7 @@ namespace Managers.Boss
 
         private void SpawnAtRandomSpot()
         {
+            _colliderManager.UnAbleCol();
             var randomIndex = Random.Range(0, _movementManager.TeleportSpots.Count);
             _movementManager.TeleportToSpot(randomIndex);
         }

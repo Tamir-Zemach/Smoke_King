@@ -5,14 +5,14 @@ namespace Managers.Boss
 {
     public class BossMovementManager : MonoBehaviour
     {
-        [SerializeField] private GameObject _boss;
+        [SerializeField] private Transform _bossTransform;
         [SerializeField] private List<Transform> _teleportSpots;
 
         public List<Transform> TeleportSpots => _teleportSpots;
 
         public void TeleportToSpot(int spotNumber)
         {
-            _boss.transform.position = _teleportSpots[spotNumber].position;
+            _bossTransform.position = _teleportSpots[spotNumber].position;
         }
 
 
