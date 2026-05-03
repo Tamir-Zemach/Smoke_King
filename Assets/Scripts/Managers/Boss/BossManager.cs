@@ -101,7 +101,7 @@ namespace Managers.Boss
         private void SpawnAtRandomSpot()
         {
             _colliderManager.UnAbleCol();
-            _particlesManager.StopParticles();
+            //_particlesManager.StopParticles();
             var randomIndex = Random.Range(0, _movementManager.TeleportSpots.Count);
             _movementManager.TeleportToSpot(randomIndex);
         }

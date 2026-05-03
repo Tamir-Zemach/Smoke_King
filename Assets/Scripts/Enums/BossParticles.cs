@@ -4,6 +4,8 @@ namespace Enums
     {
         Teleport,
         Spawns,
-        Hit
+        Hit,
+        Snap,
+        FloatSmoke
     }
 }

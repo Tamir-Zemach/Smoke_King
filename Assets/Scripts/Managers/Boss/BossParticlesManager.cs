@@ -1,42 +1,48 @@
-using Enums;
 using UnityEngine;
+using Enums;
+using ObjectPooling;
+using System.Collections.Generic;
 
 namespace Managers.Boss
 {
     public class BossParticlesManager : MonoBehaviour
     {
-        [SerializeField] private ParticleSystem _teleportParticles;
-        [SerializeField] private ParticleSystem _smokeBurstParticles;
-        [SerializeField] private ParticleSystem _spawnParticles;
-        [SerializeField] private ParticleSystem _hitParticles;
+        [SerializeField] private BossMovementManager _movementManager;
 
-
-        public void PlayParticles(BossParticles bossParticles)
+        [System.Serializable]
+        public struct BossParticleSpawnPoint
         {
-            switch (bossParticles)
+            public BossParticles Type;
+            public Transform SpawnPoint;
+            public Vector3 Offset;
+        }
+
+        [SerializeField] private List<BossParticleSpawnPoint> _spawnPoints;
+
+        private Dictionary<BossParticles, BossParticleSpawnPoint> _lookup;
+
+        private void Awake()
+        {
+            _lookup = new Dictionary<BossParticles, BossParticleSpawnPoint>();
+
+            foreach (var entry in _spawnPoints)
+                _lookup[entry.Type] = entry;
+        }
+
+        public void PlayParticles(BossParticles type)
+        {
+            var data = _lookup[type];
+
+            Vector3 pos = data.SpawnPoint.position;
+
+            // Add offset ONLY if boss is on the left
+            if (_movementManager.IsCurrentSpotLeft)
             {
-                case BossParticles.Teleport:
-                    _teleportParticles.Play();
-                    _smokeBurstParticles.Play();
-                    break;
-                case BossParticles.Spawns:
-                    _spawnParticles.Play();
-                    break;
-                case BossParticles.Hit:
-                    _hitParticles.Play();
-                    break;
-                default:
-                    _teleportParticles.Play();
-                    break;
+                pos += data.Offset;
             }
+
+            BossParticlePool.Instance.Play(type, pos);
         }
 
-        public void StopParticles()
-        {
-            _teleportParticles.Stop();
-            _smokeBurstParticles.Stop();
-            _spawnParticles.Stop();
-            _hitParticles.Stop();
-        }
     }
 }

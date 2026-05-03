@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using Boss;
 using UnityEngine;
 
 namespace Managers.Boss
@@ -6,13 +8,23 @@ namespace Managers.Boss
     public class BossMovementManager : MonoBehaviour
     {
         [SerializeField] private Transform _bossTransform;
-        [SerializeField] private List<Transform> _teleportSpots;
 
-        public List<Transform> TeleportSpots => _teleportSpots;
+        public List<BossTeleportSpot> TeleportSpots { get; private set; }
+        public bool IsCurrentSpotLeft;
 
+        private void Awake()
+        {
+            TeleportSpots = new List<BossTeleportSpot>(
+                GetComponentsInChildren<BossTeleportSpot>()
+            );
+        }
+
+        
         public void TeleportToSpot(int spotNumber)
         {
-            _bossTransform.position = _teleportSpots[spotNumber].position;
+            var curSpot = TeleportSpots[spotNumber];
+            FlipBoss(curSpot.LeftPoint);
+            _bossTransform.position = curSpot.transform.position;
         }
 
 
@@ -26,5 +38,15 @@ namespace Managers.Boss
         {
             //lerp into a transform
         }
+
+
+        private void FlipBoss(bool facingLeft)
+        {
+            IsCurrentSpotLeft = facingLeft;
+            var scale = _bossTransform.localScale;
+            scale.x = facingLeft ? -Mathf.Abs(scale.x) : Mathf.Abs(scale.x);
+            _bossTransform.localScale = scale;
+        }
+
     }
 }
