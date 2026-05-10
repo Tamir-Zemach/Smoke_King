@@ -38,11 +38,26 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background_Outdoor
+    uniqueID: 3791295479
+    locked: 0
+  - name: Background_Floor
+    uniqueID: 2644832597
+    locked: 0
   - name: BackGround
     uniqueID: 3263817023
     locked: 0
+  - name: Background_CHair&Door
+    uniqueID: 3369210407
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: King
+    uniqueID: 1453819579
+    locked: 0
+  - name: Player
+    uniqueID: 408961073
     locked: 0
   - name: Forground
     uniqueID: 2173805275
