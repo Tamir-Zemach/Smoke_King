@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2430585779847547123}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.235242, y: -1.078182, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -82,12 +82,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2182004895451635299, guid: 2e495238f69d44e2ba8bd2523024dac5, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 111a23dff3613b745a18042ba35b840a, type: 3}
+  m_Color: {r: 0.6792453, g: 0.6760413, b: 0.6760413, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.65, y: 1.38}
+  m_Size: {x: 1.6, y: 1.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -150,7 +150,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7704306025417509106, guid: 7bebc533555a642b7aac0b069573abff, type: 3}
       propertyPath: m_Intensity
-      value: 3.37
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 7704306025417509106, guid: 7bebc533555a642b7aac0b069573abff, type: 3}
       propertyPath: m_LightType
@@ -158,71 +158,99 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7704306025417509106, guid: 7bebc533555a642b7aac0b069573abff, type: 3}
       propertyPath: m_FalloffIntensity
-      value: 0.5
+      value: 0.415
       objectReference: {fileID: 0}
     - target: {fileID: 7704306025417509106, guid: 7bebc533555a642b7aac0b069573abff, type: 3}
       propertyPath: m_ShapePath.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7704306025417509106, guid: 7bebc533555a642b7aac0b069573abff, type: 3}
       propertyPath: m_ShapeLightFalloffSize
-      value: 1.12
+      value: 0.92
       objectReference: {fileID: 0}
     - target: {fileID: 7704306025417509106, guid: 7bebc533555a642b7aac0b069573abff, type: 3}
       propertyPath: m_LocalBounds.m_Center.x
-      value: -0.055000007
+      value: 0.018549979
       objectReference: {fileID: 0}
     - target: {fileID: 7704306025417509106, guid: 7bebc533555a642b7aac0b069573abff, type: 3}
       propertyPath: m_LocalBounds.m_Center.y
-      value: 0.3279
+      value: 0.34214997
       objectReference: {fileID: 0}
     - target: {fileID: 7704306025417509106, guid: 7bebc533555a642b7aac0b069573abff, type: 3}
       propertyPath: m_LocalBounds.m_Extent.x
-      value: 1.7692001
+      value: 1.4001501
       objectReference: {fileID: 0}
     - target: {fileID: 7704306025417509106, guid: 7bebc533555a642b7aac0b069573abff, type: 3}
       propertyPath: m_LocalBounds.m_Extent.y
-      value: 2.2216
+      value: 1.55915
       objectReference: {fileID: 0}
     - target: {fileID: 7704306025417509106, guid: 7bebc533555a642b7aac0b069573abff, type: 3}
       propertyPath: m_ShapePath.Array.data[0].x
-      value: -0.70497227
+      value: -0.46335995
       objectReference: {fileID: 0}
     - target: {fileID: 7704306025417509106, guid: 7bebc533555a642b7aac0b069573abff, type: 3}
       propertyPath: m_ShapePath.Array.data[0].y
-      value: -0.77329624
+      value: -0.29812527
       objectReference: {fileID: 0}
     - target: {fileID: 7704306025417509106, guid: 7bebc533555a642b7aac0b069573abff, type: 3}
       propertyPath: m_ShapePath.Array.data[1].x
-      value: 0.0013625622
+      value: -0.28101707
       objectReference: {fileID: 0}
     - target: {fileID: 7704306025417509106, guid: 7bebc533555a642b7aac0b069573abff, type: 3}
       propertyPath: m_ShapePath.Array.data[1].y
-      value: -0.08590698
+      value: -0.012184262
       objectReference: {fileID: 0}
     - target: {fileID: 7704306025417509106, guid: 7bebc533555a642b7aac0b069573abff, type: 3}
       propertyPath: m_ShapePath.Array.data[2].x
-      value: 0.59565365
+      value: 0.017470121
       objectReference: {fileID: 0}
     - target: {fileID: 7704306025417509106, guid: 7bebc533555a642b7aac0b069573abff, type: 3}
       propertyPath: m_ShapePath.Array.data[2].y
-      value: -0.6503129
+      value: 0.006711066
       objectReference: {fileID: 0}
     - target: {fileID: 7704306025417509106, guid: 7bebc533555a642b7aac0b069573abff, type: 3}
       propertyPath: m_ShapePath.Array.data[3].x
-      value: 0.34968734
+      value: 0.30690646
       objectReference: {fileID: 0}
     - target: {fileID: 7704306025417509106, guid: 7bebc533555a642b7aac0b069573abff, type: 3}
       propertyPath: m_ShapePath.Array.data[3].y
-      value: 1.4292072
+      value: -0.024264872
       objectReference: {fileID: 0}
     - target: {fileID: 7704306025417509106, guid: 7bebc533555a642b7aac0b069573abff, type: 3}
       propertyPath: m_ShapePath.Array.data[4].x
-      value: -0.19937396
+      value: 0.49900866
       objectReference: {fileID: 0}
     - target: {fileID: 7704306025417509106, guid: 7bebc533555a642b7aac0b069573abff, type: 3}
       propertyPath: m_ShapePath.Array.data[4].y
-      value: 0.9099444
+      value: -0.28386748
+      objectReference: {fileID: 0}
+    - target: {fileID: 7704306025417509106, guid: 7bebc533555a642b7aac0b069573abff, type: 3}
+      propertyPath: m_ShapePath.Array.data[5].x
+      value: 0.04273367
+      objectReference: {fileID: 0}
+    - target: {fileID: 7704306025417509106, guid: 7bebc533555a642b7aac0b069573abff, type: 3}
+      propertyPath: m_ShapePath.Array.data[5].y
+      value: 0.9832425
+      objectReference: {fileID: 0}
+    - target: {fileID: 7704306025417509106, guid: 7bebc533555a642b7aac0b069573abff, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7704306025417509106, guid: 7bebc533555a642b7aac0b069573abff, type: 3}
+      propertyPath: 'm_ApplyToSortingLayers.Array.data[0]'
+      value: -1031150273
+      objectReference: {fileID: 0}
+    - target: {fileID: 7704306025417509106, guid: 7bebc533555a642b7aac0b069573abff, type: 3}
+      propertyPath: 'm_ApplyToSortingLayers.Array.data[2]'
+      value: -2121162021
+      objectReference: {fileID: 0}
+    - target: {fileID: 7704306025417509106, guid: 7bebc533555a642b7aac0b069573abff, type: 3}
+      propertyPath: 'm_ApplyToSortingLayers.Array.data[3]'
+      value: 591355203
+      objectReference: {fileID: 0}
+    - target: {fileID: 7704306025417509106, guid: 7bebc533555a642b7aac0b069573abff, type: 3}
+      propertyPath: 'm_ApplyToSortingLayers.Array.data[4]'
+      value: -156268857
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
