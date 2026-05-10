@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 439b1c38d3d974ceeb43048a7ee8be1a
+guid: 83090b47b8dea7945801bc88afe9f8ee
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1871320442809445088
-    second: BG_4_0
-  - first:
-      213: 2780679746003640311
-    second: BG_4_1
+      213: -7476101903364214977
+    second: FrontOfChair (1)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -99,52 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BG_4_0
+      name: FrontOfChair (1)_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 63
-        width: 621
-        height: 1017
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0ea659e270448f910800000000000000
-      internalID: 1871320442809445088
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BG_4_1
-      rect:
-        serializedVersion: 2
-        x: 1318
         y: 0
-        width: 602
-        height: 1080
+        width: 189
+        height: 213
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7ff9bae0f75f69620800000000000000
-      internalID: 2780679746003640311
+      spriteID: f3faa51ddec8f3890800000000000000
+      internalID: -7476101903364214977
       vertices: []
       indices: 
       edges: []
@@ -173,8 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      BG_4_0: 1871320442809445088
-      BG_4_1: 2780679746003640311
+      FrontOfChair (1)_0: -7476101903364214977
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
