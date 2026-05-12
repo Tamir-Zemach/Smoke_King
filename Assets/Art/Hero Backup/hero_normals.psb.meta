@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f8556e7b66bf9478780efd65b910e1a9
+guid: e3b7f54b3a150aa4b9c43617dc658561
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -29,7 +29,7 @@ ScriptedImporter:
     vTOnly: 0
     ignoreMipmapLimit: 0
     nPOTScale: 1
-    sRGBTexture: 1
+    sRGBTexture: 0
     spriteMode: 2
     spriteExtrude: 2
     spriteMeshType: 0
@@ -587,7 +587,7 @@ ScriptedImporter:
     - {x: 40, y: 41}
     tessellationDetail: 0
     uvTransform: {x: 4, y: 1806}
-    spritePosition: {x: 156, y: 1437}
+    spritePosition: {x: 159, y: 1437}
   - name: R_eye
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -1067,7 +1067,7 @@ ScriptedImporter:
     - {x: 38, y: 39}
     tessellationDetail: 0
     uvTransform: {x: 1647, y: 1134}
-    spritePosition: {x: 182, y: 1309}
+    spritePosition: {x: 185, y: 1309}
   - name: R_Eye_Closed
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -1494,7 +1494,7 @@ ScriptedImporter:
     - {x: 34, y: 35}
     tessellationDetail: 0
     uvTransform: {x: 331, y: 1964}
-    spritePosition: {x: 194, y: 1382}
+    spritePosition: {x: 197, y: 1382}
   - name: L_eyebrow
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -9813,4 +9813,4 @@ ScriptedImporter:
   skeletonAssetName: 
   secondarySpriteTextures:
   - name: _NormalMap
-    texture: {fileID: -8328923581568760697, guid: e3b7f54b3a150aa4b9c43617dc658561, type: 3}
+    texture: {fileID: -8328923581568760697, guid: 12f7ee7af82844841be0fc6313f773bf, type: 3}

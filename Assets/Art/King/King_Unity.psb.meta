@@ -9430,4 +9430,6 @@ ScriptedImporter:
   prefabAssetName: 
   spriteLibAssetName: 
   skeletonAssetName: 
-  secondarySpriteTextures: []
+  secondarySpriteTextures:
+  - name: _NormalMap
+    texture: {fileID: -8328923581568760697, guid: 7af1b05657939704a9049c14451de50b, type: 3}
