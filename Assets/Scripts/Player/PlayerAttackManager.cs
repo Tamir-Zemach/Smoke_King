@@ -49,7 +49,7 @@ namespace Player
             _isAttacking = false;
             _isAttackingUp = false;
             PositionAttackCollider(attackingUp);
-            
+            StartCoroutine(AttackFailsafe());
         }
 
         private void PositionAttackCollider(bool attackingUp)
@@ -77,6 +77,16 @@ namespace Player
             _isAttackingUp = false;
             _attackCollider.gameObject.SetActive(false);
         }
+        private IEnumerator AttackFailsafe()
+        {
+            yield return new WaitForSeconds(_playerData.AttackDuration * 1.5f);
+
+            if (!_isAttacking && !_isAttackingUp) yield break;
+            _isAttacking = false;
+            _isAttackingUp = false;
+            _attackCollider.gameObject.SetActive(false);
+        }
+
 
         // -----------------------------
         // CALLED BY ANIMATION EVENTS
