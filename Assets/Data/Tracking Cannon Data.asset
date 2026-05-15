@@ -15,7 +15,6 @@ MonoBehaviour:
   CannonPrefab: {fileID: 244740690672622912, guid: dc352826d276eee4dbd3ae6eedb08749, type: 3}
   DelayBetweenCannonSpawns: 2
   MaxDistance: 18
-  BeamGrowSpeed: 40
   DelayBeforeFire: 0.8
   BeamDuration: 0.8
   WallLayer:
@@ -24,10 +23,10 @@ MonoBehaviour:
   Visuals:
   - Type: 0
     Material: {fileID: 2100000, guid: cbe83f632d05f4293b9815e91612479a, type: 2}
-    Color: {r: 0.79545486, g: 0.8666667, b: 0.13333333, a: 0.78039217}
+    Color: {r: 0.12130654, g: 0.7216876, b: 0.8867924, a: 0.78039217}
   - Type: 1
     Material: {fileID: 2100000, guid: deeeb0ad70cc640f9a01dcc1b5b2add3, type: 2}
-    Color: {r: 0.47212794, g: 0.1779548, b: 0.8773585, a: 0.78039217}
+    Color: {r: 0.105882354, g: 0.8901961, b: 0.16862746, a: 0.83137256}
   TrackingDuration: 1.5
   LockDuration: 0.5
   RotationSpeed: 180
