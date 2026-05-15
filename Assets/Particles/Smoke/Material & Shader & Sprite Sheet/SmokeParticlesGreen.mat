@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SmokeParticles_Yellow
+  m_Name: SmokeParticlesGreen
   m_Shader: {fileID: -6465566751694194690, guid: 145551d3d68534e3a8cc783e8d2a7390, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -59,9 +59,11 @@ Material:
     m_Ints: []
     m_Floats:
     - _Polarity: 1
+    - _QueueControl: 0
+    - _QueueOffset: 0
     m_Colors:
     - White: {r: 1, g: 1, b: 1, a: 1}
-    - _Color_A: {r: 0.615037, g: 0, b: 1, a: 1}
-    - _Color_B: {r: 1, g: 0.94000983, b: 0, a: 1}
+    - _Color_A: {r: 0.9427508, g: 1, b: 0, a: 1}
+    - _Color_B: {r: 0.6, g: 0, b: 0.9725491, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
