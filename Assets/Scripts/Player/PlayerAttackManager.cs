@@ -16,6 +16,8 @@ namespace Player
 
         private bool _isAttacking;
         private bool _isAttackingUp;
+        private bool _attackLocked;
+
         private PlayerMovementManager _movement;
 
         public bool IsAttacking => _isAttacking;
@@ -44,58 +46,86 @@ namespace Player
 
         private void TryStartAttack(bool attackingUp)
         {
-            if (_isAttacking || _isAttackingUp || _movement.IsOnWall) return;
+            // Prevent spam or restarting the attack
+            if (_attackLocked || _isAttacking || _isAttackingUp || _movement.IsOnWall)
+                return;
+
+            // Lock input briefly
+            _attackLocked = true;
+            StartCoroutine(AttackLockout());
+
+            // Set attack state
+            _isAttacking = !attackingUp;
+            _isAttackingUp = attackingUp;
+
+            // Prepare hitbox
             _attackCollider.gameObject.SetActive(false);
-            _isAttacking = false;
-            _isAttackingUp = false;
-            PositionAttackCollider(attackingUp);
+            _attackCollider.transform.position = attackingUp ?
+                _upTransform.position :
+                _frontTransform.position;
+
+            // Failsafe in case animation event never fires
             StartCoroutine(AttackFailsafe());
         }
 
-        private void PositionAttackCollider(bool attackingUp)
+        // Called by animation event
+        public void EnableHitbox()
         {
-            if (attackingUp)
-            {
-                _isAttackingUp = true;
-                _isAttacking = false;
-                _attackCollider.transform.position = _upTransform.position;
-            }
-            else
-            {
-                _isAttacking = true;
-                _isAttackingUp = false;
-                _attackCollider.transform.position = _frontTransform.position;
-            }
+            if (!_isAttacking && !_isAttackingUp)
+                return; // Attack was cancelled or interrupted
+
+            _attackCollider.gameObject.SetActive(true);
+            StartCoroutine(AttackRoutine());
         }
 
         private IEnumerator AttackRoutine()
         {
-            // Wait for the attack window
             yield return new WaitForSeconds(_playerData.AttackDuration);
-            
-            _isAttacking = false;
-            _isAttackingUp = false;
-            _attackCollider.gameObject.SetActive(false);
+            EndAttack();
         }
+
         private IEnumerator AttackFailsafe()
         {
             yield return new WaitForSeconds(_playerData.AttackDuration * 1.5f);
 
-            if (!_isAttacking && !_isAttackingUp) yield break;
+            // If animation event never fired, clean up
+            if (_isAttacking || _isAttackingUp)
+                EndAttack();
+        }
+
+        private IEnumerator AttackLockout()
+        {
+            yield return new WaitForSeconds(0.1f); // tweak for responsiveness
+            _attackLocked = false;
+        }
+
+        private void EndAttack()
+        {
             _isAttacking = false;
             _isAttackingUp = false;
             _attackCollider.gameObject.SetActive(false);
         }
 
-
-        // -----------------------------
-        // CALLED BY ANIMATION EVENTS
-        // -----------------------------
-        public void EnableHitbox()
+#if UNITY_EDITOR
+        private void OnDrawGizmosSelected()
         {
-            _attackCollider.gameObject.SetActive(true);
-            StartCoroutine(AttackRoutine());
+            if (_attackCollider == null)
+                return;
+
+            // Forward attack gizmo
+            if (_frontTransform != null)
+            {
+                Gizmos.color = Color.red;
+                Gizmos.DrawWireCube(_frontTransform.position, _attackCollider.size);
+            }
+
+            // Up attack gizmo
+            if (_upTransform != null)
+            {
+                Gizmos.color = Color.blue;
+                Gizmos.DrawWireCube(_upTransform.position, _attackCollider.size);
+            }
         }
-        
+#endif
     }
 }

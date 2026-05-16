@@ -1,0 +1,455 @@
+fileFormatVersion: 2
+guid: f309fed2e144e6447b409e881274d1fd
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1699676934152413060
+    second: ImpactValo_Cyan_0
+  - first:
+      213: 7041164526402671423
+    second: ImpactValo_Cyan_1
+  - first:
+      213: 9158662547144758212
+    second: ImpactValo_Cyan_2
+  - first:
+      213: 8465888759416936135
+    second: ImpactValo_Cyan_3
+  - first:
+      213: 5064727160052511040
+    second: ImpactValo_Cyan_4
+  - first:
+      213: 3217700870330584235
+    second: ImpactValo_Cyan_5
+  - first:
+      213: -8472445010726838232
+    second: ImpactValo_Cyan_6
+  - first:
+      213: 4103362098092215366
+    second: ImpactValo_Cyan_7
+  - first:
+      213: 8688946045182882313
+    second: ImpactValo_Cyan_8
+  - first:
+      213: 644565354030580108
+    second: ImpactValo_Cyan_9
+  - first:
+      213: 8789716499544599059
+    second: ImpactValo_Cyan_10
+  - first:
+      213: -8377094583039542138
+    second: ImpactValo_Cyan_11
+  - first:
+      213: -570206625347366708
+    second: ImpactValo_Cyan_12
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+  nPOTScale: 1
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 0
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ImpactValo_Cyan_0
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 1033
+        width: 110
+        height: 409
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c70abea65d88968e0800000000000000
+      internalID: -1699676934152413060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ImpactValo_Cyan_1
+      rect:
+        serializedVersion: 2
+        x: 629
+        y: 1033
+        width: 353
+        height: 496
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f331051c4dd37b160800000000000000
+      internalID: 7041164526402671423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ImpactValo_Cyan_2
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 1032
+        width: 410
+        height: 502
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c3dc3cdf0b1a1f70800000000000000
+      internalID: 9158662547144758212
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ImpactValo_Cyan_3
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 527
+        width: 438
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c6d405f8f0ec7570800000000000000
+      internalID: 8465888759416936135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ImpactValo_Cyan_4
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 575
+        width: 439
+        height: 450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 041f33b9486894640800000000000000
+      internalID: 5064727160052511040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ImpactValo_Cyan_5
+      rect:
+        serializedVersion: 2
+        x: 1075
+        y: 679
+        width: 446
+        height: 346
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bac0589b4e197ac20800000000000000
+      internalID: 3217700870330584235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ImpactValo_Cyan_6
+      rect:
+        serializedVersion: 2
+        x: 1275
+        y: 602
+        width: 36
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 820a894d624db6a80800000000000000
+      internalID: -8472445010726838232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ImpactValo_Cyan_7
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 217
+        width: 456
+        height: 296
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64c8691761212f830800000000000000
+      internalID: 4103362098092215366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ImpactValo_Cyan_8
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 278
+        width: 457
+        height: 235
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90239af5466559870800000000000000
+      internalID: 8688946045182882313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ImpactValo_Cyan_9
+      rect:
+        serializedVersion: 2
+        x: 1068
+        y: 331
+        width: 241
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c81448146c4f1f800800000000000000
+      internalID: 644565354030580108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ImpactValo_Cyan_10
+      rect:
+        serializedVersion: 2
+        x: 1292
+        y: 336
+        width: 52
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31aeebf16985bf970800000000000000
+      internalID: 8789716499544599059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ImpactValo_Cyan_11
+      rect:
+        serializedVersion: 2
+        x: 1351
+        y: 384
+        width: 139
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68c34184cd49ebb80800000000000000
+      internalID: -8377094583039542138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ImpactValo_Cyan_12
+      rect:
+        serializedVersion: 2
+        x: 718
+        y: 255
+        width: 66
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc0989768183618f0800000000000000
+      internalID: -570206625347366708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ImpactValo_Cyan_0: -1699676934152413060
+      ImpactValo_Cyan_1: 7041164526402671423
+      ImpactValo_Cyan_10: 8789716499544599059
+      ImpactValo_Cyan_11: -8377094583039542138
+      ImpactValo_Cyan_12: -570206625347366708
+      ImpactValo_Cyan_2: 9158662547144758212
+      ImpactValo_Cyan_3: 8465888759416936135
+      ImpactValo_Cyan_4: 5064727160052511040
+      ImpactValo_Cyan_5: 3217700870330584235
+      ImpactValo_Cyan_6: -8472445010726838232
+      ImpactValo_Cyan_7: 4103362098092215366
+      ImpactValo_Cyan_8: 8688946045182882313
+      ImpactValo_Cyan_9: 644565354030580108
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

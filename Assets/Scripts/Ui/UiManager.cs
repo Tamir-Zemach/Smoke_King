@@ -16,8 +16,6 @@ namespace Ui
         public bool Paused { get; private set; }
         
         [SerializeField] private GameObject _pausePanel;
-        [SerializeField] private GameObject _gameOverPanel;
-
         private void Awake()
         {
             Input = FindAnyObjectByType<PlayerInput>();
@@ -31,8 +29,7 @@ namespace Ui
 
         private void GameOverUi()
         {
-            Time.timeScale = 0f;
-            _gameOverPanel.SetActive(true);
+            SceneManager.LoadScene("GameOver");
         }
 
         private void OnDestroy()

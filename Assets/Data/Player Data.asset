@@ -22,8 +22,14 @@ MonoBehaviour:
   WallMask:
     serializedVersion: 2
     m_Bits: 64
-  AttackBufferTime: 0.2
   AttackDuration: 0.2
   MaxHealth: 5
   KnockBackForce: 100
   EaseControlBackDur: 0.3
+  Visuals:
+  - Type: 0
+    Material: {fileID: 2100000, guid: 9dc9ec58119d4dd4f803b3ad089adcbd, type: 2}
+    Color: {r: 0.12130654, g: 0.7216876, b: 0.8867924, a: 0.78039217}
+  - Type: 1
+    Material: {fileID: 2100000, guid: 35a0a6639fc88f743a5924eb7b4de407, type: 2}
+    Color: {r: 0.105882354, g: 0.8901961, b: 0.16862746, a: 0.83137256}

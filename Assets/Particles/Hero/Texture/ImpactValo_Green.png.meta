@@ -1,0 +1,455 @@
+fileFormatVersion: 2
+guid: 9b72ef2a93b92af4aae3a3ebdc37782e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -277258607324542270
+    second: ImpactValo_Green_0
+  - first:
+      213: 4574059511697513794
+    second: ImpactValo_Green_1
+  - first:
+      213: -6950972113422767857
+    second: ImpactValo_Green_2
+  - first:
+      213: 6311444795685128031
+    second: ImpactValo_Green_3
+  - first:
+      213: 2546171752738004798
+    second: ImpactValo_Green_4
+  - first:
+      213: 2977233970664800972
+    second: ImpactValo_Green_5
+  - first:
+      213: 8014588967773631166
+    second: ImpactValo_Green_6
+  - first:
+      213: -757782184977904763
+    second: ImpactValo_Green_7
+  - first:
+      213: -7745936006685252652
+    second: ImpactValo_Green_8
+  - first:
+      213: -260528726765444515
+    second: ImpactValo_Green_9
+  - first:
+      213: -261395422006749847
+    second: ImpactValo_Green_10
+  - first:
+      213: 2044475757068124647
+    second: ImpactValo_Green_11
+  - first:
+      213: -4311164208225884038
+    second: ImpactValo_Green_12
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+  nPOTScale: 1
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 0
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ImpactValo_Green_0
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 1033
+        width: 110
+        height: 409
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ca408ff3caf62cf0800000000000000
+      internalID: -277258607324542270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ImpactValo_Green_1
+      rect:
+        serializedVersion: 2
+        x: 629
+        y: 1033
+        width: 353
+        height: 496
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24d1a3834e25a7f30800000000000000
+      internalID: 4574059511697513794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ImpactValo_Green_2
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 1032
+        width: 410
+        height: 502
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f092acfc0bf298f90800000000000000
+      internalID: -6950972113422767857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ImpactValo_Green_3
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 527
+        width: 438
+        height: 498
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f57cc4a2a91c69750800000000000000
+      internalID: 6311444795685128031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ImpactValo_Green_4
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 575
+        width: 439
+        height: 450
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3f151b08b1d55320800000000000000
+      internalID: 2546171752738004798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ImpactValo_Green_5
+      rect:
+        serializedVersion: 2
+        x: 1075
+        y: 679
+        width: 446
+        height: 346
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc283b2b582415920800000000000000
+      internalID: 2977233970664800972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ImpactValo_Green_6
+      rect:
+        serializedVersion: 2
+        x: 1275
+        y: 602
+        width: 36
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb279ecf33a893f60800000000000000
+      internalID: 8014588967773631166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ImpactValo_Green_7
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 217
+        width: 456
+        height: 296
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58bc54f1e11db75f0800000000000000
+      internalID: -757782184977904763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ImpactValo_Green_8
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 278
+        width: 457
+        height: 235
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d32e9cdd38e08490800000000000000
+      internalID: -7745936006685252652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ImpactValo_Green_9
+      rect:
+        serializedVersion: 2
+        x: 1068
+        y: 331
+        width: 241
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d526c5bd08a626cf0800000000000000
+      internalID: -260528726765444515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ImpactValo_Green_10
+      rect:
+        serializedVersion: 2
+        x: 1292
+        y: 336
+        width: 52
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 965df55af365f5cf0800000000000000
+      internalID: -261395422006749847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ImpactValo_Green_11
+      rect:
+        serializedVersion: 2
+        x: 1351
+        y: 384
+        width: 139
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e181f37edf6f5c10800000000000000
+      internalID: 2044475757068124647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ImpactValo_Green_12
+      rect:
+        serializedVersion: 2
+        x: 718
+        y: 255
+        width: 66
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7861508efaab24c0800000000000000
+      internalID: -4311164208225884038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ImpactValo_Green_0: -277258607324542270
+      ImpactValo_Green_1: 4574059511697513794
+      ImpactValo_Green_10: -261395422006749847
+      ImpactValo_Green_11: 2044475757068124647
+      ImpactValo_Green_12: -4311164208225884038
+      ImpactValo_Green_2: -6950972113422767857
+      ImpactValo_Green_3: 6311444795685128031
+      ImpactValo_Green_4: 2546171752738004798
+      ImpactValo_Green_5: 2977233970664800972
+      ImpactValo_Green_6: 8014588967773631166
+      ImpactValo_Green_7: -757782184977904763
+      ImpactValo_Green_8: -7745936006685252652
+      ImpactValo_Green_9: -260528726765444515
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
