@@ -4,27 +4,23 @@ namespace Player
 {
     public class PlayerActionAnimation : MonoBehaviour
     {
-        private PlayerAttackManager _attack;
         private PlayerParticleManager _particle;
 
         private void Awake()
         {
-            _attack = GetComponentInParent<PlayerAttackManager>();
             _particle = GetComponentInParent<PlayerParticleManager>();
         }
 
-        // Animation Event: Horizontal attack
-        public void EnableHorizontalHitbox()
+        // Animation Event: Horizontal attack particle
+        public void PlayHorizontalParticle()
         {
             _particle.PlayHorAttackPar();
-            _attack.EnableHitbox();
         }
 
-        // Animation Event: Vertical attack
-        public void EnableVerticalHitbox()
+        // Animation Event: Vertical attack particle
+        public void PlayVerticalParticle()
         {
             _particle.PlayVerAttackPar();
-            _attack.EnableHitbox();
         }
     }
 }

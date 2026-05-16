@@ -22,7 +22,8 @@ MonoBehaviour:
   WallMask:
     serializedVersion: 2
     m_Bits: 64
-  AttackDuration: 0.2
+  AttackDuration: 0.48
+  DelayBeforeHitBox: 0.1667
   MaxHealth: 5
   KnockBackForce: 100
   EaseControlBackDur: 0.3

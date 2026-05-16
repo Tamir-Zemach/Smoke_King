@@ -8,19 +8,18 @@ namespace Player
     {
         [Header("Data")]
         [SerializeField] private PlayerData _playerData;
+        [SerializeField] private PlayerParticleManager _particle;
 
         [Header("Hitbox")]
         [SerializeField] private BoxCollider2D _attackCollider;
         [SerializeField] private Transform _frontTransform;
         [SerializeField] private Transform _upTransform;
 
-        private bool _isAttacking;
-        private bool _isAttackingUp;
-        private bool _attackLocked;
-
         private PlayerMovementManager _movement;
 
-        public bool IsAttacking => _isAttacking;
+        private bool _isAttacking;
+        private bool _isAttackingUp;
+        public bool IsAttacking   => _isAttacking;
         public bool IsAttackingUp => _isAttackingUp;
 
         protected override void Awake()
@@ -31,103 +30,65 @@ namespace Player
 
         protected override void SubscribeToInputEvents()
         {
-            Input.OnAttack += Attack;
+            Input.OnAttack   += Attack;
             Input.OnUpAttack += UpAttack;
         }
 
         protected override void UnSubscribeToInputEvents()
         {
-            Input.OnAttack -= Attack;
+            Input.OnAttack   -= Attack;
             Input.OnUpAttack -= UpAttack;
         }
 
-        private void Attack() => TryStartAttack(false);
+        private void Attack()   => TryStartAttack(false);
         private void UpAttack() => TryStartAttack(true);
 
-        private void TryStartAttack(bool attackingUp)
+        private void TryStartAttack(bool up)
         {
-            // Prevent spam or restarting the attack
-            if (_attackLocked || _isAttacking || _isAttackingUp || _movement.IsOnWall)
+            // Prevent spam or attacking on wall
+            if (_isAttacking || _isAttackingUp || _movement.IsOnWall)
             {
+                Debug.Log("Cant Attack");
                 return;
             }
+            
+            _isAttackingUp = up;
+            _isAttacking   = !up;
 
-            // Lock input briefly
-            _attackLocked = true;
-            StartCoroutine(AttackLockout());
+            // Position hitbox
+            _attackCollider.transform.position = up
+                ? _upTransform.position
+                : _frontTransform.position;
 
-            // Set attack state
-            _isAttacking = !attackingUp;
-            _isAttackingUp = attackingUp;
-
-            // Prepare hitbox
-            _attackCollider.gameObject.SetActive(false);
-            _attackCollider.transform.position = attackingUp ?
-                _upTransform.position :
-                _frontTransform.position;
-
-            // Failsafe in case animation event never fires
-            StartCoroutine(AttackFailsafe());
-        }
-
-        // Called by animation event
-        public void EnableHitbox()
-        {
-            if (!_isAttacking && !_isAttackingUp)
-                return; // Attack was cancelled or interrupted
-
-            _attackCollider.gameObject.SetActive(true);
             StartCoroutine(AttackRoutine());
         }
 
         private IEnumerator AttackRoutine()
         {
-            yield return new WaitForSeconds(_playerData.AttackDuration);
-            EndAttack();
-        }
+            // Delay before hitbox + particles (sync with animation)
+            yield return new WaitForSeconds(_playerData.DelayBeforeHitBox);
 
-        private IEnumerator AttackFailsafe()
-        {
-            yield return new WaitForSeconds(_playerData.AttackDuration * 1.5f);
+            // Play particles
+            PlayParticle(_isAttacking);
 
-            // If animation event never fired, clean up
-            if (_isAttacking || _isAttackingUp)
-                EndAttack();
-        }
+            // Enable hitbox
+            _attackCollider.gameObject.SetActive(true);
 
-        private IEnumerator AttackLockout()
-        {
-            yield return new WaitForSeconds(0.1f); // tweak for responsiveness
-            _attackLocked = false;
-        }
+            // Attack lasts exactly AttackDuration
+            yield return new WaitForSeconds(_playerData.AttackDuration - _playerData.DelayBeforeHitBox);
 
-        private void EndAttack()
-        {
+            // End attack
             _isAttacking = false;
             _isAttackingUp = false;
             _attackCollider.gameObject.SetActive(false);
         }
 
-#if UNITY_EDITOR
-        private void OnDrawGizmosSelected()
+        private void PlayParticle(bool horizontal)
         {
-            if (_attackCollider == null)
-                return;
-
-            // Forward attack gizmo
-            if (_frontTransform != null)
-            {
-                Gizmos.color = Color.red;
-                Gizmos.DrawWireCube(_frontTransform.position, _attackCollider.size);
-            }
-
-            // Up attack gizmo
-            if (_upTransform != null)
-            {
-                Gizmos.color = Color.blue;
-                Gizmos.DrawWireCube(_upTransform.position, _attackCollider.size);
-            }
+            if (horizontal)
+                _particle.PlayHorAttackPar();
+            else
+                _particle.PlayVerAttackPar();
         }
-#endif
     }
 }

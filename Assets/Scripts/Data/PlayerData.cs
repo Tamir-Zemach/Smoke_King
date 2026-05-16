@@ -9,20 +9,21 @@ namespace Data
     [CreateAssetMenu]
     public class PlayerData : ScriptableObject
     {
-        [Header("Movement Parameters")] public float Speed = 5;
+        [Header("Movement Parameters")] public float Speed = 6;
         public float JumpForce = 200;
-        public float JumpForceFromWallY = 200;
-        public float JumpForceFromWallX = 200;
+        public float JumpForceFromWallY = 160;
+        public float JumpForceFromWallX = 130;
         public LayerMask GroundMask;
         public LayerMask WallMask;
 
         [Header("Attack Parameters")] 
-        public float AttackDuration = 0.2f;
+        public float AttackDuration = 0.5f;
+        public float DelayBeforeHitBox = 0.1667f;
 
-        [Header("Health Parameters")] public int MaxHealth = 3;
+        [Header("Health Parameters")] public int MaxHealth = 5;
 
         [Header("Getting Hit Parameters")] 
-        public float KnockBackForce = 15;
+        public float KnockBackForce = 100;
         public float EaseControlBackDur = 0.3f;
 
         [Header("Visuals")]
