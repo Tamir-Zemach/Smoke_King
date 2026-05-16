@@ -33,29 +33,29 @@ namespace Utilities
             if ((HitLayer.value & (1 << other.layer)) == 0)
                 return;
 
-            if (!other.TryGetComponent<IDamageable>(out var dmg))
-                return;
+            print($"collided with {other.name}");
 
-            // RULE 1: same state → no impact, no damage
-            if (dmg.IsSameState(_stateType))
-                return;
-
-            // RULE 2: invincible → no impact, no damage
-            if (dmg.IsInvincible())
-                return;
-
-            // RULE 3: different state + not invincible → damage + impact
-            dmg.TakeDamage(Damage, _stateType);
-
+            // If it hits ANYTHING in HitLayer → stop the particle system
             _onFinish?.Invoke();
             ParticleMovementUtility.KillTweens(transform);
 
-            if (_impactPlayed || ImpactParticlePool.Instance == null)
-                return;
+            // Try to damage if possible
+            if (other.TryGetComponent<IDamageable>(out var dmg))
+            {
+                if (!dmg.IsSameState(_stateType) && !dmg.IsInvincible())
+                {
+                    dmg.TakeDamage(Damage, _stateType);
+                }
+            }
 
-            _impactPlayed = true;
-            ImpactParticlePool.Instance.PlayImpact(transform.position, _material, _lightColor);
+            // Play impact only once
+            if (!_impactPlayed && ImpactParticlePool.Instance != null)
+            {
+                _impactPlayed = true;
+                ImpactParticlePool.Instance.PlayImpact(transform.position, _material, _lightColor);
+            }
         }
+
 
 
     }

@@ -3,6 +3,7 @@ using Boss;
 using Player;
 using Ui;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Utilities;
 
 namespace Managers
@@ -33,7 +34,7 @@ namespace Managers
             }
 
             _playerHealthManager.OnDying += GameOver;
-            _bossHealthManager.OnBossDied -= WinGame;
+            _bossHealthManager.OnBossDied += WinGame;
         }
 
 
@@ -46,6 +47,7 @@ namespace Managers
         private void WinGame()
         {
             OnWinGame?.Invoke();
+            SceneManager.LoadScene("GameWin");
             GameIsPaused = false;
         }
 

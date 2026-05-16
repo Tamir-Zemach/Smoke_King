@@ -45,7 +45,6 @@ namespace Player
         {
             // Trigger diagonal movement
             if (_diagonalMover == null && _circleOnStateChangeParSystem == null) return;
-            //VignetteFlash.Instance.FlashInColor(visual.Color);
             _diagonalMover.Move();
             ApplyColor(_circleOnStateChangeRenderer);
             _circleOnStateChangeParSystem.Play();
@@ -54,10 +53,23 @@ namespace Player
         private void ApplyColor(ParticleSystemRenderer particleSystemRenderer)
         {
             var visual = _playerData.GetVisual(_stateManager.CurrentStateType);
-             var main = particleSystemRenderer.GetComponent<ParticleSystem>().main;
+
+            // Get the root particle system
+            var rootPs = particleSystemRenderer.GetComponent<ParticleSystem>();
+
+            // Apply to root
+            var main = rootPs.main;
             main.startColor = visual.Color;
 
+            // Apply to all children
+            var childParticles = rootPs.GetComponentsInChildren<ParticleSystem>(true);
+            foreach (var ps in childParticles)
+            {
+                var childMain = ps.main;
+                childMain.startColor = visual.Color;
+            }
         }
+
 
         public void PlayHorAttackPar()
         {

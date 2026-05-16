@@ -4951,7 +4951,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Utilities.ParticleDamage2D
   HitLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 712
   Damage: 1
 --- !u!114 &2167317090031244697
 MonoBehaviour:
