@@ -69,31 +69,6 @@ namespace Particles
                 .SetLoops(-1, LoopType.Restart);
         }
 
-        // ⭐ NEW: Pulse + Fade tween
-        public static void PulseAndFade(Transform target, float pulseScale = 1.3f, float pulseTime = 0.15f, float fadeTime = 0.3f)
-        {
-            // Pulse scale
-            target.DOScale(pulseScale, pulseTime)
-                .SetEase(Ease.OutQuad)
-                .OnComplete(() =>
-                {
-                    // Fade out material if possible
-                    var renderer = target.GetComponent<ParticleSystemRenderer>();
-                    if (renderer != null)
-                    {
-                        var mat = renderer.material;
-                        if (mat != null && mat.HasProperty("_Color"))
-                        {
-                            Color c = mat.color;
-                            mat.DOColor(new Color(c.r, c.g, c.b, 0f), fadeTime);
-                        }
-                    }
-
-                    // Optional: shrink back to normal
-                    target.DOScale(1f, 0.2f);
-                });
-        }
-        
         public static void KillAllTweens()
         {
             DOTween.KillAll();
@@ -103,6 +78,5 @@ namespace Particles
         {
             DOTween.Kill(target);
         }
-
     }
 }
