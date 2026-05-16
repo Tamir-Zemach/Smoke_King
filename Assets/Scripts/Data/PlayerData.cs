@@ -17,8 +17,9 @@ namespace Data
         public LayerMask WallMask;
 
         [Header("Attack Parameters")] 
-        public float AttackDuration = 0.5f;
+        public float AttackDuration = 0.48f;
         public float DelayBeforeHitBox = 0.1667f;
+         public float HitboxDuration = 0.15f;
 
         [Header("Health Parameters")] public int MaxHealth = 5;
 

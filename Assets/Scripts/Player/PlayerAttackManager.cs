@@ -45,17 +45,15 @@ namespace Player
 
         private void TryStartAttack(bool up)
         {
-            // Prevent spam or attacking on wall
             if (_isAttacking || _isAttackingUp || _movement.IsOnWall)
             {
                 Debug.Log("Cant Attack");
                 return;
             }
-            
+
             _isAttackingUp = up;
             _isAttacking   = !up;
 
-            // Position hitbox
             _attackCollider.transform.position = up
                 ? _upTransform.position
                 : _frontTransform.position;
@@ -65,22 +63,29 @@ namespace Player
 
         private IEnumerator AttackRoutine()
         {
-            // Delay before hitbox + particles (sync with animation)
+            // 1. Wait until the swing reaches the hit frame
             yield return new WaitForSeconds(_playerData.DelayBeforeHitBox);
 
-            // Play particles
+            // 2. Play particles
             PlayParticle(_isAttacking);
 
-            // Enable hitbox
+            // 3. Enable hitbox for a short window
             _attackCollider.gameObject.SetActive(true);
+            yield return new WaitForSeconds(_playerData.HitboxDuration);
+            _attackCollider.gameObject.SetActive(false);
 
-            // Attack lasts exactly AttackDuration
-            yield return new WaitForSeconds(_playerData.AttackDuration - _playerData.DelayBeforeHitBox);
+            // 4. Let the rest of the animation / attack state finish
+            float remaining =
+                _playerData.AttackDuration
+                - _playerData.DelayBeforeHitBox
+                - _playerData.HitboxDuration;
 
-            // End attack
+            if (remaining > 0f)
+                yield return new WaitForSeconds(remaining);
+
+            // 5. End attack state
             _isAttacking = false;
             _isAttackingUp = false;
-            _attackCollider.gameObject.SetActive(false);
         }
 
         private void PlayParticle(bool horizontal)
