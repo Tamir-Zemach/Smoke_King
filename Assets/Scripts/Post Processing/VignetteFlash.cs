@@ -36,13 +36,13 @@ namespace Post_Processing
             _defaultIntensity = _vignette.intensity.value;
         }
 
-        public void FlashRed(float flashIntensity = 0.55f, float duration = 0.25f)
+        public void FlashInColor(Color color,float flashIntensity = 0.55f, float duration = 0.25f)
         {
             if (_vignette == null)
                 return;
 
             // Flash to red
-            _vignette.color.value = Color.red;
+            _vignette.color.value = color;
             _vignette.intensity.value = flashIntensity;
 
             // Tween back to default

@@ -1,6 +1,6 @@
+using System;
 using Enums;
 using UnityEngine;
-using UnityEngine.Events;
 using Utilities;
 
 namespace Player
@@ -10,8 +10,7 @@ namespace Player
         public StateType CurrentStateType = StateType.State1;
         public Material PlayerMaterial;
 
-        //For particals 
-        public UnityEvent OnStateChange;
+        public Action OnStateChange;
         private PlayerInput _playerInput;
         private SpriteRenderer _spriteRenderer;
 
@@ -42,6 +41,7 @@ namespace Player
                     break;
             }
 
+            OnStateChange?.Invoke();
             ShaderLerpUtility.LerpFloat(PlayerMaterial, "_Polarity", targetPolarity, 0.3f);
         }
 

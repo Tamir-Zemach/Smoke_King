@@ -59,7 +59,7 @@ namespace Ui
             if (current < _lastHealth)
             {
                 CameraShake.Instance.Shake(0.5f);
-                VignetteFlash.Instance.FlashRed();   // ← ADD THIS
+                VignetteFlash.Instance.FlashInColor(Color.red);   // ← ADD THIS
 
                 int heartsLost = _lastHealth - current;
 

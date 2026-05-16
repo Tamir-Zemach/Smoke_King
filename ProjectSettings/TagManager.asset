@@ -65,6 +65,9 @@ TagManager:
   - name: Particles
     uniqueID: 591355203
     locked: 0
+  - name: Hero Particles
+    uniqueID: 3679133777
+    locked: 0
   - name: Ui
     uniqueID: 4138698439
     locked: 0

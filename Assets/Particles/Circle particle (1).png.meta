@@ -1,0 +1,1261 @@
+fileFormatVersion: 2
+guid: e7d3e4ec008521f42bca086b4f097260
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6796166195130027933
+    second: Circle particle (1)_0
+  - first:
+      213: -6354980019516886111
+    second: Circle particle (1)_1
+  - first:
+      213: 867889129856601687
+    second: Circle particle (1)_2
+  - first:
+      213: -7062981865116696428
+    second: Circle particle (1)_3
+  - first:
+      213: -1439071012260778472
+    second: Circle particle (1)_4
+  - first:
+      213: 7035136324313237102
+    second: Circle particle (1)_5
+  - first:
+      213: -9139800841814897263
+    second: Circle particle (1)_6
+  - first:
+      213: 3867261339496328023
+    second: Circle particle (1)_7
+  - first:
+      213: 2715690208101685976
+    second: Circle particle (1)_8
+  - first:
+      213: 8440398673598301042
+    second: Circle particle (1)_9
+  - first:
+      213: 4999670031115149605
+    second: Circle particle (1)_10
+  - first:
+      213: 7611525226667875501
+    second: Circle particle (1)_11
+  - first:
+      213: 6601521109627939132
+    second: Circle particle (1)_12
+  - first:
+      213: 8316439428418019950
+    second: Circle particle (1)_13
+  - first:
+      213: 3996857426870046458
+    second: Circle particle (1)_14
+  - first:
+      213: 5968616290972671240
+    second: Circle particle (1)_15
+  - first:
+      213: 8182556845892177931
+    second: Circle particle (1)_16
+  - first:
+      213: 4272669158903942957
+    second: Circle particle (1)_17
+  - first:
+      213: -8381321785591761601
+    second: Circle particle (1)_18
+  - first:
+      213: 2182393505602874002
+    second: Circle particle (1)_19
+  - first:
+      213: -9020248524599659818
+    second: Circle particle (1)_20
+  - first:
+      213: -192833061583852133
+    second: Circle particle (1)_21
+  - first:
+      213: -4980531506625650625
+    second: Circle particle (1)_22
+  - first:
+      213: 694821402411593996
+    second: Circle particle (1)_23
+  - first:
+      213: 4694348898963367214
+    second: Circle particle (1)_24
+  - first:
+      213: -540086547491288342
+    second: Circle particle (1)_25
+  - first:
+      213: -6351772314855853842
+    second: Circle particle (1)_26
+  - first:
+      213: 4857843582097990354
+    second: Circle particle (1)_27
+  - first:
+      213: 368993420268601353
+    second: Circle particle (1)_28
+  - first:
+      213: -2970682419824255
+    second: Circle particle (1)_29
+  - first:
+      213: 2059587176515612682
+    second: Circle particle (1)_30
+  - first:
+      213: -8107459860687026883
+    second: Circle particle (1)_31
+  - first:
+      213: 8306256311059469532
+    second: Circle particle (1)_32
+  - first:
+      213: 8084538037279883040
+    second: Circle particle (1)_33
+  - first:
+      213: 7998821058131611462
+    second: Circle particle (1)_34
+  - first:
+      213: -2291385699636997326
+    second: Circle particle (1)_35
+  - first:
+      213: 8544451422840313017
+    second: Circle particle (1)_36
+  - first:
+      213: -477657942323201939
+    second: Circle particle (1)_37
+  - first:
+      213: -2592267931513787476
+    second: Circle particle (1)_38
+  - first:
+      213: 4690779121295277220
+    second: Circle particle (1)_39
+  - first:
+      213: 3521780055561936365
+    second: Circle particle (1)_40
+  - first:
+      213: -5030367863917673994
+    second: Circle particle (1)_41
+  - first:
+      213: -1302028306352088467
+    second: Circle particle (1)_42
+  - first:
+      213: -5490279184669821034
+    second: Circle particle (1)_43
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Circle particle (1)_0
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 357
+        width: 118
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9f4e379525d05e50800000000000000
+      internalID: 6796166195130027933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_1
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 356
+        width: 143
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a3bdf5a7539ec7a0800000000000000
+      internalID: -6354980019516886111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_2
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 363
+        width: 131
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75e8689b09c5b0c00800000000000000
+      internalID: 867889129856601687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_3
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 205
+        width: 52
+        height: 113
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49081ba3a6f3bfd90800000000000000
+      internalID: -7062981865116696428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_4
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 186
+        width: 93
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81e62a3f984670ce0800000000000000
+      internalID: -1439071012260778472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_5
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 294
+        width: 87
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6643259633d1a160800000000000000
+      internalID: 7035136324313237102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_6
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 280
+        width: 43
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19d8ec12f87e82180800000000000000
+      internalID: -9139800841814897263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_7
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 312
+        width: 39
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75ba74ad2b54ba530800000000000000
+      internalID: 3867261339496328023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_8
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 230
+        width: 22
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8da58ed1bd110b520800000000000000
+      internalID: 2715690208101685976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_9
+      rect:
+        serializedVersion: 2
+        x: 297
+        y: 254
+        width: 26
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 273418edfd1522570800000000000000
+      internalID: 8440398673598301042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_10
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 282
+        width: 30
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 521e8c66765626540800000000000000
+      internalID: 4999670031115149605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_11
+      rect:
+        serializedVersion: 2
+        x: 476
+        y: 271
+        width: 9
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dac9676bdd191a960800000000000000
+      internalID: 7611525226667875501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_12
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 280
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c39ad9c09705d9b50800000000000000
+      internalID: 6601521109627939132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_13
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 191
+        width: 60
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e62a8e6099de96370800000000000000
+      internalID: 8316439428418019950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_14
+      rect:
+        serializedVersion: 2
+        x: 362
+        y: 230
+        width: 8
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afe887a47a0b77730800000000000000
+      internalID: 3996857426870046458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_15
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 218
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80d1900c4e8c4d250800000000000000
+      internalID: 5968616290972671240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_16
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 196
+        width: 45
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0018d929184e8170800000000000000
+      internalID: 8182556845892177931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_17
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 193
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2f8c3366f19b4b30800000000000000
+      internalID: 4272669158903942957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_18
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 195
+        width: 47
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f357f8dfd309fab80800000000000000
+      internalID: -8381321785591761601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_19
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 194
+        width: 50
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29a249d945b694e10800000000000000
+      internalID: 2182393505602874002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_20
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 139
+        width: 17
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d2fe7912c3a1d280800000000000000
+      internalID: -9020248524599659818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_21
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 135
+        width: 32
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9de7572a5be25df0800000000000000
+      internalID: -192833061583852133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_22
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 144
+        width: 29
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f30efe29bf891eab0800000000000000
+      internalID: -4980531506625650625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_23
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 138
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c01f419526084a900800000000000000
+      internalID: 694821402411593996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_24
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 144
+        width: 13
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e25257ea37da52140800000000000000
+      internalID: 4694348898963367214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_25
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 131
+        width: 32
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aea80d4852a3188f0800000000000000
+      internalID: -540086547491288342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_26
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 126
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee03bd69bb8f9d7a0800000000000000
+      internalID: -6351772314855853842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_27
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 132
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d2ac5dfff68a6340800000000000000
+      internalID: 4857843582097990354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_28
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 124
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 900019b8f8dee1500800000000000000
+      internalID: 368993420268601353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_29
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 74
+        width: 10
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18930a91e2275fff0800000000000000
+      internalID: -2970682419824255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_30
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 104
+        width: 15
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a00b928ff9f159c10800000000000000
+      internalID: 2059587176515612682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_31
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 45
+        width: 20
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d35030d36348c7f80800000000000000
+      internalID: -8107459860687026883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_32
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 91
+        width: 6
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd4db024b10c54370800000000000000
+      internalID: 8306256311059469532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_33
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 93
+        width: 19
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02f733dd28c023070800000000000000
+      internalID: 8084538037279883040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_34
+      rect:
+        serializedVersion: 2
+        x: 314
+        y: 24
+        width: 113
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64f49df6f55810f60800000000000000
+      internalID: 7998821058131611462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_35
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 94
+        width: 11
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2331ab1b8dc5330e0800000000000000
+      internalID: -2291385699636997326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_36
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 44
+        width: 14
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b45af27c4df39670800000000000000
+      internalID: 8544451422840313017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_37
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 64
+        width: 6
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d687ea7d1a40f59f0800000000000000
+      internalID: -477657942323201939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_38
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 54
+        width: 12
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cabeb7bfc0a660cd0800000000000000
+      internalID: -2592267931513787476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_39
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 25
+        width: 35
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4acbf9c02cef81140800000000000000
+      internalID: 4690779121295277220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_40
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 26
+        width: 43
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ded13d42d40efd030800000000000000
+      internalID: 3521780055561936365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_41
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 46
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f185ad641b803ab0800000000000000
+      internalID: -5030367863917673994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_42
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 31
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6a516067244eede0800000000000000
+      internalID: -1302028306352088467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Circle particle (1)_43
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 21
+        width: 49
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 697b8089b2c9ec3b0800000000000000
+      internalID: -5490279184669821034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Circle particle (1)_0: 6796166195130027933
+      Circle particle (1)_1: -6354980019516886111
+      Circle particle (1)_10: 4999670031115149605
+      Circle particle (1)_11: 7611525226667875501
+      Circle particle (1)_12: 6601521109627939132
+      Circle particle (1)_13: 8316439428418019950
+      Circle particle (1)_14: 3996857426870046458
+      Circle particle (1)_15: 5968616290972671240
+      Circle particle (1)_16: 8182556845892177931
+      Circle particle (1)_17: 4272669158903942957
+      Circle particle (1)_18: -8381321785591761601
+      Circle particle (1)_19: 2182393505602874002
+      Circle particle (1)_2: 867889129856601687
+      Circle particle (1)_20: -9020248524599659818
+      Circle particle (1)_21: -192833061583852133
+      Circle particle (1)_22: -4980531506625650625
+      Circle particle (1)_23: 694821402411593996
+      Circle particle (1)_24: 4694348898963367214
+      Circle particle (1)_25: -540086547491288342
+      Circle particle (1)_26: -6351772314855853842
+      Circle particle (1)_27: 4857843582097990354
+      Circle particle (1)_28: 368993420268601353
+      Circle particle (1)_29: -2970682419824255
+      Circle particle (1)_3: -7062981865116696428
+      Circle particle (1)_30: 2059587176515612682
+      Circle particle (1)_31: -8107459860687026883
+      Circle particle (1)_32: 8306256311059469532
+      Circle particle (1)_33: 8084538037279883040
+      Circle particle (1)_34: 7998821058131611462
+      Circle particle (1)_35: -2291385699636997326
+      Circle particle (1)_36: 8544451422840313017
+      Circle particle (1)_37: -477657942323201939
+      Circle particle (1)_38: -2592267931513787476
+      Circle particle (1)_39: 4690779121295277220
+      Circle particle (1)_4: -1439071012260778472
+      Circle particle (1)_40: 3521780055561936365
+      Circle particle (1)_41: -5030367863917673994
+      Circle particle (1)_42: -1302028306352088467
+      Circle particle (1)_43: -5490279184669821034
+      Circle particle (1)_5: 7035136324313237102
+      Circle particle (1)_6: -9139800841814897263
+      Circle particle (1)_7: 3867261339496328023
+      Circle particle (1)_8: 2715690208101685976
+      Circle particle (1)_9: 8440398673598301042
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
