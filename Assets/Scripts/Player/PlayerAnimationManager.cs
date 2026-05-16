@@ -7,6 +7,8 @@ namespace Player
         private Animator _anim;
         private PlayerMovementManager _movement;
         private PlayerAttackManager _attack;
+        private float _punchLayerVelocity;
+
 
         protected override void Awake()
         {
@@ -32,7 +34,25 @@ namespace Player
             UpdateMovementAnimations();
             UpdateGroundedState();
             UpdateAttackState();
+            UpdatePunchLayerWeight();
         }
+
+        private void UpdatePunchLayerWeight()
+        {
+            bool punching = _attack.IsAttacking || _attack.IsAttackingUp;
+            float targetWeight = punching ? 1f : 0f;
+
+            float newWeight = Mathf.SmoothDamp(
+                _anim.GetLayerWeight(1),   // current weight
+                targetWeight,              // target weight
+                ref _punchLayerVelocity,   // smoothing velocity
+                0.1f                      // smooth time (tweakable)
+            );
+
+            _anim.SetLayerWeight(1, newWeight);
+        }
+
+
 
         private void UpdateAttackState()
         {

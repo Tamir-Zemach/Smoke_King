@@ -48,7 +48,9 @@ namespace Player
         {
             // Prevent spam or restarting the attack
             if (_attackLocked || _isAttacking || _isAttackingUp || _movement.IsOnWall)
+            {
                 return;
+            }
 
             // Lock input briefly
             _attackLocked = true;
