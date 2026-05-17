@@ -30,3 +30,4 @@ MonoBehaviour:
   TrackingDuration: 1.5
   LockDuration: 0.5
   RotationSpeed: 180
+  Yoffset: 1

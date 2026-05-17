@@ -35,14 +35,12 @@ namespace Managers.Boss
 
             Vector3 pos = data.SpawnPoint.position;
 
-            // Add offset ONLY if boss is on the left
             if (_movementManager.IsCurrentSpotLeft)
-            {
                 pos += data.Offset;
-            }
 
             BossParticlePool.Instance.Play(type, pos);
         }
+
 
     }
 }

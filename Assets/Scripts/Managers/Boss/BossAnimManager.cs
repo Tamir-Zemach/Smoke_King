@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Enums;
+using ObjectPooling;
 using UnityEngine;
 using Utilities;
 
@@ -74,6 +75,7 @@ namespace Managers.Boss
 
         public void FinishTeleportAnimation()
         {
+            BossParticlePool.Instance.Stop(BossParticles.KingFloatSmoke);
             OnTeleportAnimEnds?.Invoke();
         }
 
@@ -82,6 +84,7 @@ namespace Managers.Boss
             OnSpawnAnimEnds?.Invoke();
         }
 
+        
         #endregion
     }
 }

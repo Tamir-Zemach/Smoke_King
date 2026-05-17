@@ -118,7 +118,12 @@ namespace Boss.BossAttacks
 
                 if (_player != null)
                 {
-                    var dir = (_player.transform.position - transform.position).normalized;
+                    // Apply Y offset
+                    Vector3 targetPos = _player.transform.position;
+                    targetPos.y += data.Yoffset;
+
+                    var dir = (targetPos - transform.position).normalized;
+
                     var targetAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90f;
 
                     var angle = Mathf.MoveTowardsAngle(

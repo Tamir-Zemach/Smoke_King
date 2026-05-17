@@ -6,6 +6,7 @@ namespace Enums
         Spawns,
         Hit,
         Snap,
-        FloatSmoke
+        FloatSmoke,
+        KingFloatSmoke
     }
 }

@@ -47,7 +47,6 @@ namespace Player
         {
             if (_isAttacking || _isAttackingUp || _movement.IsOnWall)
             {
-                Debug.Log("Cant Attack");
                 return;
             }
 

@@ -15,7 +15,7 @@ namespace Boss
         protected override void Awake()
         {
             base.Awake();
-            _maxHealth = 10;
+            _maxHealth = 20;
             _currentHealth = _maxHealth;
         }
 

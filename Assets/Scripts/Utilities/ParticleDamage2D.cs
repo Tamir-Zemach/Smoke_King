@@ -32,9 +32,7 @@ namespace Utilities
         {
             if ((HitLayer.value & (1 << other.layer)) == 0)
                 return;
-
-            print($"collided with {other.name}");
-
+            
             // If it hits ANYTHING in HitLayer → stop the particle system
             _onFinish?.Invoke();
             ParticleMovementUtility.KillTweens(transform);

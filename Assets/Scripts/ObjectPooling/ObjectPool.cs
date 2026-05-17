@@ -11,13 +11,19 @@ namespace ObjectPooling
         private readonly Queue<T> _pool;
         private readonly T _prefab;
 
+        // Track active objects
+        public List<T> ActiveObjects { get; private set; }
+
         public ObjectPool(T prefab, int initialSize, int maxPoolSize, Transform parent)
         {
             _prefab = prefab;
             _parent = parent;
             _maxPoolSize = maxPoolSize;
-            _pool = new Queue<T>(initialSize);
 
+            _pool = new Queue<T>(initialSize);
+            ActiveObjects = new List<T>();
+
+            // Pre‑create objects
             for (var i = 0; i < initialSize; i++)
             {
                 var obj = Object.Instantiate(_prefab, _parent);
@@ -28,16 +34,27 @@ namespace ObjectPooling
 
         public T Get()
         {
-            var obj = _pool.Count > 0
-                ? _pool.Dequeue()
-                : Object.Instantiate(_prefab, _parent);
+            T obj;
+
+            if (_pool.Count > 0)
+            {
+                obj = _pool.Dequeue();
+            }
+            else
+            {
+                obj = Object.Instantiate(_prefab, _parent);
+            }
 
             obj.gameObject.SetActive(true);
+            ActiveObjects.Add(obj);
+
             return obj;
         }
 
         public void Return(T obj)
         {
+            ActiveObjects.Remove(obj);
+
             if (_pool.Count < _maxPoolSize)
             {
                 obj.gameObject.SetActive(false);
@@ -46,6 +63,18 @@ namespace ObjectPooling
             else
             {
                 Object.Destroy(obj.gameObject);
+            }
+        }
+
+        // Return all active objects (useful for stopping looping particles)
+        public void ReturnAllActive()
+        {
+            // Copy to avoid modifying while iterating
+            var copy = new List<T>(ActiveObjects);
+
+            foreach (var obj in copy)
+            {
+                Return(obj);
             }
         }
     }

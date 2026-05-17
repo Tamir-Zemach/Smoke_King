@@ -44,5 +44,21 @@ namespace ObjectPooling
 
             obj.PlayAt(pos, p => pool.Return(p));
         }
+        
+        
+        public void Stop(BossParticles type)
+        {
+            var pool = _pools[type];
+
+            // Copy to avoid modifying while iterating
+            var activeCopy = new List<BossParticle>(pool.ActiveObjects);
+
+            foreach (var particle in activeCopy)
+            {
+                particle.Stop();
+            }
+        }
+
+
     }
 }

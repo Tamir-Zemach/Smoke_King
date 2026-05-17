@@ -36,5 +36,12 @@ namespace Particles
             yield return new WaitUntil(() => !_ps.IsAlive(true));
             _onFinished?.Invoke(this);
         }
+        
+        public void Stop()
+        {
+            _ps.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+            _onFinished?.Invoke(this);
+        }
+
     }
 }

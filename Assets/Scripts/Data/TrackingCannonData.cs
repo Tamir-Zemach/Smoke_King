@@ -9,5 +9,6 @@ namespace Data
 
         public float LockDuration = 0.2f;
         public float RotationSpeed = 180f;
+        public float Yoffset = 0;
     }
 }
