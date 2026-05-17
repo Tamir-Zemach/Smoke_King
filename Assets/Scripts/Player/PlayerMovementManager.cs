@@ -61,13 +61,17 @@ namespace Player
         {
             if (_rb == null) return;
 
-            // Movement uses easing
+            if (!Input.TutorialBlocker.CanMove())
+            {
+                _rb.linearVelocity = new Vector2(0, _rb.linearVelocity.y);
+                return;
+            }
+
             var targetX = Input.Movement.x * _playerData.Speed;
-
             var easedX = Mathf.Lerp(_rb.linearVelocity.x, targetX, _controlFactor);
-
             _rb.linearVelocity = new Vector2(easedX, _rb.linearVelocity.y);
         }
+
 
         #endregion
 

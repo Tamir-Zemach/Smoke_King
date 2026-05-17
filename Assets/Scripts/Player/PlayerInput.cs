@@ -8,6 +8,7 @@ namespace Player
 {
     public class PlayerInput : SingletonMonoBehaviour<PlayerInput>
     {
+        public Tutorial.PlayerInputBlocker TutorialBlocker { get; private set; }
         public Action OnJump;
         public Action OnStateSwitch;
         public Action OnAttack;
@@ -44,6 +45,7 @@ namespace Player
             _attackAction = PlayerInputAsset.FindAction("Attack");
             _pauseAction = PlayerInputAsset.FindAction("Pause");
             FacingRight = true;
+            TutorialBlocker = new Tutorial.PlayerInputBlocker(this);
         }
 
         private void Update()
@@ -56,14 +58,18 @@ namespace Player
         private void CheckForPressedButtons()
         {
             if (_pauseAction.WasPressedThisFrame())
-            {
                 OnPause?.Invoke();
-            }
-            if (_jumpAction.WasPressedThisFrame()) OnJump?.Invoke();
-            if (_stateSwitchAction.WasPressedThisFrame()) OnStateSwitch?.Invoke();
+
+            if (_jumpAction.WasPressedThisFrame() && TutorialBlocker.CanJump())
+                OnJump?.Invoke();
+
+            if (_stateSwitchAction.WasPressedThisFrame() && TutorialBlocker.CanStateSwitch())
+                OnStateSwitch?.Invoke();
+
             if (_attackAction.WasPressedThisFrame())
             {
-                // Check if the player is pressing UP at the same time
+                if (!TutorialBlocker.CanAttack()) return;
+
                 if (Movement.y > 0.5f)
                     OnUpAttack?.Invoke();
                 else

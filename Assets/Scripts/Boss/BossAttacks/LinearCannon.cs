@@ -42,6 +42,7 @@ namespace Boss.BossAttacks
 
         public void Init(Vector3 position, Quaternion rotation, StateType state,  Action onFinished = null)
         { 
+            print("check");
             _onFinish = onFinished;
             _state = state;
             transform.position = position;
@@ -75,7 +76,7 @@ namespace Boss.BossAttacks
 
         private IEnumerator FireRoutine()
         {
-
+            print("check");
             // TRACKING PHASE
             if (Tracking)
             {
