@@ -66,7 +66,7 @@ namespace Tutorial
             // -----------------------------
             _step = TutorialStep.MoveJumpAndAttacks;
             BlockAllInput(false);
-
+            _playerInput.TutorialBlocker.BlockStateSwitch = true;
             _moved = _jumped = _attacked = _upAttacked = false;
 
             _ui.ShowMoveJump();
@@ -211,6 +211,7 @@ namespace Tutorial
             blocker.BlockJump = true;
             blocker.BlockAttack = true;
             blocker.BlockStateSwitch = false;
+
 
             bool switched = false;
             void OnStateSwitch() => switched = true;

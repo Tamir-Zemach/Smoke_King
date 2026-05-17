@@ -156,7 +156,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80a9c0ba14ac460f8d1807fc5b20003e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tutorial.TutorialSmokeMover
-  Speed: 1
+  Speed: 25
+  IdleDuration: 3
+  ShakeIntensity: 0.15
+  ShakeSpeed: 25
+  CameraShakeIntensity: 0.05
 --- !u!114 &6262874701279604007 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2167317090031244697, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
