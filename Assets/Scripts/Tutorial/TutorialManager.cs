@@ -17,6 +17,7 @@ namespace Tutorial
         [SerializeField] private PlayerAttackManager _playerAttack;
         [SerializeField] private PlayerMovementManager _playerMovement;
         [SerializeField] private PlayerStateManager _playerState;
+        [SerializeField] private PlayerAnimationManager _playerAnimation;
         [SerializeField] private BossManager _bossManager;
         [SerializeField] private TutorialUI _ui;
         [SerializeField] private CinemachineCamera _gameplayCam;
@@ -147,6 +148,10 @@ namespace Tutorial
         {
             // 1. Freeze player
             BlockAllInput(true);
+            _playerAnimation.FreezeAnimations(0.5f);
+            _playerMovement.FreezeFacing();
+
+
 
             // 2. Spawn smoke
             var smoke = Instantiate(_smokePrefab, _smokeSpawnPos.transform.position, Quaternion.identity);
@@ -256,6 +261,8 @@ namespace Tutorial
 
             // 9. Unblock everything
             BlockAllInput(false);
+            _playerAnimation.UnfreezeAnimations();
+            _playerMovement.UnfreezeFacing();
         }
 
         private IEnumerator LerpTimeScale(float from, float to, float duration)
@@ -275,7 +282,11 @@ namespace Tutorial
         {
             yield return new WaitForSeconds(0.5f);
 
-            _bossManager.SendMessage("PlaySpawnAnim", SendMessageOptions.DontRequireReceiver);
+            //for now
+            
+            _bossManager.gameObject.SetActive(true);
+            
+            /// //_bossManager.SendMessage("PlaySpawnAnim", SendMessageOptions.DontRequireReceiver);
 
             yield return new WaitForSeconds(1f);
         }

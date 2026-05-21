@@ -25,6 +25,8 @@ namespace Player
         private bool _onWallRight;
         private PlayerHealthManager _playerHealthManager;
         private Rigidbody2D _rb;
+        private bool _frozenFacing = false;
+
 
 
         #region Unity Lifecycle
@@ -75,14 +77,30 @@ namespace Player
 
         #endregion
 
+        public void FreezeFacing()
+        {
+            _frozenFacing = true;
+        }
+
+        public void UnfreezeFacing()
+        {
+            _frozenFacing = false;
+        }
+
         
         // -----------------------------
         // FACING DIRECTION
         // -----------------------------
         private void UpdateFacingDirection()
         {
-            transform.localScale = Input.FacingRight ? new Vector3(1, 1, 1) : new Vector3(-1, 1, 1);
+            if (_frozenFacing)
+                return;
+
+            transform.localScale = Input.FacingRight
+                ? new Vector3(1, 1, 1)
+                : new Vector3(-1, 1, 1);
         }
+
 
 
         // -----------------------------

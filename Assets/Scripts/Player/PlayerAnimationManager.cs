@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace Player
@@ -8,6 +9,8 @@ namespace Player
         private PlayerMovementManager _movement;
         private PlayerAttackManager _attack;
         private float _punchLayerVelocity;
+        private bool _frozen = false;
+        private Coroutine _freezeRoutine;
 
 
         protected override void Awake()
@@ -26,11 +29,13 @@ namespace Player
         protected override void UnSubscribeToInputEvents()
         {
             Input.OnJump -= HandleJump;
-
         }
 
         private void Update()
         {
+            if (_frozen)
+                return;
+
             UpdateMovementAnimations();
             UpdateGroundedState();
             UpdateAttackState();
@@ -43,16 +48,14 @@ namespace Player
             float targetWeight = punching ? 1f : 0f;
 
             float newWeight = Mathf.SmoothDamp(
-                _anim.GetLayerWeight(1),   // current weight
-                targetWeight,              // target weight
-                ref _punchLayerVelocity,   // smoothing velocity
-                0.1f                      // smooth time (tweakable)
+                _anim.GetLayerWeight(1),
+                targetWeight,
+                ref _punchLayerVelocity,
+                0.1f
             );
 
             _anim.SetLayerWeight(1, newWeight);
         }
-
-
 
         private void UpdateAttackState()
         {
@@ -60,19 +63,12 @@ namespace Player
             _anim.SetBool("IsAttackingUp", _attack.IsAttackingUp);
         }
 
-        // -----------------------------
-        // MOVEMENT
-        // -----------------------------
         private void UpdateMovementAnimations()
         {
             float speed = Mathf.Abs(Input.Movement.x);
             _anim.SetFloat("Speed", speed);
-            
         }
 
-        // -----------------------------
-        // GROUND CHECK
-        // -----------------------------
         private void UpdateGroundedState()
         {
             if (_movement != null)
@@ -82,13 +78,44 @@ namespace Player
             }
         }
 
-        // -----------------------------
-        // JUMP
-        // -----------------------------
         private void HandleJump()
         {
             _anim.SetTrigger("IsJumping");
         }
-        
+
+        // -----------------------------
+        // FREEZE / UNFREEZE
+        // -----------------------------
+        public void FreezeAnimations(float delay = 0.05f)
+        {
+            if (_freezeRoutine != null)
+            {
+                StopCoroutine(_freezeRoutine);
+            }
+
+            _freezeRoutine = StartCoroutine(FreezeAfterDelay(delay));
+        }
+
+        private IEnumerator FreezeAfterDelay(float delay)
+        {
+            float t = 0f;
+            while (t < delay)
+            {
+                t += Time.unscaledDeltaTime;
+                yield return null;
+            }
+
+            _frozen = true;
+            _anim.speed = 0f;
+        }
+
+        public void UnfreezeAnimations()
+        {
+            if (_freezeRoutine != null)
+                StopCoroutine(_freezeRoutine);
+
+            _frozen = false;
+            _anim.speed = 1f;
+        }
     }
 }

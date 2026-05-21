@@ -28,8 +28,8 @@ namespace Managers.Boss
 
         private void Start()
         {
-            //_animManager.TriggerTeleportAnimation();
-            //StartCoroutine(InitialSpawn());
+            _animManager.TriggerTeleportAnimation();
+            StartCoroutine(InitialSpawn());
         }
 
         private void OnDestroy()
