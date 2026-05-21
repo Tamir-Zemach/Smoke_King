@@ -58,6 +58,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3880980101791749882}
     m_Modifications:
+    - target: {fileID: 1743765019648888127, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
+      propertyPath: m_MaxParticleSize
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 2040246890718593267, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
       propertyPath: m_Name
       value: Smoke Attack
@@ -161,6 +165,7 @@ MonoBehaviour:
   ShakeIntensity: 0.15
   ShakeSpeed: 25
   CameraShakeIntensity: 0.05
+  _yOffset: 1
 --- !u!114 &6262874701279604007 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2167317090031244697, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}

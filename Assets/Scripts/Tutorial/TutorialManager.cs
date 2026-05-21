@@ -19,9 +19,8 @@ namespace Tutorial
         [SerializeField] private PlayerStateManager _playerState;
         [SerializeField] private BossManager _bossManager;
         [SerializeField] private TutorialUI _ui;
-        [SerializeField] private CameraZoomController _cameraZoom;
-        [SerializeField] private CinemachineCamera _tutorialCam;
         [SerializeField] private CinemachineCamera _gameplayCam;
+        [SerializeField] private CinemachineCamera _playerZoomCamera;
 
         [Header("State switch smoke")]
         [SerializeField] private GameObject _smokePrefab;
@@ -34,12 +33,15 @@ namespace Tutorial
         private bool _jumped;
         private bool _attacked;
         private bool _upAttacked;
+        
+        private Transform _playerTransform;
 
         private void Start()
         {
             if (_playerInput == null)
+            {
                 _playerInput = FindAnyObjectByType<PlayerInput>();
-
+            }
             _playerInput.OnJump += OnJump;
             _playerInput.OnAttack += OnAttack;
             _playerInput.OnUpAttack += OnUpAttack;
@@ -57,7 +59,6 @@ namespace Tutorial
 
         private IEnumerator RunTutorial()
         {
-            // PHASE 0 – Intro
             BlockAllInput(true);
             _ui.HideAll();
 
@@ -67,6 +68,7 @@ namespace Tutorial
             _step = TutorialStep.MoveJumpAndAttacks;
             BlockAllInput(false);
             _playerInput.TutorialBlocker.BlockStateSwitch = true;
+
             _moved = _jumped = _attacked = _upAttacked = false;
 
             _ui.ShowMoveJump();
@@ -129,7 +131,8 @@ namespace Tutorial
             if (_step != TutorialStep.MoveJumpAndAttacks) return;
             _upAttacked = true;
         }
-
+        
+        
         private void Update()
         {
             if (_step == TutorialStep.MoveJumpAndAttacks)
@@ -139,6 +142,7 @@ namespace Tutorial
             }
         }
 
+
         private IEnumerator StateSwitchPhase()
         {
             // 1. Freeze player
@@ -147,7 +151,6 @@ namespace Tutorial
             // 2. Spawn smoke
             var smoke = Instantiate(_smokePrefab, _smokeSpawnPos.transform.position, Quaternion.identity);
 
-            // Get LinearCannon for visuals
             var cannon = smoke.GetComponent<LinearCannon>();
             if (cannon != null)
             {
@@ -156,11 +159,9 @@ namespace Tutorial
                 cannon.SmokeParticle.Init(visual.Color, visual.Material, visual.Type);
             }
 
-
-            // Tutorial movement (in children)
             var mover = smoke.GetComponentInChildren<TutorialSmokeMover>();
 
-            // 3. Wait until smoke (mover) is close
+            // 3. Wait until smoke is close
             while (smoke != null)
             {
                 var playerPos = _playerMovement.transform.position;
@@ -176,42 +177,48 @@ namespace Tutorial
 
                 yield return null;
             }
+  
+            // 4. Freeze smoke
+            ParticleSystem smokePs = null;
 
-            // 4. Freeze smoke movement
             if (mover != null)
-            {
                 mover.Freeze();
-            }
 
             if (cannon != null)
             {
                 ParticleMovementUtility.KillTweens(cannon.SmokeParticle.transform);
 
-                var ps = cannon.SmokeParticle.GetComponent<ParticleSystem>();
-                if (ps != null)
-                    ps.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+                smokePs = cannon.SmokeParticle.GetComponent<ParticleSystem>();
+                if (smokePs != null)
+                {
+                    // FULL FREEZE: stop simulation + stop time-based evolution
+                    var main = smokePs.main;
+                    main.simulationSpeed = 0f;
+                    smokePs.Pause(true);
+                }
 
                 var light = cannon.SmokeParticle.GetComponentInChildren<UnityEngine.Rendering.Universal.Light2D>();
                 if (light != null)
-                    light.enabled = false;
+                    light.enabled = true; // keep visible if you want the smoke to stay lit
             }
 
             // 5. Slow motion → pause
             yield return StartCoroutine(LerpTimeScale(1f, 0.1f, 0.25f));
             yield return StartCoroutine(LerpTimeScale(0.1f, 0f, 0.15f));
 
-            // 6. Zoom + show state switch PNG
-            if (_cameraZoom != null)
-                _cameraZoom.ZoomIn();
+            // -----------------------------
+            // 6. CAMERA SWITCH + ZOOM IN
+            // -----------------------------
+            _playerZoomCamera.Priority = 30;
+            yield return new WaitForSecondsRealtime(1f);
 
-            _ui.ShowStateSwitch(true);
+            _ui.ShowStateSwitch(true, _playerMovement.transform);
 
             var blocker = _playerInput.TutorialBlocker;
             blocker.BlockMovement = true;
             blocker.BlockJump = true;
             blocker.BlockAttack = true;
             blocker.BlockStateSwitch = false;
-
 
             bool switched = false;
             void OnStateSwitch() => switched = true;
@@ -223,23 +230,28 @@ namespace Tutorial
 
             _playerInput.OnStateSwitch -= OnStateSwitch;
 
-            // 7. Resume time + zoom out
+            // -----------------------------
+            // 7. ZOOM OUT + SWITCH BACK
+            // -----------------------------
+
             _ui.HideAll();
-
-            if (_cameraZoom != null)
-                _cameraZoom.ZoomOut();
-
-            yield return StartCoroutine(LerpTimeScale(0f, 1f, 0.3f));
+            
+            // Restore time scale
+            yield return StartCoroutine(LerpTimeScale(0f, 1f, 0.01f));
+            yield return new WaitForSecondsRealtime(1f);
+            _playerZoomCamera.Priority = 2; 
+            _gameplayCam.Priority = 30; 
+            
 
             // 8. Let smoke continue
             if (mover != null)
                 mover.Unfreeze();
 
-            if (cannon != null)
+            if (smokePs != null)
             {
-                var ps = cannon.SmokeParticle.GetComponent<ParticleSystem>();
-                if (ps != null)
-                    ps.Play();
+                var main = smokePs.main;
+                main.simulationSpeed = 1f;   // resume time-based evolution
+                smokePs.Play(true);          // resume simulation
             }
 
             // 9. Unblock everything
@@ -261,22 +273,16 @@ namespace Tutorial
 
         private IEnumerator BossIntroPhase()
         {
-            _gameplayCam.Priority = 20;
-            _tutorialCam.Priority = 10;
-
             yield return new WaitForSeconds(0.5f);
 
             _bossManager.SendMessage("PlaySpawnAnim", SendMessageOptions.DontRequireReceiver);
 
             yield return new WaitForSeconds(1f);
         }
+
         private StateType GetOppositeState(StateType s)
         {
             return s == StateType.State1 ? StateType.State2 : StateType.State1;
         }
-
     }
-    
-
 }
-

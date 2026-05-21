@@ -1,3 +1,4 @@
+using System.Collections;
 using Cameras;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ namespace Tutorial
         public float ShakeIntensity = 0.15f;
         public float ShakeSpeed = 25f;
         public float CameraShakeIntensity = 1f;
+        public float _yOffset = 2;
 
         private bool _frozen = false;
         private bool _flying = false;
@@ -43,7 +45,6 @@ namespace Tutorial
 
         private void RunShakeMotion()
         {
-            // Trigger camera shake ONCE
             if (!_cameraShakeStarted)
             {
                 _cameraShakeStarted = true;
@@ -67,12 +68,19 @@ namespace Tutorial
         {
             transform.position = Vector2.MoveTowards(
                 transform.position,
-                _player.position,
+                _player.position + new Vector3(0, _yOffset, 0),
                 Speed * Time.deltaTime
             );
         }
 
-        public void Freeze() => _frozen = true;
-        public void Unfreeze() => _frozen = false;
+        public void Freeze()
+        {
+            _frozen = true;
+        }
+
+        public void Unfreeze()
+        {
+            _frozen = false;
+        }
     }
 }

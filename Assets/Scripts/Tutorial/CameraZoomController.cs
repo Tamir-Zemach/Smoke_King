@@ -23,18 +23,11 @@ namespace Tutorial
                 _targetSize = _defaultSize;
             }
         }
-
-        private void Update()
-        {
-            if (_vcam == null) return;
-
-            float size = Mathf.Lerp(_vcam.Lens.OrthographicSize, _targetSize, Time.unscaledDeltaTime * _zoomSpeed);
-            _vcam.Lens.OrthographicSize = size;
-        }
-
+        
         public void ZoomIn()
         {
-            _targetSize = _zoomedSize;
+            float size = Mathf.Lerp(_vcam.Lens.OrthographicSize, _zoomedSize, Time.unscaledDeltaTime * _zoomSpeed);
+            _vcam.Lens.OrthographicSize = size;
         }
 
         public void ZoomOut()
