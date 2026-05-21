@@ -1,3 +1,6 @@
+using Art.Ui;
+using DG.Tweening;
+using Ui;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,12 +8,43 @@ namespace Tutorial
 {
     public class TutorialUI : MonoBehaviour
     {
+        // -----------------------------
+        // Public pulse methods (clean)
+        // -----------------------------
+        public void PulseLeft()        => _leftPulse?.TryPulse(0f, 2f, 0.15f);
+        public void PulseRight()       => _rightPulse?.TryPulse(0f, 2f, 0.15f);
+        public void PulseAttack()      => _attackPulse?.TryPulse(0f, 2f, 0.15f);
+        public void PulseJump()        => _jumpPulse?.TryPulse(0f, 2f, 0.15f);
+        public void PulseStateSwitch() => _stateSwitchPulse?.TryPulse(0f, 2f, 0.15f);
+
+        public void PulseUpAttackGroup()
+        {
+            _upAttackPulse1?.TryPulse(0f, 2f, 0.15f);
+            _upAttackPulse2?.TryPulse(0f, 2f, 0.15f);
+            _upAttackPulse3?.TryPulse(0f, 2f, 0.15f);
+        }
+
+        // -----------------------------
+        // Panels
+        // -----------------------------
         [Header("Panels (PNG overlays)")]
         [SerializeField] private GameObject _moveJumpPanel;
         [SerializeField] private GameObject _attackPanel;
         [SerializeField] private GameObject _stateSwitchPanel;
 
+        // -----------------------------
+        // Pulse components
+        // -----------------------------
         [Header("Pulse settings")]
+        [SerializeField] private EmissionPulse _leftPulse;
+        [SerializeField] private EmissionPulse _rightPulse;
+        [SerializeField] private EmissionPulse _attackPulse;
+        [SerializeField] private EmissionPulse _jumpPulse;
+        [SerializeField] private EmissionPulse _stateSwitchPulse;
+        [SerializeField] private EmissionPulse _upAttackPulse1;
+        [SerializeField] private EmissionPulse _upAttackPulse2;
+        [SerializeField] private EmissionPulse _upAttackPulse3;
+
         [SerializeField] private float _pulseScale = 1.1f;
         [SerializeField] private float _pulseSpeed = 1.5f;
 
@@ -31,24 +65,90 @@ namespace Tutorial
             HideAll();
         }
 
+        // ---------------------------------------------------------
+        // Pulse → Shrink → Fade (all child images)
+        // ---------------------------------------------------------
+        public Tween PulseCurrentPanel()
+        {
+            GameObject panel = null;
+
+            if (_moveJumpPanel != null && _moveJumpPanel.activeSelf)
+                panel = _moveJumpPanel;
+            else if (_attackPanel != null && _attackPanel.activeSelf)
+                panel = _attackPanel;
+            else if (_stateSwitchPanel != null && _stateSwitchPanel.activeSelf)
+                panel = _stateSwitchPanel;
+
+            if (panel == null)
+                return null;
+
+            // Get ALL images under the panel
+            Image[] images = panel.GetComponentsInChildren<Image>(true);
+            if (images.Length == 0)
+                return null;
+
+            // Reset visuals before animating
+            ResetPanelVisuals(panel, images);
+
+            Sequence seq = DOTween.Sequence().SetUpdate(true);
+
+            // 1. Pulse (scale up)
+            seq.Append(UiMovementUtility.Pulse(panel.transform, 1.2f, 0.15f));
+
+            // 2. Shrink (scale down)
+            seq.Append(UiMovementUtility.ShrinkTo(panel.transform, 0.15f, 0.8f));
+
+            // 3. Fade ALL images
+            foreach (var img in images)
+                seq.Join(UiMovementUtility.Fade(img, 0.25f));
+
+            return seq;
+        }
+
+        private void ResetPanelVisuals(GameObject panel, Image[] images)
+        {
+            // Reset scale
+            panel.transform.localScale = Vector3.one;
+
+            // Reset alpha on ALL images
+            foreach (var img in images)
+            {
+                var c = img.color;
+                c.a = 1f;
+                img.color = c;
+            }
+        }
+
+        // ---------------------------------------------------------
+        // Panel show/hide
+        // ---------------------------------------------------------
         public void HideAll()
         {
             if (_moveJumpPanel) _moveJumpPanel.SetActive(false);
             if (_attackPanel) _attackPanel.SetActive(false);
             if (_stateSwitchPanel) _stateSwitchPanel.SetActive(false);
+
             _pulsing = false;
         }
 
         public void ShowMoveJump()
         {
             HideAll();
-            if (_moveJumpPanel) _moveJumpPanel.SetActive(true);
+            if (_moveJumpPanel)
+            {
+                _moveJumpPanel.SetActive(true);
+                ResetAllImagesOnPanel(_moveJumpPanel);
+            }
         }
 
         public void ShowAttack()
         {
             HideAll();
-            if (_attackPanel) _attackPanel.SetActive(true);
+            if (_attackPanel)
+            {
+                _attackPanel.SetActive(true);
+                ResetAllImagesOnPanel(_attackPanel);
+            }
         }
 
         public void ShowStateSwitch(bool pulse, Transform player)
@@ -58,12 +158,28 @@ namespace Tutorial
             if (_stateSwitchPanel)
             {
                 _stateSwitchPanel.SetActive(true);
+                ResetAllImagesOnPanel(_stateSwitchPanel);
                 PositionStateSwitchOverPlayer(player);
             }
 
             _pulsing = pulse;
         }
 
+        private void ResetAllImagesOnPanel(GameObject panel)
+        {
+            foreach (var img in panel.GetComponentsInChildren<Image>(true))
+            {
+                var c = img.color;
+                c.a = 1f;
+                img.color = c;
+            }
+
+            panel.transform.localScale = Vector3.one;
+        }
+
+        // ---------------------------------------------------------
+        // Positioning
+        // ---------------------------------------------------------
         private void PositionStateSwitchOverPlayer(Transform player)
         {
             if (_stateSwitchRect == null || player == null || _canvas == null)
@@ -75,12 +191,10 @@ namespace Tutorial
 
             if (_canvas.renderMode == RenderMode.ScreenSpaceOverlay)
             {
-                // Direct screen position
                 _stateSwitchRect.position = screenPos;
             }
             else if (_canvas.renderMode == RenderMode.ScreenSpaceCamera)
             {
-                // Convert screen → canvas local
                 RectTransformUtility.ScreenPointToLocalPointInRectangle(
                     _canvas.transform as RectTransform,
                     screenPos,
@@ -90,15 +204,17 @@ namespace Tutorial
 
                 _stateSwitchRect.localPosition = localPos;
             }
-            else // World Space Canvas
+            else
             {
-                // Convert screen → world
                 Vector3 worldUIPos = Camera.main.ScreenToWorldPoint(screenPos);
                 worldUIPos.z = _stateSwitchRect.position.z;
                 _stateSwitchRect.position = worldUIPos;
             }
         }
 
+        // ---------------------------------------------------------
+        // Looping pulse for state switch
+        // ---------------------------------------------------------
         private void Update()
         {
             if (!_pulsing || _stateSwitchRect == null)

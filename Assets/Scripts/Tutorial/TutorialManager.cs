@@ -7,6 +7,8 @@ using Player;
 using Structs;
 using Unity.Cinemachine;
 using UnityEngine;
+using Ui;
+using DG.Tweening;
 
 namespace Tutorial
 {
@@ -34,15 +36,15 @@ namespace Tutorial
         private bool _jumped;
         private bool _attacked;
         private bool _upAttacked;
-        
-        private Transform _playerTransform;
+        private bool _stateSwitchPressed;
+
+        private const float UI_HIDE_DELAY = 0.6f;
 
         private void Start()
         {
             if (_playerInput == null)
-            {
                 _playerInput = FindAnyObjectByType<PlayerInput>();
-            }
+
             _playerInput.OnJump += OnJump;
             _playerInput.OnAttack += OnAttack;
             _playerInput.OnUpAttack += OnUpAttack;
@@ -53,6 +55,7 @@ namespace Tutorial
         private void OnDestroy()
         {
             if (_playerInput == null) return;
+
             _playerInput.OnJump -= OnJump;
             _playerInput.OnAttack -= OnAttack;
             _playerInput.OnUpAttack -= OnUpAttack;
@@ -77,7 +80,7 @@ namespace Tutorial
             while (!(_moved && _jumped))
                 yield return null;
 
-            _ui.HideAll();
+            yield return PulseAndHideUI();
             yield return new WaitForSeconds(0.25f);
 
             // -----------------------------
@@ -88,7 +91,7 @@ namespace Tutorial
             while (!(_attacked && _upAttacked))
                 yield return null;
 
-            _ui.HideAll();
+            yield return PulseAndHideUI();
             yield return new WaitForSeconds(0.25f);
 
             // -----------------------------
@@ -106,6 +109,19 @@ namespace Tutorial
             _step = TutorialStep.Done;
         }
 
+        // ---------------------------------------------------------
+        // Helper: Pulse current panel before hiding
+        // ---------------------------------------------------------
+        private IEnumerator PulseAndHideUI()
+        {
+            Tween t = _ui.PulseCurrentPanel();
+            if (t != null)
+                yield return t.WaitForCompletion();
+
+            yield return new WaitForSecondsRealtime(UI_HIDE_DELAY);
+            _ui.HideAll();
+        }
+
         private void BlockAllInput(bool block)
         {
             var b = _playerInput.TutorialBlocker;
@@ -115,43 +131,58 @@ namespace Tutorial
             b.BlockStateSwitch = block;
         }
 
+        // -----------------------------
+        // INPUT EVENTS WITH UI PULSES
+        // -----------------------------
         private void OnJump()
         {
             if (_step != TutorialStep.MoveJumpAndAttacks) return;
+
             _jumped = true;
+            _ui.PulseJump();
         }
 
         private void OnAttack()
         {
             if (_step != TutorialStep.MoveJumpAndAttacks) return;
+
             _attacked = true;
+            _ui.PulseAttack();
         }
 
         private void OnUpAttack()
         {
             if (_step != TutorialStep.MoveJumpAndAttacks) return;
+
             _upAttacked = true;
+            _ui.PulseUpAttackGroup();
         }
-        
-        
+
         private void Update()
         {
             if (_step == TutorialStep.MoveJumpAndAttacks)
             {
                 if (Mathf.Abs(_playerInput.Movement.x) > 0.1f)
+                {
                     _moved = true;
+
+                    if (_playerInput.Movement.x > 0)
+                        _ui.PulseRight();
+                    else
+                        _ui.PulseLeft();
+                }
             }
         }
 
-
+        // -----------------------------
+        // STATE SWITCH PHASE
+        // -----------------------------
         private IEnumerator StateSwitchPhase()
         {
             // 1. Freeze player
             BlockAllInput(true);
             _playerAnimation.FreezeAnimations(0.5f);
             _playerMovement.FreezeFacing();
-
-
 
             // 2. Spawn smoke
             var smoke = Instantiate(_smokePrefab, _smokeSpawnPos.transform.position, Quaternion.identity);
@@ -169,20 +200,18 @@ namespace Tutorial
             // 3. Wait until smoke is close
             while (smoke != null)
             {
-                var playerPos = _playerMovement.transform.position;
-
                 Vector2 smokePos = mover != null
                     ? (Vector2)mover.transform.position
                     : (Vector2)smoke.transform.position;
 
-                float dist = Vector2.Distance(smokePos, playerPos);
+                float dist = Vector2.Distance(smokePos, _playerMovement.transform.position);
 
                 if (dist <= _smokeTriggerDistance)
                     break;
 
                 yield return null;
             }
-  
+
             // 4. Freeze smoke
             ParticleSystem smokePs = null;
 
@@ -196,15 +225,10 @@ namespace Tutorial
                 smokePs = cannon.SmokeParticle.GetComponent<ParticleSystem>();
                 if (smokePs != null)
                 {
-                    // FULL FREEZE: stop simulation + stop time-based evolution
                     var main = smokePs.main;
                     main.simulationSpeed = 0f;
                     smokePs.Pause(true);
                 }
-
-                var light = cannon.SmokeParticle.GetComponentInChildren<UnityEngine.Rendering.Universal.Light2D>();
-                if (light != null)
-                    light.enabled = true; // keep visible if you want the smoke to stay lit
             }
 
             // 5. Slow motion → pause
@@ -220,33 +244,37 @@ namespace Tutorial
             _ui.ShowStateSwitch(true, _playerMovement.transform);
 
             var blocker = _playerInput.TutorialBlocker;
-            blocker.BlockMovement = true;
-            blocker.BlockJump = true;
-            blocker.BlockAttack = true;
+            blocker.BlockMovement = false;
+            blocker.BlockJump = false;
+            blocker.BlockAttack = false;
             blocker.BlockStateSwitch = false;
 
-            bool switched = false;
-            void OnStateSwitch() => switched = true;
+            _stateSwitchPressed = false;
+
+            void OnStateSwitch()
+            {
+                _stateSwitchPressed = true;
+            }
 
             _playerInput.OnStateSwitch += OnStateSwitch;
 
-            while (!switched)
+            while (!_stateSwitchPressed)
                 yield return null;
 
             _playerInput.OnStateSwitch -= OnStateSwitch;
 
+            _ui.PulseStateSwitch();
+
             // -----------------------------
             // 7. ZOOM OUT + SWITCH BACK
             // -----------------------------
+            yield return PulseAndHideUI();
 
-            _ui.HideAll();
-            
-            // Restore time scale
             yield return StartCoroutine(LerpTimeScale(0f, 1f, 0.01f));
             yield return new WaitForSecondsRealtime(1f);
-            _playerZoomCamera.Priority = 2; 
-            _gameplayCam.Priority = 30; 
-            
+
+            _playerZoomCamera.Priority = 2;
+            _gameplayCam.Priority = 30;
 
             // 8. Let smoke continue
             if (mover != null)
@@ -255,11 +283,11 @@ namespace Tutorial
             if (smokePs != null)
             {
                 var main = smokePs.main;
-                main.simulationSpeed = 1f;   // resume time-based evolution
-                smokePs.Play(true);          // resume simulation
+                main.simulationSpeed = 1f;
+                smokePs.Play(true);
             }
 
-            // 9. Unblock everything
+            // 9. Unfreeze player
             BlockAllInput(false);
             _playerAnimation.UnfreezeAnimations();
             _playerMovement.UnfreezeFacing();
@@ -271,8 +299,7 @@ namespace Tutorial
             while (t < duration)
             {
                 t += Time.unscaledDeltaTime;
-                float k = t / duration;
-                Time.timeScale = Mathf.Lerp(from, to, k);
+                Time.timeScale = Mathf.Lerp(from, to, t / duration);
                 yield return null;
             }
             Time.timeScale = to;
@@ -282,11 +309,7 @@ namespace Tutorial
         {
             yield return new WaitForSeconds(0.5f);
 
-            //for now
-            
             _bossManager.gameObject.SetActive(true);
-            
-            /// //_bossManager.SendMessage("PlaySpawnAnim", SendMessageOptions.DontRequireReceiver);
 
             yield return new WaitForSeconds(1f);
         }
