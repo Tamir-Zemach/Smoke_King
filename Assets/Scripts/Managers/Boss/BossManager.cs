@@ -28,7 +28,6 @@ namespace Managers.Boss
 
         private void Start()
         {
-            _animManager.TriggerTeleportAnimation();
             StartCoroutine(InitialSpawn());
         }
 
@@ -67,7 +66,8 @@ namespace Managers.Boss
 
         private IEnumerator InitialSpawn()
         {
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(2);
+            _animManager.TriggerTeleportAnimation();
             PlaySpawnAnim();
         }
 

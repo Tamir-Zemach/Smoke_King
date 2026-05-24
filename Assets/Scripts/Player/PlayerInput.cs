@@ -14,6 +14,8 @@ namespace Player
         public Action OnAttack;
         public Action OnUpAttack;
         public Action OnPause;
+        public event Action<Vector2> OnMovePerformed;
+        public event Action OnMoveCanceled;
 
         public InputActionAsset PlayerInputAsset;
         
@@ -25,6 +27,9 @@ namespace Player
         private InputAction _moveAction;
         private InputAction _stateSwitchAction;
         private InputAction _pauseAction;
+
+
+
         public Vector2 Movement { get; private set; }
         public bool FacingRight { get; private set; }
 
@@ -46,6 +51,9 @@ namespace Player
             _pauseAction = PlayerInputAsset.FindAction("Pause");
             FacingRight = true;
             TutorialBlocker = new Tutorial.PlayerInputBlocker(this);
+            _moveAction.performed += ctx => OnMovePressed(ctx.ReadValue<Vector2>());
+            _moveAction.canceled  += ctx => OnMoveReleased(); 
+
         }
 
         private void Update()
@@ -94,6 +102,16 @@ namespace Player
         {
             FacingRight = faceRight;
         }
+        private void OnMovePressed(Vector2 v)
+        {
+            OnMovePerformed?.Invoke(v);
+        }
+
+        private void OnMoveReleased()
+        {
+            OnMoveCanceled?.Invoke();
+        }
+
 
     }
 }

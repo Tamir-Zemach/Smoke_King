@@ -1,5 +1,6 @@
 using System.Collections;
 using Boss.BossAttacks;
+using Cameras;
 using Enums;
 using Managers.Boss;
 using Particles;
@@ -24,6 +25,7 @@ namespace Tutorial
         [SerializeField] private TutorialUI _ui;
         [SerializeField] private CinemachineCamera _gameplayCam;
         [SerializeField] private CinemachineCamera _playerZoomCamera;
+        [SerializeField] private ParticleSystem _bossEntranceParticles;
 
         [Header("State switch smoke")]
         [SerializeField] private GameObject _smokePrefab;
@@ -48,6 +50,7 @@ namespace Tutorial
             _playerInput.OnJump += OnJump;
             _playerInput.OnAttack += OnAttack;
             _playerInput.OnUpAttack += OnUpAttack;
+            _playerInput.OnMovePerformed += OnMovePerformed;
 
             StartCoroutine(RunTutorial());
         }
@@ -158,21 +161,18 @@ namespace Tutorial
             _ui.PulseUpAttackGroup();
         }
 
-        private void Update()
+        private void OnMovePerformed(Vector2 v)
         {
-            if (_step == TutorialStep.MoveJumpAndAttacks)
-            {
-                if (Mathf.Abs(_playerInput.Movement.x) > 0.1f)
-                {
-                    _moved = true;
+            if (_step != TutorialStep.MoveJumpAndAttacks) return;
 
-                    if (_playerInput.Movement.x > 0)
-                        _ui.PulseRight();
-                    else
-                        _ui.PulseLeft();
-                }
-            }
+            _moved = true;
+
+            if (v.x > 0.1f)
+                _ui.PulseRight();
+            else if (v.x < -0.1f)
+                _ui.PulseLeft();
         }
+
 
         // -----------------------------
         // STATE SWITCH PHASE
@@ -244,9 +244,9 @@ namespace Tutorial
             _ui.ShowStateSwitch(true, _playerMovement.transform);
 
             var blocker = _playerInput.TutorialBlocker;
-            blocker.BlockMovement = false;
-            blocker.BlockJump = false;
-            blocker.BlockAttack = false;
+            blocker.BlockMovement = true;
+            blocker.BlockJump = true;
+            blocker.BlockAttack = true;
             blocker.BlockStateSwitch = false;
 
             _stateSwitchPressed = false;
@@ -307,7 +307,10 @@ namespace Tutorial
 
         private IEnumerator BossIntroPhase()
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(2f);
+            Instantiate(_bossEntranceParticles, Vector3.zero, Quaternion.Euler(-90, 0, 0));
+            CameraShake.Instance.Shake(0.05f, 4);
+            yield return new WaitForSeconds(4f);
 
             _bossManager.gameObject.SetActive(true);
 
