@@ -104,6 +104,41 @@ namespace Tutorial
 
             return seq;
         }
+        public Tween SpawnPanel(GameObject panel)
+        {
+            if (panel == null)
+                return null;
+
+            Image[] images = panel.GetComponentsInChildren<Image>(true);
+            if (images.Length == 0)
+                return null;
+
+            // Start invisible & small
+            foreach (var img in images)
+            {
+                var c = img.color;
+                c.a = 0f;
+                img.color = c;
+            }
+
+            panel.transform.localScale = Vector3.one * 0.7f;
+
+            Sequence seq = DOTween.Sequence().SetUpdate(true);
+
+            // 1. Fade in all images (JOIN)
+            foreach (var img in images)
+                seq.Join(img.DOFade(1f, 0.3f));
+
+            // 2. Scale up at the SAME TIME (JOIN, not Append)
+            seq.Join(panel.transform.DOScale(1.15f, 0.25f).SetEase(Ease.OutQuad));
+
+            // 3. Settle pulse
+            seq.Append(panel.transform.DOScale(1f, 0.1f));
+
+            return seq;
+        }
+
+
 
         private void ResetPanelVisuals(GameObject panel, Image[] images)
         {
@@ -137,7 +172,7 @@ namespace Tutorial
             if (_moveJumpPanel)
             {
                 _moveJumpPanel.SetActive(true);
-                ResetAllImagesOnPanel(_moveJumpPanel);
+                SpawnPanel(_moveJumpPanel);
             }
         }
 
@@ -147,7 +182,7 @@ namespace Tutorial
             if (_attackPanel)
             {
                 _attackPanel.SetActive(true);
-                ResetAllImagesOnPanel(_attackPanel);
+                SpawnPanel(_attackPanel);
             }
         }
 
@@ -158,24 +193,13 @@ namespace Tutorial
             if (_stateSwitchPanel)
             {
                 _stateSwitchPanel.SetActive(true);
-                ResetAllImagesOnPanel(_stateSwitchPanel);
+                SpawnPanel(_stateSwitchPanel);
                 PositionStateSwitchOverPlayer(player);
             }
 
             _pulsing = pulse;
         }
-
-        private void ResetAllImagesOnPanel(GameObject panel)
-        {
-            foreach (var img in panel.GetComponentsInChildren<Image>(true))
-            {
-                var c = img.color;
-                c.a = 1f;
-                img.color = c;
-            }
-
-            panel.transform.localScale = Vector3.one;
-        }
+        
 
         // ---------------------------------------------------------
         // Positioning

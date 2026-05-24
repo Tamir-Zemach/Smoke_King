@@ -66,7 +66,6 @@ namespace Tutorial
 
         private IEnumerator RunTutorial()
         {
-            BlockAllInput(true);
             _ui.HideAll();
 
             // -----------------------------
@@ -77,6 +76,8 @@ namespace Tutorial
             _playerInput.TutorialBlocker.BlockStateSwitch = true;
 
             _moved = _jumped = _attacked = _upAttacked = false;
+
+            yield return new WaitForSeconds(1f);
 
             _ui.ShowMoveJump();
 
