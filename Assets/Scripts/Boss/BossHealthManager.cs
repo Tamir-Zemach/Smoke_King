@@ -10,12 +10,13 @@ namespace Boss
     public class BossHealthManager : HealthBase, IDamageable, IInvincible
     {
         [SerializeField] private float _invisibilityTime = 1;
+        [SerializeField] private int _bossHealth = 1;
         public Action OnBossHit;
 
         protected override void Awake()
         {
             base.Awake();
-            _maxHealth = 20;
+            _maxHealth = _bossHealth;
             _currentHealth = _maxHealth;
         }
 

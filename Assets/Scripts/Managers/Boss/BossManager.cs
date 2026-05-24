@@ -18,7 +18,7 @@ namespace Managers.Boss
 
 
         private BossAttacksTypes _currentBossAttack;
-
+        public bool IsInEndSequence { get; private set; }
 
         private void Awake()
         {
@@ -73,10 +73,14 @@ namespace Managers.Boss
 
         private void StayInIdleUntilTimer()
         {
+            if (IsInEndSequence)
+                return; // ❗ No more attacks
+
             _colliderManager.EnableCol();
             _currentBossAttack = EnumUtility.GetNextValueInEnum(_currentBossAttack);
             StartCoroutine(TimerForAttack(2));
         }
+
 
         private IEnumerator TimerForAttack(float time)
         {
@@ -100,11 +104,14 @@ namespace Managers.Boss
 
         private void SpawnAtRandomSpot()
         {
+            if (IsInEndSequence)
+                return; // ❗ Do NOT respawn during end sequence
+
             _colliderManager.UnAbleCol();
-            //_particlesManager.StopParticles();
             var randomIndex = Random.Range(0, _movementManager.TeleportSpots.Count);
             _movementManager.TeleportToSpot(randomIndex);
         }
+
 
         private void PlaySpawnAnim()
         {
@@ -119,6 +126,11 @@ namespace Managers.Boss
         private void PlayParticles(BossParticles bossParticles)
         {
             _particlesManager.PlayParticles(bossParticles);
+        }
+        
+        public void StartEndSequence()
+        {
+            IsInEndSequence = true;
         }
     }
 }

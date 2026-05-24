@@ -47,7 +47,7 @@ namespace Managers
         private void WinGame()
         {
             OnWinGame?.Invoke();
-            SceneManager.LoadScene("GameWin");
+            //SceneManager.LoadScene("GameWin");
             GameIsPaused = false;
         }
 

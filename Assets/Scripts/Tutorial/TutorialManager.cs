@@ -32,6 +32,10 @@ namespace Tutorial
         [SerializeField] private GameObject _smokeSpawnPos;
         [SerializeField] private float _smokeTriggerDistance = 2f;
 
+        [Header("Debug")]
+        [SerializeField] private bool _debugSkipToBossIntro = false;
+
+        
         private TutorialStep _step = TutorialStep.None;
 
         private bool _moved;
@@ -44,6 +48,12 @@ namespace Tutorial
 
         private void Start()
         {
+            if (_debugSkipToBossIntro)
+            {
+                StartCoroutine(DebugSkip());
+                return;
+            }
+
             if (_playerInput == null)
                 _playerInput = FindAnyObjectByType<PlayerInput>();
 
@@ -54,6 +64,24 @@ namespace Tutorial
 
             StartCoroutine(RunTutorial());
         }
+        private IEnumerator DebugSkip()
+        {
+            // Hide UI
+            _ui.HideAll();
+
+            // Make sure player is fully unlocked
+            BlockAllInput(false);
+
+            // Small delay to let scene initialize
+            yield return new WaitForSeconds(0.5f);
+
+            // Run boss intro immediately
+            yield return StartCoroutine(BossIntroPhase());
+
+            _step = TutorialStep.Done;
+        }
+
+
 
         private void OnDestroy()
         {
@@ -308,7 +336,7 @@ namespace Tutorial
 
         private IEnumerator BossIntroPhase()
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(3f);
             Instantiate(_bossEntranceParticles, Vector3.zero, Quaternion.Euler(-90, 0, 0));
             CameraShake.Instance.Shake(0.05f, 4);
             yield return new WaitForSeconds(4f);
