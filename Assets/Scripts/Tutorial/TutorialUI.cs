@@ -104,6 +104,7 @@ namespace Tutorial
 
             return seq;
         }
+
         public Tween SpawnPanel(GameObject panel)
         {
             if (panel == null)
@@ -138,8 +139,6 @@ namespace Tutorial
             return seq;
         }
 
-
-
         private void ResetPanelVisuals(GameObject panel, Image[] images)
         {
             // Reset scale
@@ -166,40 +165,44 @@ namespace Tutorial
             _pulsing = false;
         }
 
-        public void ShowMoveJump()
+        public Tween ShowMoveJump()
         {
             HideAll();
             if (_moveJumpPanel)
             {
                 _moveJumpPanel.SetActive(true);
-                SpawnPanel(_moveJumpPanel);
+                return SpawnPanel(_moveJumpPanel);
             }
+            return null;
         }
 
-        public void ShowAttack()
+        public Tween ShowAttack()
         {
             HideAll();
             if (_attackPanel)
             {
                 _attackPanel.SetActive(true);
-                SpawnPanel(_attackPanel);
+                return SpawnPanel(_attackPanel);
             }
+            return null;
         }
 
-        public void ShowStateSwitch(bool pulse, Transform player)
+        public Tween ShowStateSwitch(bool pulse, Transform player)
         {
             HideAll();
 
             if (_stateSwitchPanel)
             {
                 _stateSwitchPanel.SetActive(true);
-                SpawnPanel(_stateSwitchPanel);
                 PositionStateSwitchOverPlayer(player);
+                var t = SpawnPanel(_stateSwitchPanel);
+                _pulsing = pulse;
+                return t;
             }
 
             _pulsing = pulse;
+            return null;
         }
-        
 
         // ---------------------------------------------------------
         // Positioning

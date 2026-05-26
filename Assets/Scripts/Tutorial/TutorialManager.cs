@@ -39,7 +39,8 @@ namespace Tutorial
         
         private TutorialStep _step = TutorialStep.None;
 
-        private bool _moved;
+        private bool _movedLeft;
+        private bool _movedRight;
         private bool _jumped;
         private bool _attacked;
         private bool _upAttacked;
@@ -96,24 +97,36 @@ namespace Tutorial
         private IEnumerator RunTutorial()
         {
             _ui.HideAll();
+            _uiSmokeTransition.gameObject.SetActive(true);
             _uiSmokeTransition.PlayTransitionToLeft();
+            BlockAllInput(true);
+            _playerMovement.FreezeFacing();
+            _playerAnimation.FreezeAnimations();
+
             yield return new WaitForSeconds(3f);
 
             // -----------------------------
             // PHASE 1A — Move + Jump
             // -----------------------------
-            _step = TutorialStep.MoveJumpAndAttacks;
-            BlockAllInput(false);
             _playerInput.TutorialBlocker.BlockStateSwitch = true;
 
-            _moved = _jumped = _attacked = _upAttacked = false;
+            _movedLeft = _movedRight = _jumped = _attacked = _upAttacked = false;
 
             yield return new WaitForSeconds(1f);
 
-            _ui.ShowMoveJump();
+            var t1 = _ui.ShowMoveJump();
+            if (t1 != null)
+                yield return t1.WaitForCompletion();
+            _step = TutorialStep.MoveJump;
+            BlockAllInput(false);
+            _playerMovement.UnfreezeFacing();
+            _playerAnimation.UnfreezeAnimations();
 
-            while (!(_moved && _jumped))
+
+
+            while (!(_movedLeft && _movedRight && _jumped))
                 yield return null;
+
 
             yield return PulseAndHideUI();
             yield return new WaitForSeconds(0.25f);
@@ -121,10 +134,15 @@ namespace Tutorial
             // -----------------------------
             // PHASE 1B — Attack + Up Attack
             // -----------------------------
-            _ui.ShowAttack();
+            var t2 = _ui.ShowAttack();
+            if (t2 != null)
+                yield return t2.WaitForCompletion();
+            
+            _step = TutorialStep.Attack;
 
             while (!(_attacked && _upAttacked))
                 yield return null;
+
 
             yield return PulseAndHideUI();
             yield return new WaitForSeconds(0.25f);
@@ -171,7 +189,7 @@ namespace Tutorial
         // -----------------------------
         private void OnJump()
         {
-            if (_step != TutorialStep.MoveJumpAndAttacks) return;
+            if (_step != TutorialStep.MoveJump) return;
 
             _jumped = true;
             _ui.PulseJump();
@@ -179,7 +197,7 @@ namespace Tutorial
 
         private void OnAttack()
         {
-            if (_step != TutorialStep.MoveJumpAndAttacks) return;
+            if (_step != TutorialStep.Attack) return;
 
             _attacked = true;
             _ui.PulseAttack();
@@ -187,7 +205,7 @@ namespace Tutorial
 
         private void OnUpAttack()
         {
-            if (_step != TutorialStep.MoveJumpAndAttacks) return;
+            if (_step != TutorialStep.Attack) return;
 
             _upAttacked = true;
             _ui.PulseUpAttackGroup();
@@ -195,14 +213,19 @@ namespace Tutorial
 
         private void OnMovePerformed(Vector2 v)
         {
-            if (_step != TutorialStep.MoveJumpAndAttacks) return;
+            if (_step != TutorialStep.MoveJump) return;
 
-            _moved = true;
-
-            if (v.x > 0.1f)
-                _ui.PulseRight();
-            else if (v.x < -0.1f)
-                _ui.PulseLeft();
+            switch (v.x)
+            {
+                case > 0.1f:
+                    _movedLeft = true;
+                    _ui.PulseRight();
+                    break;
+                case < -0.1f:
+                    _movedRight = true;
+                    _ui.PulseLeft();
+                    break;
+            }
         }
 
 
@@ -273,7 +296,10 @@ namespace Tutorial
             _playerZoomCamera.Priority = 30;
             yield return new WaitForSecondsRealtime(1f);
 
-            _ui.ShowStateSwitch(true, _playerMovement.transform);
+            var t3 = _ui.ShowStateSwitch(true, _playerMovement.transform);
+            if (t3 != null)
+                yield return t3.WaitForCompletion();
+
 
             var blocker = _playerInput.TutorialBlocker;
             blocker.BlockMovement = true;

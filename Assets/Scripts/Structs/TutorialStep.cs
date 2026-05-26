@@ -4,7 +4,8 @@ namespace Structs
     {
         None,
         Intro,
-        MoveJumpAndAttacks,
+        MoveJump,
+        Attack,
         StateSwitch,
         BossIntro,
         Done
