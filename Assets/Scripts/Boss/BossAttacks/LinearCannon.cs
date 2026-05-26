@@ -42,7 +42,6 @@ namespace Boss.BossAttacks
 
         public void Init(Vector3 position, Quaternion rotation, StateType state,  Action onFinished = null)
         { 
-            print("check");
             _onFinish = onFinished;
             _state = state;
             transform.position = position;

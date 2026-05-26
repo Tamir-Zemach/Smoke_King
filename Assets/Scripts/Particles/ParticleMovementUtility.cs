@@ -32,6 +32,23 @@ namespace Particles
             return target.DOMove(targetPos, duration)
                 .SetEase(Ease.OutQuad);
         }
+        public static Tween FlyTo(
+            Transform target,
+            Vector2 dir,
+            float distance,
+            float duration)
+        {
+            Vector3 startPos = target.position;
+
+            // Normalize direction to avoid speed differences
+            Vector3 direction = new Vector3(dir.x, dir.y, 0f).normalized;
+
+            Vector3 targetPos = startPos + direction * distance;
+
+            return target.DOMove(targetPos, duration)
+                .SetEase(Ease.OutQuad);
+        }
+
 
         public static void ResetPosition(Transform target, Vector3 pos)
         {
@@ -65,9 +82,9 @@ namespace Particles
                     speedDegPerSec * duration,
                     duration
                 )
-                .SetEase(Ease.Linear)
-                .SetLoops(-1, LoopType.Restart);
+                .SetEase(Ease.Linear); // ← NO LOOPS
         }
+
 
         public static void KillAllTweens()
         {

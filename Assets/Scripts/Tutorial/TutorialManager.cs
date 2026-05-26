@@ -26,6 +26,7 @@ namespace Tutorial
         [SerializeField] private CinemachineCamera _gameplayCam;
         [SerializeField] private CinemachineCamera _playerZoomCamera;
         [SerializeField] private ParticleSystem _bossEntranceParticles;
+        [SerializeField] private UiSmokeTransition _uiSmokeTransition;
 
         [Header("State switch smoke")]
         [SerializeField] private GameObject _smokePrefab;
@@ -95,6 +96,8 @@ namespace Tutorial
         private IEnumerator RunTutorial()
         {
             _ui.HideAll();
+            _uiSmokeTransition.PlayTransitionToLeft();
+            yield return new WaitForSeconds(3f);
 
             // -----------------------------
             // PHASE 1A — Move + Jump
