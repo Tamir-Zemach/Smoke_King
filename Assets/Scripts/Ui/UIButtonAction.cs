@@ -20,20 +20,23 @@ namespace Ui
 
         private IEnumerator PlayAndLoad(string sceneName)
         {
+            // Start loading the scene in the background
+            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+            asyncLoad.allowSceneActivation = false;
+
             bool finished = false;
 
+            // Start your smoke transition
             SmokeTransition.PlayTransitionToRight(() =>
             {
                 finished = true;
             });
 
-            // Wait until animation reports completion
+            // Wait until smoke animation finishes
             yield return new WaitUntil(() => finished);
 
-            // Optional delay
-            yield return new WaitForSeconds(1.1f);
-
-            SceneManager.LoadScene(sceneName);
+            // Scene is already loaded to 90–100% at this point
+            asyncLoad.allowSceneActivation = true;
         }
 
 

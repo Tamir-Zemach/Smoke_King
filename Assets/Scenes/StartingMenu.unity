@@ -26386,7 +26386,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.23171058, g: 0.26588118, b: 0.38679248, a: 0.67058825}
+        key0: {r: 0.21620725, g: 0.18605375, b: 0.3490566, a: 0.67058825}
         key1: {r: 0.26090246, g: 0.32868943, b: 0.38679248, a: 0}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -31127,8 +31127,20 @@ PrefabInstance:
       value: -156268857
       objectReference: {fileID: 0}
     - target: {fileID: 5998916336042780262, guid: 634954967e2216e4eb86826659019dcd, type: 3}
+      propertyPath: FlyDistance
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5998916336042780262, guid: 634954967e2216e4eb86826659019dcd, type: 3}
+      propertyPath: FlyDuration
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5998916336042780262, guid: 634954967e2216e4eb86826659019dcd, type: 3}
       propertyPath: CircleRadius
       value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5998916336042780262, guid: 634954967e2216e4eb86826659019dcd, type: 3}
+      propertyPath: CurtainMoveDistance
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 5998916336042780262, guid: 634954967e2216e4eb86826659019dcd, type: 3}
       propertyPath: CircleSpeedDegPerSec

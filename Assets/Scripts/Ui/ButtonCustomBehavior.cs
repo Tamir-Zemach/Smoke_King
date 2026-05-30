@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 namespace Ui
 {
-    public class ButtonEmissionPulse : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public class ButtonCustomBehavior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         public UnityEvent OnFinish;
         private Button _targetButton;
