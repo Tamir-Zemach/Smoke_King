@@ -7,6 +7,7 @@ namespace Ui
     public class UIButtonAction : MonoBehaviour
     {
         public UiSmokeTransition SmokeTransition;
+        
         // Loads a scene by name
         public void Play(string sceneName)
         {
