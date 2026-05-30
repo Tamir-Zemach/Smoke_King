@@ -91,6 +91,9 @@ namespace Player
 
         private void CheckForLookSide()
         {
+            if (!TutorialBlocker.CanMove()) 
+                return; // <-- prevents flipping while blocked
+
             switch (Movement.x)
             {
                 case > 0:
@@ -101,6 +104,7 @@ namespace Player
                     break;
             }
         }
+
         
         public void ForceFacingDirection(bool faceRight)
         {

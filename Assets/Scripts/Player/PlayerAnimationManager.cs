@@ -117,5 +117,16 @@ namespace Player
             _frozen = false;
             _anim.speed = 1f;
         }
+        
+        
+        public void FreezeAnimationsImmediate()
+        {
+            if (_freezeRoutine != null)
+                StopCoroutine(_freezeRoutine);
+
+            _frozen = true;
+            _anim.speed = 0f;
+        }
+
     }
 }

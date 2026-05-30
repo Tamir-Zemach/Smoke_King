@@ -63,7 +63,9 @@ namespace Tutorial
             _playerInput.OnAttack += OnAttack;
             _playerInput.OnUpAttack += OnUpAttack;
             _playerInput.OnMovePerformed += OnMovePerformed;
-
+            BlockAllInput(true);
+            _playerMovement.FreezeFacing();
+            _playerAnimation.FreezeAnimationsImmediate();
             StartCoroutine(RunTutorial());
         }
         private IEnumerator DebugSkip()
@@ -99,9 +101,8 @@ namespace Tutorial
             _ui.HideAll();
             _uiSmokeTransition.gameObject.SetActive(true);
             _uiSmokeTransition.PlayTransitionToLeft();
-            BlockAllInput(true);
-            _playerMovement.FreezeFacing();
-            _playerAnimation.FreezeAnimations();
+
+
 
             yield return new WaitForSeconds(3f);
 
