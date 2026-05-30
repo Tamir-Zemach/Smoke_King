@@ -26,7 +26,8 @@ namespace Player
         {
             base.Awake();
 
-            if (_playerData == null) Debug.LogWarning("PlayerData is missing on " + gameObject.name);
+            if (_playerData == null)
+                Debug.LogWarning("PlayerData is missing on " + gameObject.name);
 
             _maxHealth = _playerData.MaxHealth;
             _currentHealth = _maxHealth;
@@ -35,20 +36,26 @@ namespace Player
 
         public int maxHealth { get; set; }
 
+        // ORIGINAL signature (kept for compatibility)
         public void TakeDamage(int damage, StateType stateType)
+        {
+            // Fallback: no hit point provided → use player center
+            TakeDamage(damage, stateType, transform.position);
+        }
+
+        // NEW signature with hit point
+        public void TakeDamage(int damage, StateType stateType, Vector3 hitPoint)
         {
             if (IsInvincible) return;
             if (_playerStateManager.CurrentStateType == stateType) return;
-            
+
             SubtractHealth(damage);
             OnGettingDamage?.Invoke();
+
             StartCoroutine(HealthUtils.Invisibility(this, InvisibilityTime));
         }
 
-        bool IDamageable.IsInvincible()
-        {
-            return IsInvincible;
-        }
+        bool IDamageable.IsInvincible() => IsInvincible;
 
         public bool IsSameState(StateType stateType)
         {
@@ -56,7 +63,6 @@ namespace Player
         }
 
         public bool IsInvincible { get; set; }
-   
 
         public void OnInvincibleStart()
         {

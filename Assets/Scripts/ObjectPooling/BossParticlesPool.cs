@@ -28,8 +28,8 @@ namespace ObjectPooling
             {
                 var pool = new ObjectPool<BossParticle>(
                     entry.Prefab,
-                    3,      // initial size
-                    4,      // expand size
+                    3,
+                    4,
                     transform
                 );
 
@@ -41,24 +41,22 @@ namespace ObjectPooling
         {
             var pool = _pools[type];
             var obj = pool.Get();
-
             obj.PlayAt(pos, p => pool.Return(p));
         }
-        
-        
+
         public void Stop(BossParticles type)
         {
             var pool = _pools[type];
-
-            // Copy to avoid modifying while iterating
             var activeCopy = new List<BossParticle>(pool.ActiveObjects);
 
             foreach (var particle in activeCopy)
-            {
                 particle.Stop();
-            }
         }
 
-
+        // ⭐ The ONLY addition
+        public ObjectPool<BossParticle> GetPool(BossParticles type)
+        {
+            return _pools[type];
+        }
     }
 }

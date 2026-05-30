@@ -14,20 +14,22 @@ namespace Particles
             _ps = GetComponent<ParticleSystem>();
         }
 
+        public void SetStartColor(Color color)
+        {
+            var main = _ps.main;
+            main.startColor = color;
+        }
+
         public void PlayAt(Vector3 pos, Action<BossParticle> onFinished)
         {
             _onFinished = onFinished;
 
             transform.localPosition = pos;
 
-            // No flip — keep original scale
-            // Play
             if (_ps == null)
-            {
                 _ps = GetComponent<ParticleSystem>();
-            }
-            _ps.Play();
 
+            _ps.Play();
             StartCoroutine(ReturnWhenDone());
         }
 
@@ -36,12 +38,11 @@ namespace Particles
             yield return new WaitUntil(() => !_ps.IsAlive(true));
             _onFinished?.Invoke(this);
         }
-        
+
         public void Stop()
         {
             _ps.Stop(true, ParticleSystemStopBehavior.StopEmitting);
             _onFinished?.Invoke(this);
         }
-
     }
 }

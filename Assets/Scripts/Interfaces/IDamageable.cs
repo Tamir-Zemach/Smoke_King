@@ -1,4 +1,5 @@
 using Enums;
+using UnityEngine;
 
 namespace Interfaces
 {
@@ -6,6 +7,8 @@ namespace Interfaces
     {
         int maxHealth { get; set; }
         void TakeDamage(int damage, StateType stateType);
+        public void TakeDamage(int damage, StateType stateType, Vector3 hitPoint);
+
         void AddHealth(int amount);
 
         bool IsInvincible();

@@ -1,6 +1,7 @@
 using System.Collections;
 using Data;
 using UnityEngine;
+using Utilities;
 
 namespace Player
 {
@@ -9,9 +10,10 @@ namespace Player
         [Header("Data")]
         [SerializeField] private PlayerData _playerData;
         [SerializeField] private PlayerParticleManager _particle;
+        [SerializeField] private PlayerStateManager _stateManager;
 
         [Header("Hitbox")]
-        [SerializeField] private BoxCollider2D _attackCollider;
+        [SerializeField] private DamageGiver _attackCollider;
         [SerializeField] private Transform _frontTransform;
         [SerializeField] private Transform _upTransform;
 
@@ -69,6 +71,7 @@ namespace Player
             PlayParticle(_isAttacking);
 
             // 3. Enable hitbox for a short window
+            _attackCollider.StateType = _stateManager.CurrentStateType;
             _attackCollider.gameObject.SetActive(true);
             yield return new WaitForSeconds(_playerData.HitboxDuration);
             _attackCollider.gameObject.SetActive(false);

@@ -11,7 +11,8 @@ namespace Boss
     {
         [SerializeField] private float _invisibilityTime = 1;
         [SerializeField] private int _bossHealth = 1;
-        public Action OnBossHit;
+
+        public Action<Vector3, StateType> OnBossHit;
 
         protected override void Awake()
         {
@@ -22,38 +23,33 @@ namespace Boss
 
         public int maxHealth { get; set; }
 
-
+        // OLD signature — fallback
         public void TakeDamage(int damage, StateType stateType)
         {
+            TakeDamage(damage, stateType, transform.position);
+        }
+
+        // NEW signature — with hit point
+        public void TakeDamage(int damage, StateType stateType, Vector3 hitPoint)
+        {
             if (IsInvincible) return;
+
             SubtractHealth(damage);
-            OnBossHit?.Invoke();
+            OnBossHit?.Invoke(hitPoint, stateType);
+
             StartCoroutine(HealthUtils.Invisibility(this, _invisibilityTime));
         }
 
-        bool IDamageable.IsInvincible()
-        {
-            return IsInvincible;
-        }
+        bool IDamageable.IsInvincible() => IsInvincible;
 
-        public bool IsSameState(StateType stateType)
-        {
-            return false;
-        }
-
+        public bool IsSameState(StateType stateType) => false;
 
         public bool IsInvincible { get; set; }
 
-        public void OnInvincibleStart()
-        {
-        }
-
-        public void OnInvincibleEnd()
-        {
-        }
+        public void OnInvincibleStart() { }
+        public void OnInvincibleEnd() { }
 
         public event Action OnBossDied;
-
 
         protected override void HandleDeath()
         {

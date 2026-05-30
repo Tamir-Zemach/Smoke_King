@@ -118,10 +118,12 @@ namespace Managers.Boss
             _animManager.TriggerSpawnAnimation();
         }
 
-        private void PlayHitParticles()
+        private void PlayHitParticles(Vector3 hitPos, StateType stateType)
         {
-            _particlesManager.PlayParticles(BossParticles.Hit);
+            _particlesManager.PlayParticles(BossParticles.Hit, hitPos, stateType);
         }
+
+
 
         private void PlayParticles(BossParticles bossParticles)
         {
