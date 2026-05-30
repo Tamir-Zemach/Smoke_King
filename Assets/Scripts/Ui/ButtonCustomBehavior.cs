@@ -1,3 +1,4 @@
+using System;
 using Art.Ui;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,7 @@ namespace Ui
     public class ButtonCustomBehavior : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         public UnityEvent OnFinish;
+
         private Button _targetButton;
         private EmissionPulse _pulse;
         private CanvasGroup _cg;
@@ -22,7 +24,7 @@ namespace Ui
         public Ease ScaleEase = Ease.InQuad;
 
         [Header("Click Pop Settings")]
-        public float ClickScale = 1.15f;
+        public float ClickScale = 1.2f;
         public float ClickDuration = 0.2f;
         public Ease ClickEase = Ease.OutBack;
 
@@ -33,59 +35,98 @@ namespace Ui
         {
             _targetButton = GetComponent<Button>();
             _originalScale = transform.localScale;
-
             _pulse = GetComponent<EmissionPulse>();
-            if (_pulse == null)
-            {
-                _pulse = gameObject.AddComponent<EmissionPulse>();
-            }
             _cg = GetComponent<CanvasGroup>();
-            if (_cg == null)
-            {
-                _cg = gameObject.AddComponent<CanvasGroup>();
-            }
+
 
             if (_targetButton != null)
-            {
                 _targetButton.onClick.AddListener(OnButtonClicked);
-            }
         }
 
+        void OnEnable()
+        {
+            ResetStates();
+        }
+
+        private void ResetStates()
+        {
+            // Ensure components exist
+            if (_pulse == null)
+            {
+                _pulse = GetComponent<EmissionPulse>();
+                if (_pulse == null)
+                {
+                    _pulse = gameObject.AddComponent<EmissionPulse>();
+                }
+            }
+
+            if (_cg == null)
+            {
+                _cg = GetComponent<CanvasGroup>();
+                if (_cg == null)
+                {
+                    _cg = gameObject.AddComponent<CanvasGroup>();
+                }
+            }
+
+            // Kill any running tween
+            if (_scaleTween != null)
+            {
+                _scaleTween.Kill();
+                _scaleTween = null;
+            }
+
+            // Reset scale
+            transform.localScale = _originalScale;
+
+            // Reset CanvasGroup
+            _cg.blocksRaycasts = true;
+            _cg.interactable = true;
+            _cg.alpha = 1f;
+
+            // Reset emission pulse intensity
+            if (_pulse.TryGetComponent<Image>(out var img) && img.material != null)
+                img.material.SetFloat("_EmissionIntensity", 0);
+        }
+
+
+
         // -----------------------------
-        // CLICK: pop to 1.25 then back
+        // CLICK POP
         // -----------------------------
         void OnButtonClicked()
         {
             if (_scaleTween != null) _scaleTween.Kill();
-            
+
             _cg.blocksRaycasts = false;
             _cg.interactable = false;
 
-            // Pop up
-            _scaleTween = transform.DOScale(_originalScale * ClickScale, ClickDuration)
+            _scaleTween = transform
+                .DOScale(_originalScale * ClickScale, ClickDuration)
                 .SetEase(ClickEase)
+                .SetUpdate(true) // <--- unscaled time
                 .OnComplete(() =>
                 {
                     _pulse.Pulse(_pulse.Min, _pulse.Max, _pulse.Duration);
 
-                    // Return to original
-                    _scaleTween = transform.DOScale(_originalScale, ClickDuration)
+                    _scaleTween = transform
+                        .DOScale(_originalScale, ClickDuration)
                         .SetEase(ClickEase)
+                        .SetUpdate(true)
                         .OnComplete(() =>
                         {
                             OnFinish?.Invoke();
-                            
                         });
                 });
         }
 
         // -----------------------------
-        // HOVER LOOP: 1.05 -> 1.1 -> 1.05
+        // HOVER LOOP
         // -----------------------------
         public void OnPointerEnter(PointerEventData eventData)
         {
-            if (!_cg.blocksRaycasts) return; // hover blocked
-            
+            if (!_cg.blocksRaycasts) return;
+
             if (_scaleTween != null) _scaleTween.Kill();
 
             StartHoverLoop();
@@ -98,21 +139,25 @@ namespace Ui
             _scaleTween = transform
                 .DOScale(_originalScale * HoverScaleMax, ScaleDuration)
                 .SetEase(ScaleEase)
-                .SetLoops(-1, LoopType.Yoyo);
+                .SetLoops(-1, LoopType.Yoyo)
+                .SetUpdate(true); // <--- unscaled time
         }
 
         // -----------------------------
-        // EXIT: return to original scale
+        // EXIT
         // -----------------------------
         public void OnPointerExit(PointerEventData eventData)
         {
-            if (!_cg.blocksRaycasts) return; // ignore exit if blocked
-            
+            if (!_cg.blocksRaycasts) return;
+
             if (_scaleTween != null) _scaleTween.Kill();
 
             _scaleTween = transform
                 .DOScale(_originalScale, PointerExitScaleDuration)
-                .SetEase(ScaleEase);
+                .SetEase(ScaleEase)
+                .SetUpdate(true); // <--- unscaled time
         }
+
+
     }
 }

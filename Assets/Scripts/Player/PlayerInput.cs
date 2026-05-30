@@ -27,6 +27,7 @@ namespace Player
         private InputAction _moveAction;
         private InputAction _stateSwitchAction;
         private InputAction _pauseAction;
+        
 
 
 
@@ -58,10 +59,13 @@ namespace Player
 
         private void Update()
         {
+            if (GameManager.Instance.GameIsPaused) return; // <--- STOP INPUT WHEN PAUSED
+
             Movement = _moveAction.ReadValue<Vector2>();
             CheckForLookSide();
             CheckForPressedButtons();
         }
+
 
         private void CheckForPressedButtons()
         {

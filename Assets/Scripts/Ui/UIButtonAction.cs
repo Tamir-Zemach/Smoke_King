@@ -13,6 +13,12 @@ namespace Ui
             SceneManager.LoadScene(sceneName);
         }
         
+        public void LoadMainMenu()
+        {
+            Time.timeScale = 1f;
+            SceneManager.LoadScene("StartingMenu");
+        }
+        
         public void PlaWithTransition(string sceneName)
         {
             StartCoroutine(PlayAndLoad(sceneName));
@@ -31,7 +37,7 @@ namespace Ui
             {
                 finished = true;
             });
-
+            
             // Wait until smoke animation finishes
             yield return new WaitUntil(() => finished);
 

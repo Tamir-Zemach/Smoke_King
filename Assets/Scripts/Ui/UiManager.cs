@@ -38,7 +38,7 @@ namespace Ui
             GameManager.Instance.OnGameOver -= GameOverUi;
         }
 
-        private void TogglePause()
+        public void TogglePause()
         {
             Paused = !Paused;
 
@@ -52,14 +52,11 @@ namespace Ui
                 Time.timeScale = 1f;
                 _pausePanel.SetActive(false);
             }
-        }
 
-
-        public void LoadScene(string sceneName)
-        {
-            Time.timeScale = 1f;
-            if (StringChecker.SceneExists(sceneName)) SceneManager.LoadScene(sceneName);
         }
+        
+
+        
 
     }
 }
