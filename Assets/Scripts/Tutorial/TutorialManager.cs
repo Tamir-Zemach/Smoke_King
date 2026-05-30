@@ -35,6 +35,8 @@ namespace Tutorial
 
         [Header("Debug")]
         [SerializeField] private bool _debugSkipToBossIntro = false;
+        private bool _skipRequested = false;
+
 
         
         private TutorialStep _step = TutorialStep.None;
@@ -68,6 +70,39 @@ namespace Tutorial
             _playerAnimation.FreezeAnimationsImmediate();
             StartCoroutine(RunTutorial());
         }
+        private IEnumerator AskSkipTutorial()
+        {
+            bool decided = false;
+
+            Tween t = _ui.ShowSkipTutorial(
+                onYes: () =>
+                {
+                    _skipRequested = true;
+                    decided = true;
+
+                    // Fade AFTER click
+                    _ui.FadeBackGroundTo(0, 0.3f);
+                },
+                onNo: () =>
+                {
+                    _skipRequested = false;
+                    decided = true;
+
+                    // Fade AFTER click
+                    _ui.FadeBackGroundTo(0.5f, 0.3f);
+                }
+            );
+
+            if (t != null)
+                yield return t.WaitForCompletion();
+
+            while (!decided)
+                yield return null;
+
+            _ui.HideSkipTutorial();
+        }
+
+
         private IEnumerator DebugSkip()
         {
             // Hide UI
@@ -102,10 +137,18 @@ namespace Tutorial
             _uiSmokeTransition.gameObject.SetActive(true);
             _uiSmokeTransition.PlayTransitionToLeft();
 
+            
+            yield return StartCoroutine(AskSkipTutorial());
 
-
-            yield return new WaitForSeconds(1.5f);
-
+            if (_skipRequested)
+            {
+                // Same behavior as debug skip
+                BlockAllInput(false);
+                yield return new WaitForSeconds(0.5f);
+                yield return StartCoroutine(BossIntroPhase());
+                _step = TutorialStep.Done;
+                yield break;
+            }
             // -----------------------------
             // PHASE 1A — Move + Jump
             // -----------------------------
@@ -366,7 +409,9 @@ namespace Tutorial
 
         private IEnumerator BossIntroPhase()
         {
-            yield return new WaitForSeconds(3f);
+            yield return _ui.FadeBackGroundTo(0f, 0.25f).WaitForCompletion();
+
+            yield return new WaitForSeconds(2f);
             Instantiate(_bossEntranceParticles, Vector3.zero, Quaternion.Euler(-90, 0, 0));
             CameraShake.Instance.Shake(0.05f, 4);
             yield return new WaitForSeconds(4f);

@@ -1,3 +1,4 @@
+using System;
 using Art.Ui;
 using DG.Tweening;
 using Ui;
@@ -28,9 +29,17 @@ namespace Tutorial
         // Panels
         // -----------------------------
         [Header("Panels (PNG overlays)")]
+        [SerializeField] private CanvasGroup _backGroundCanvasGroup;
         [SerializeField] private GameObject _moveJumpPanel;
         [SerializeField] private GameObject _attackPanel;
         [SerializeField] private GameObject _stateSwitchPanel;
+        
+        [Header("Skip Tutorial")]
+        [SerializeField] private GameObject _skipTutorialPanel;
+        [SerializeField] private Button _skipYesButton;
+        [SerializeField] private Button _skipNoButton;
+
+        
 
         // -----------------------------
         // Pulse components
@@ -238,6 +247,59 @@ namespace Tutorial
                 _stateSwitchRect.position = worldUIPos;
             }
         }
+        
+        
+        public Tween ShowSkipTutorial(Action onYes, Action onNo)
+        {
+            HideAll();
+
+            if (_skipTutorialPanel == null)
+                return null;
+
+            _skipTutorialPanel.SetActive(true);
+
+            _skipYesButton.onClick.RemoveAllListeners();
+            _skipNoButton.onClick.RemoveAllListeners();
+
+            _skipYesButton.onClick.AddListener(() => onYes?.Invoke());
+            _skipNoButton.onClick.AddListener(() => onNo?.Invoke());
+            return SpawnPanel(_skipTutorialPanel);
+
+        }
+
+        public void HideSkipTutorial()
+        {
+            if (_skipTutorialPanel != null)
+                _skipTutorialPanel.SetActive(false);
+        }
+
+        public Tween FadeBackGroundTo(float to, float duration)
+        {
+            if (_backGroundCanvasGroup == null)
+                return null;
+
+            // If fading IN → ensure object is active
+            if (to > 0f)
+                _backGroundCanvasGroup.gameObject.SetActive(true);
+
+            Tween t = _backGroundCanvasGroup
+                .DOFade(to, duration)
+                .SetUpdate(true);
+
+            // If fading OUT → disable after fade completes
+            if (to <= 0f)
+            {
+                t.OnComplete(() =>
+                {
+                    _backGroundCanvasGroup.gameObject.SetActive(false);
+                });
+            }
+
+            return t;
+        }
+
+
+
 
         // ---------------------------------------------------------
         // Looping pulse for state switch
@@ -250,5 +312,8 @@ namespace Tutorial
             float s = 1f + Mathf.Sin(Time.unscaledTime * _pulseSpeed) * (_pulseScale - 1f);
             _stateSwitchRect.localScale = new Vector3(s, s, 1f);
         }
+        
+        
+        
     }
 }
