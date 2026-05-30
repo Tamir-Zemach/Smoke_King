@@ -8,9 +8,9 @@ namespace Art.Ui
     public class EmissionPulse : MonoBehaviour
     {
         [Header("Debug Test Values")]
-        public float TestMin = 0;
-        public float TestMax = 2f;
-        public float TestDuration = 1f;
+        public float Min = 0;
+        public float Max = 2f;
+        public float Duration = 1f;
 
         [Tooltip("Tick this in Play mode to fire a one-shot pulse using the test values above. Auto-resets.")]
         public bool TriggerPulse = false;
@@ -35,7 +35,7 @@ namespace Art.Ui
             if (TriggerPulse)
             {
                 TriggerPulse = false;
-                Pulse(TestMin, TestMax, TestDuration);
+                Pulse(Min, Max, Duration);
             }
         }
 
@@ -90,7 +90,7 @@ namespace Art.Ui
 
 
         [ContextMenu("Test Pulse")]
-        void DebugPulse() => Pulse(TestMin, TestMax, TestDuration);
+        void DebugPulse() => Pulse(Min, Max, Duration);
 
         void OnDestroy()
         {
