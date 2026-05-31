@@ -89,7 +89,7 @@ namespace Tutorial
                     decided = true;
 
                     // Fade AFTER click
-                    _ui.FadeBackGroundTo(0.5f, 0.3f);
+                    _ui.FadeBackGroundTo(0.4f, 0.3f);
                 }
             );
 
@@ -137,6 +137,7 @@ namespace Tutorial
             _uiSmokeTransition.gameObject.SetActive(true);
             _uiSmokeTransition.PlayTransitionToLeft();
 
+            yield return new WaitForSeconds(1.3f);
             
             yield return StartCoroutine(AskSkipTutorial());
 
@@ -144,6 +145,8 @@ namespace Tutorial
             {
                 // Same behavior as debug skip
                 BlockAllInput(false);
+                _playerMovement.UnfreezeFacing();
+                _playerAnimation.UnfreezeAnimations();
                 yield return new WaitForSeconds(0.5f);
                 yield return StartCoroutine(BossIntroPhase());
                 _step = TutorialStep.Done;

@@ -59,7 +59,12 @@ namespace Player
 
         private void Update()
         {
-            if (GameManager.Instance.GameIsPaused) return; // <--- STOP INPUT WHEN PAUSED
+            // Always allow pause
+            if (_pauseAction.WasPressedThisFrame())
+                OnPause?.Invoke();
+
+            // Block everything else when paused
+            if (GameManager.Instance.GameIsPaused) return;
 
             Movement = _moveAction.ReadValue<Vector2>();
             CheckForLookSide();
@@ -67,27 +72,24 @@ namespace Player
         }
 
 
+
         private void CheckForPressedButtons()
         {
-            if (_pauseAction.WasPressedThisFrame())
-                OnPause?.Invoke();
-
             if (_jumpAction.WasPressedThisFrame() && TutorialBlocker.CanJump())
                 OnJump?.Invoke();
 
             if (_stateSwitchAction.WasPressedThisFrame() && TutorialBlocker.CanStateSwitch())
                 OnStateSwitch?.Invoke();
 
-            if (_attackAction.WasPressedThisFrame())
-            {
-                if (!TutorialBlocker.CanAttack()) return;
+            if (!_attackAction.WasPressedThisFrame()) return;
+            if (!TutorialBlocker.CanAttack()) return;
 
-                if (Movement.y > 0.5f)
-                    OnUpAttack?.Invoke();
-                else
-                    OnAttack?.Invoke();
-            }
+            if (Movement.y > 0.5f)
+                OnUpAttack?.Invoke();
+            else
+                OnAttack?.Invoke();
         }
+
 
         private void CheckForLookSide()
         {
