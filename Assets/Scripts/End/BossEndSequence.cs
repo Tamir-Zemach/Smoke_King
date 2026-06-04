@@ -1,4 +1,5 @@
 using System.Collections;
+using Audio;
 using Cameras;
 using Managers;
 using Managers.Boss;
@@ -20,6 +21,7 @@ namespace End
         [SerializeField] private Light2D _flashLight;
         [SerializeField] private ParticleSystem _spawnParticles;
         [SerializeField] private ParticleSystem _backgroundParticles;
+        [SerializeField] private AudioManager _audioManager;
 
         [SerializeField] private float _revealDuration = 6f;
         [SerializeField] private string _finalSceneName = "GameWin";
@@ -98,7 +100,8 @@ namespace End
                     )
                     .SetEase(Ease.Linear)
             );
-
+            _audioManager.FadeOut(_revealDuration);
+            
 // Flash the 2D light with a delay
             seq.Join(
                 DOTween.To(

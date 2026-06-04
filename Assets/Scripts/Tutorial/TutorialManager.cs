@@ -82,9 +82,6 @@ namespace Tutorial
                     _skipRequested = true;
                     decided = true;
 
-                    _audioManager.PlayGameTheme();   // << PLAY GAME MUSIC
-                    
-
                     _ui.FadeBackGroundTo(0, 0.3f);
                     CursorController.Instance.HideCursor();
 
@@ -95,6 +92,7 @@ namespace Tutorial
                     _skipRequested = false;
                     decided = true;
 
+                    _audioManager.FadeIn(1f);
                     _audioManager.PlayTutorialTheme(); // << PLAY TUTORIAL MUSIC
 
                     _ui.FadeBackGroundTo(0.4f, 0.3f);
@@ -217,7 +215,6 @@ namespace Tutorial
             _step = TutorialStep.BossIntro;
             yield return StartCoroutine(BossIntroPhase());
 
-            _audioManager.PlayGameTheme();
             _step = TutorialStep.Done;
         }
 
@@ -427,10 +424,11 @@ namespace Tutorial
             yield return _ui.FadeBackGroundTo(0f, 0.25f).WaitForCompletion();
 
             yield return new WaitForSeconds(2f);
+            _audioManager.PlayBossIntro();
             Instantiate(_bossEntranceParticles, Vector3.zero, Quaternion.Euler(-90, 0, 0));
             CameraShake.Instance.Shake(0.05f, 4);
             yield return new WaitForSeconds(4f);
-
+            _audioManager.PlayGameTheme();
             _bossManager.gameObject.SetActive(true);
 
             yield return new WaitForSeconds(1f);
