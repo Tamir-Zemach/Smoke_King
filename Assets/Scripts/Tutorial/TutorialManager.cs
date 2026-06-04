@@ -1,4 +1,5 @@
 using System.Collections;
+using Audio;
 using Boss.BossAttacks;
 using Cameras;
 using Enums;
@@ -27,6 +28,7 @@ namespace Tutorial
         [SerializeField] private CinemachineCamera _playerZoomCamera;
         [SerializeField] private ParticleSystem _bossEntranceParticles;
         [SerializeField] private UiSmokeTransition _uiSmokeTransition;
+        [SerializeField] private AudioManager _audioManager;
 
         [Header("State switch smoke")]
         [SerializeField] private GameObject _smokePrefab;
@@ -80,16 +82,24 @@ namespace Tutorial
                     _skipRequested = true;
                     decided = true;
 
-                    // Fade AFTER click
+                    _audioManager.PlayGameTheme();   // << PLAY GAME MUSIC
+                    
+
                     _ui.FadeBackGroundTo(0, 0.3f);
+                    CursorController.Instance.HideCursor();
+
+                    
                 },
                 onNo: () =>
                 {
                     _skipRequested = false;
                     decided = true;
 
-                    // Fade AFTER click
+                    _audioManager.PlayTutorialTheme(); // << PLAY TUTORIAL MUSIC
+
                     _ui.FadeBackGroundTo(0.4f, 0.3f);
+                    CursorController.Instance.HideCursor();
+
                 }
             );
 
@@ -101,6 +111,7 @@ namespace Tutorial
 
             _ui.HideSkipTutorial();
         }
+
 
 
         private IEnumerator DebugSkip()
@@ -206,6 +217,7 @@ namespace Tutorial
             _step = TutorialStep.BossIntro;
             yield return StartCoroutine(BossIntroPhase());
 
+            _audioManager.PlayGameTheme();
             _step = TutorialStep.Done;
         }
 

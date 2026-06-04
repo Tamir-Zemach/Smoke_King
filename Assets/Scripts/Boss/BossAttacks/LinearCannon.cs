@@ -75,7 +75,6 @@ namespace Boss.BossAttacks
 
         private IEnumerator FireRoutine()
         {
-            print("check");
             // TRACKING PHASE
             if (Tracking)
             {

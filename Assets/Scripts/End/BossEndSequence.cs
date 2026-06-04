@@ -5,6 +5,7 @@ using Managers.Boss;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
+using Ui;
 using UnityEngine.Rendering.Universal;
 
 namespace End
@@ -113,6 +114,8 @@ namespace End
 // Load scene when done
             seq.OnComplete(() =>
             {
+                CursorController.Instance.ShowCursor();
+
                 SceneManager.LoadScene(_finalSceneName);
             });
 

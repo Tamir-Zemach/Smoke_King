@@ -29,6 +29,7 @@ namespace Ui
 
         private void GameOverUi()
         {
+            CursorController.Instance.ShowCursor();
             SceneManager.LoadScene("GameOver");
         }
 
@@ -46,11 +47,14 @@ namespace Ui
             {
                 Time.timeScale = 0f;
                 _pausePanel.SetActive(true);
+                CursorController.Instance.ShowCursor();
+
             }
             else
             {
                 Time.timeScale = 1f;
                 _pausePanel.SetActive(false);
+                CursorController.Instance.HideCursor();
             }
 
         }
