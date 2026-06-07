@@ -1,5 +1,6 @@
 using System;
 using Art.Ui;
+using Audio;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -100,6 +101,7 @@ namespace Ui
 
             _cg.blocksRaycasts = false;
             _cg.interactable = false;
+            AudioManager.Instance.PlayButtonSFX();
 
             _scaleTween = transform
                 .DOScale(_originalScale * ClickScale, ClickDuration)

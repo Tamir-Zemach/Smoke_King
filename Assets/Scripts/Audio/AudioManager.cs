@@ -1,108 +1,207 @@
 using UnityEngine;
 using DG.Tweening;
+using Utilities;
 
 namespace Audio
 {
-    public class AudioManager : MonoBehaviour
+    public class AudioManager : SingletonMonoBehaviourAcrossScenes<AudioManager>
     {
-        [Header("Audio Source")]
-        [SerializeField] private AudioSource _musicSource;
+        [Header("Audio Sources")]
+        [SerializeField] private AudioSource _themeAudioSource;
+        [SerializeField] private AudioSource _sfxAudioSource;
 
         [Header("Music Clips")]
-        [SerializeField] private AudioClip _tutorialClip;
-        [SerializeField] private AudioClip _gameClip;
-        [SerializeField] private AudioClip _bossClip;
+        [SerializeField] private AudioClip _mainMenuMusic;
+        [SerializeField] private AudioClip _tutorialLoop;
+        [SerializeField] private AudioClip _gameMusic;
+        [SerializeField] private AudioClip _bossIntro;
+        [SerializeField] private AudioClip _winMusic;
+        [SerializeField] private AudioClip _gameOverMusic;
+
+        [Header("SFX Clips")]
+        [SerializeField] private AudioClip _buttonPressed;
+        [SerializeField] private AudioClip _smokeTransition;
 
         [Header("Settings")]
         [SerializeField] private float _fadeDuration = 0.3f;
-        [SerializeField] private float _delay = 0f;
+        [SerializeField] private float _musicVolume = 1f;
 
-        private Tween _currentTween;
+        private Sequence _musicSequence;
 
-        private void Awake()
+        protected override void Awake()
         {
-            if (_musicSource == null)
-                _musicSource = GetComponent<AudioSource>();
+            base.Awake();
 
-            _musicSource.volume = 0f;
+            // Make sure audio ignores Time.timeScale
+            if (_themeAudioSource != null)
+                _themeAudioSource.ignoreListenerPause = true;
+
+            if (_sfxAudioSource != null)
+                _sfxAudioSource.ignoreListenerPause = true;
+
+            // Ensure global audio is never paused
+            AudioListener.pause = false;
         }
 
-        // -------------------------
-        // Fade In / Fade Out
-        // -------------------------
 
-        public void FadeIn(float fadeDuration)
+        private void Start()
         {
-            _currentTween?.Kill();
+            if (_themeAudioSource == null)
+                Debug.LogError("AudioManager: Theme AudioSource is missing!");
 
-            if (!_musicSource.isPlaying)
-            {
-                _musicSource.volume = 0f;
-                _musicSource.Play();
-            }
+            if (_sfxAudioSource == null)
+                Debug.LogError("AudioManager: SFX AudioSource is missing!");
 
-            _currentTween = _musicSource
-                .DOFade(1f, fadeDuration)
-                .SetDelay(_delay)
-                .SetEase(Ease.Linear)
-                .SetUpdate(true);
+            PlayMainMenuInstant();
         }
 
-        public void FadeOut(float fadeDuration)
+        private void OnDestroy()
         {
-            _currentTween?.Kill();
-
-            _currentTween = _musicSource
-                .DOFade(0f, fadeDuration)
-                .SetDelay(_delay)
-                .SetEase(Ease.Linear)
-                .SetUpdate(true)
-                .OnComplete(() => _musicSource.Stop());
+            _musicSequence?.Kill();
         }
 
-        // -------------------------
-        // Play Music (Crossfade)
-        // -------------------------
+        // ---------------------------------------------------------
+        // Helpers
+        // ---------------------------------------------------------
+
+        private void EnsureMusicSequence()
+        {
+            if (_musicSequence == null || !_musicSequence.IsActive())
+                _musicSequence = DOTween.Sequence().SetUpdate(true);
+        }
+
+        // ---------------------------------------------------------
+        // Instant Music Switch (no fade)
+        // ---------------------------------------------------------
 
         public void PlayMusic(AudioClip clip)
         {
-            if (clip == null)
-                return;
+            if (clip == null) return;
 
-            _currentTween?.Kill();
+            EnsureMusicSequence();
 
-            // If nothing is playing, fade in
-            if (!_musicSource.isPlaying)
+            _musicSequence.AppendCallback(() =>
             {
-                _musicSource.clip = clip;
-                _musicSource.volume = 0f;
-                _musicSource.Play();
-
-                _currentTween = _musicSource
-                    .DOFade(1f, _fadeDuration)
-                    .SetDelay(_delay)
-                    .SetUpdate(true);
-
-                return;
-            }
-
-            // Crossfade
-            Sequence seq = DOTween.Sequence().SetUpdate(true);
-
-            seq.Append(_musicSource.DOFade(0f, _fadeDuration))
-               .AppendCallback(() =>
-               {
-                   _musicSource.clip = clip;
-                   _musicSource.Play();
-               })
-               .Append(_musicSource.DOFade(1f, _fadeDuration));
-
-            _currentTween = seq;
+                _themeAudioSource.clip = clip;
+                _themeAudioSource.volume = _musicVolume;
+                _themeAudioSource.Play();
+            });
         }
 
-        // Convenience methods
-        public void PlayTutorialTheme() => PlayMusic(_tutorialClip);
-        public void PlayGameTheme() => PlayMusic(_gameClip);
-        public void PlayBossIntro() => PlayMusic(_bossClip);
+        // ---------------------------------------------------------
+        // Fade Music Switch
+        // ---------------------------------------------------------
+
+        // Default fade using inspector value
+        public void PlayMusicWithFade(AudioClip clip)
+            => PlayMusicWithFade(clip, _fadeDuration, 0f);
+
+        // Custom fade + optional delay
+        public void PlayMusicWithFade(AudioClip clip, float fadeDuration, float delayBeforeFade = 0f)
+        {
+            if (clip == null) return;
+
+            EnsureMusicSequence();
+
+            // Fade out current music
+            _musicSequence.Append(_themeAudioSource.DOFade(0f, fadeDuration));
+
+            // Optional delay
+            if (delayBeforeFade > 0)
+                _musicSequence.AppendInterval(delayBeforeFade);
+
+            // Switch clip
+            _musicSequence.AppendCallback(() =>
+            {
+                _themeAudioSource.clip = clip;
+                _themeAudioSource.volume = 0f;
+                _themeAudioSource.Play();
+            });
+
+            // Fade in new music
+            _musicSequence.Append(_themeAudioSource.DOFade(_musicVolume, fadeDuration));
+        }
+
+        // ---------------------------------------------------------
+        // Manual Fade Controls
+        // ---------------------------------------------------------
+
+        public void FadeOut(float duration, float delay = 0f)
+        {
+            EnsureMusicSequence();
+            _musicSequence.Append(_themeAudioSource.DOFade(0f, duration).SetDelay(delay));
+        }
+
+        public void FadeIn(float duration, float delay = 0f)
+        {
+            EnsureMusicSequence();
+
+            _musicSequence.AppendCallback(() =>
+            {
+                if (!_themeAudioSource.isPlaying)
+                    _themeAudioSource.Play();
+            });
+
+            _musicSequence.Append(_themeAudioSource.DOFade(_musicVolume, duration).SetDelay(delay));
+        }
+
+        // ---------------------------------------------------------
+        // SFX
+        // ---------------------------------------------------------
+
+        public void PlaySFX(AudioClip clip)
+        {
+            if (clip == null) return;
+            _sfxAudioSource.PlayOneShot(clip);
+        }
+
+        public void PlayButtonSFX() => PlaySFX(_buttonPressed);
+        public void PlaySmokeTransition() => PlaySFX(_smokeTransition);
+
+        // ---------------------------------------------------------
+        // Helper / Extension-style Music Methods
+        // ---------------------------------------------------------
+
+        public void PlayMainMenuInstant()
+            => PlayMusic(_mainMenuMusic);
+        public void PlayMainMenuWithFade(float fade, float delay = 0f)
+            => PlayMusicWithFade(_mainMenuMusic, fade, delay);
+        public void PlayMainMenuWithFade()
+            => PlayMusicWithFade(_mainMenuMusic);
+
+        public void PlayTutorialThemeInstant()
+            => PlayMusic(_tutorialLoop);
+        public void PlayTutorialThemeWithFade(float fade, float delay = 0f)
+            => PlayMusicWithFade(_tutorialLoop, fade, delay);
+        public void PlayTutorialThemeWithFade()
+            => PlayMusicWithFade(_tutorialLoop);
+
+        public void PlayGameThemeInstant()
+            => PlayMusic(_gameMusic);
+        public void PlayGameThemeWithFade(float fade, float delay = 0f)
+            => PlayMusicWithFade(_gameMusic, fade, delay);
+        public void PlayGameThemeWithFade()
+            => PlayMusicWithFade(_gameMusic);
+
+        public void PlayBossIntroInstant()
+            => PlayMusic(_bossIntro);
+        public void PlayBossIntroWithFade(float fade, float delay = 0f)
+            => PlayMusicWithFade(_bossIntro, fade, delay);
+        public void PlayBossIntroWithFade()
+            => PlayMusicWithFade(_bossIntro);
+
+        public void PlayWinMusicInstant()
+            => PlayMusic(_winMusic);
+        public void PlayWinMusicWithFade(float fade, float delay = 0f)
+            => PlayMusicWithFade(_winMusic, fade, delay);
+        public void PlayWinMusicWithFade()
+            => PlayMusicWithFade(_winMusic);
+
+        public void PlayGameOverMusicInstant()
+            => PlayMusic(_gameOverMusic);
+        public void PlayGameOverMusicWithFade(float fade, float delay = 0f)
+            => PlayMusicWithFade(_gameOverMusic, fade, delay);
+        public void PlayGameOverMusicWithFade()
+            => PlayMusicWithFade(_gameOverMusic);
     }
 }

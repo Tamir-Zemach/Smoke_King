@@ -1,5 +1,6 @@
 using System;
 using Art.Ui;
+using Audio;
 using DG.Tweening;
 using Ui;
 using UnityEngine;
@@ -9,21 +10,47 @@ namespace Tutorial
 {
     public class TutorialUI : MonoBehaviour
     {
-        // -----------------------------
-        // Public pulse methods (clean)
-        // -----------------------------
-        public void PulseLeft()        => _leftPulse?.TryPulse(0f, 2f, 0.15f);
-        public void PulseRight()       => _rightPulse?.TryPulse(0f, 2f, 0.15f);
-        public void PulseAttack()      => _attackPulse?.TryPulse(0f, 2f, 0.15f);
-        public void PulseJump()        => _jumpPulse?.TryPulse(0f, 2f, 0.15f);
-        public void PulseStateSwitch() => _stateSwitchPulse?.TryPulse(0f, 2f, 0.15f);
+// -----------------------------
+// Public pulse methods (clean + SFX)
+// -----------------------------
+        public void PulseLeft()
+        {
+            AudioManager.Instance.PlayButtonSFX();
+            _leftPulse?.TryPulse(0f, 2f, 0.15f);
+        }
+
+        public void PulseRight()
+        {
+            AudioManager.Instance.PlayButtonSFX();
+            _rightPulse?.TryPulse(0f, 2f, 0.15f);
+        }
+
+        public void PulseAttack()
+        {
+            AudioManager.Instance.PlayButtonSFX();
+            _attackPulse?.TryPulse(0f, 2f, 0.15f);
+        }
+
+        public void PulseJump()
+        {
+            AudioManager.Instance.PlayButtonSFX();
+            _jumpPulse?.TryPulse(0f, 2f, 0.15f);
+        }
+
+        public void PulseStateSwitch()
+        {
+            AudioManager.Instance.PlayButtonSFX();
+            _stateSwitchPulse?.TryPulse(0f, 2f, 0.15f);
+        }
 
         public void PulseUpAttackGroup()
         {
+            AudioManager.Instance.PlayButtonSFX();
             _upAttackPulse1?.TryPulse(0f, 2f, 0.15f);
             _upAttackPulse2?.TryPulse(0f, 2f, 0.15f);
             _upAttackPulse3?.TryPulse(0f, 2f, 0.15f);
         }
+
 
         // -----------------------------
         // Panels

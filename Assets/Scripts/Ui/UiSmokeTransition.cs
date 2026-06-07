@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Audio;
 using Cameras;
 using UnityEngine;
 using DG.Tweening;
@@ -30,6 +31,7 @@ namespace Ui
         public float CurtainMoveDistance = 10f;
 
         private readonly List<Transform> _spawnedSmokes = new();
+        private bool _soundPlayed;
 
         // -------------------------
         // PUBLIC API
@@ -90,15 +92,22 @@ namespace Ui
 
                 circleTween.OnComplete(() =>
                 {
-                    // Trigger curtain only once
-                    if (completed == 0 && BlackCurtain != null)
+                    // Trigger curtain + sound only once
+                    if (!_soundPlayed)
                     {
-                        Vector3 startPos = BlackCurtain.position;
-                        Vector3 targetPos = startPos + curtainDir * CurtainMoveDistance;
+                        _soundPlayed = true;
 
-                        BlackCurtain.DOMove(targetPos, FlyDuration)
-                            .SetEase(Ease.OutQuad)
-                            .SetDelay(CurtainDelay);
+                        AudioManager.Instance.PlaySmokeTransition();
+
+                        if (BlackCurtain != null)
+                        {
+                            Vector3 startPos = BlackCurtain.position;
+                            Vector3 targetPos = startPos + curtainDir * CurtainMoveDistance;
+
+                            BlackCurtain.DOMove(targetPos, FlyDuration)
+                                .SetEase(Ease.OutQuad)
+                                .SetDelay(CurtainDelay);
+                        }
                     }
 
                     // Fly smoke in chosen direction
@@ -119,6 +128,7 @@ namespace Ui
                         }
                     });
                 });
+
             }
         }
     }

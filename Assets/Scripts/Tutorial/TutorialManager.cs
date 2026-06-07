@@ -28,7 +28,6 @@ namespace Tutorial
         [SerializeField] private CinemachineCamera _playerZoomCamera;
         [SerializeField] private ParticleSystem _bossEntranceParticles;
         [SerializeField] private UiSmokeTransition _uiSmokeTransition;
-        [SerializeField] private AudioManager _audioManager;
 
         [Header("State switch smoke")]
         [SerializeField] private GameObject _smokePrefab;
@@ -92,8 +91,8 @@ namespace Tutorial
                     _skipRequested = false;
                     decided = true;
 
-                    _audioManager.FadeIn(1f);
-                    _audioManager.PlayTutorialTheme(); // << PLAY TUTORIAL MUSIC
+                    AudioManager.Instance.FadeOut(0.3f);
+                    AudioManager.Instance.PlayTutorialThemeWithFade(0.5f, 0.2f);
 
                     _ui.FadeBackGroundTo(0.4f, 0.3f);
                     CursorController.Instance.HideCursor();
@@ -424,14 +423,14 @@ namespace Tutorial
             yield return _ui.FadeBackGroundTo(0f, 0.25f).WaitForCompletion();
 
             yield return new WaitForSeconds(2f);
-            _audioManager.PlayBossIntro();
+            AudioManager.Instance.PlayBossIntroWithFade();
             Instantiate(_bossEntranceParticles, Vector3.zero, Quaternion.Euler(-90, 0, 0));
             CameraShake.Instance.Shake(0.05f, 4);
             yield return new WaitForSeconds(4f);
-            _audioManager.PlayGameTheme();
             _bossManager.gameObject.SetActive(true);
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(2.5f);
+            AudioManager.Instance.PlayGameThemeWithFade();
         }
 
         private StateType GetOppositeState(StateType s)
