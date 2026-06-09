@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using Audio;
 using Core;
 using Data;
 using Enums;
@@ -9,10 +11,12 @@ using Utilities;
 
 namespace Player
 {
-    public class PlayerHealthManager : HealthBase, IDamageable, IInvincible
+    public class  PlayerHealthManager : HealthBase, IDamageable, IInvincible
     {
         public bool _1life = false;
         [SerializeField] private PlayerData _playerData;
+        [SerializeField] private float _sameStateCooldown = 0.2f;
+
 
         public UnityEvent OnInvisible;
         public UnityEvent OnNormal;
@@ -20,8 +24,10 @@ namespace Player
         public float InvisibilityTime = 1f;
 
         private PlayerStateManager _playerStateManager;
+        private bool _sameStateCooldownActive = false;
         public Action OnDying;
         public Action OnGettingDamage;
+        public Action OnSameState;
         public bool IsInDeathSequence;
 
 
@@ -49,14 +55,35 @@ namespace Player
 
         public void TakeDamage(int damage, StateType stateType, Vector3 hitPoint)
         {
+            if (_playerStateManager.CurrentStateType == stateType)
+            {
+                if (!_sameStateCooldownActive)
+                {
+                    _sameStateCooldownActive = true;
+
+                    AudioManager.Instance.PlaySfx(SfxType.ParticleHittingPlayer, canOverlap: false);
+                    OnSameState?.Invoke();
+
+                    StartCoroutine(ResetSameStateCooldown());
+                }
+
+                return;
+            }
+
             if (IsInvincible || IsInDeathSequence) return;
-            if (_playerStateManager.CurrentStateType == stateType) return;
 
             SubtractHealth(damage);
             OnGettingDamage?.Invoke();
 
             StartCoroutine(HealthUtils.Invisibility(this, InvisibilityTime));
         }
+        
+        private IEnumerator ResetSameStateCooldown()
+        {
+            yield return new WaitForSeconds(_sameStateCooldown);
+            _sameStateCooldownActive = false;
+        }
+
 
         bool IDamageable.IsInvincible() => IsInvincible;
 

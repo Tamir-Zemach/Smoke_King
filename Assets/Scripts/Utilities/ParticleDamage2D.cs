@@ -1,4 +1,5 @@
 using System;
+using Audio;
 using Enums;
 using Interfaces;
 using ObjectPooling;
@@ -32,27 +33,22 @@ namespace Utilities
         {
             if ((HitLayer.value & (1 << other.layer)) == 0)
                 return;
-            
-            // If it hits ANYTHING in HitLayer → stop the particle system
+
             _onFinish?.Invoke();
             ParticleMovementUtility.KillTweens(transform);
 
-            // Try to damage if possible
             if (other.TryGetComponent<IDamageable>(out var dmg))
             {
-                if (!dmg.IsSameState(_stateType) && !dmg.IsInvincible())
-                {
                     dmg.TakeDamage(Damage, _stateType);
-                }
             }
 
-            // Play impact only once
             if (!_impactPlayed && ImpactParticlePool.Instance != null)
             {
                 _impactPlayed = true;
                 ImpactParticlePool.Instance.PlayImpact(transform.position, _material, _lightColor);
             }
         }
+
 
 
 

@@ -30,6 +30,7 @@ namespace Audio
         [SerializeField] private float _sfxVolume = 0.7f;
 
         private Dictionary<SfxType, SfxEntry> _sfxMap;
+        private Dictionary<SfxType, float> _lastSfxTime = new();
         private Sequence _musicSequence;
 
         protected override void Awake()
@@ -138,12 +139,30 @@ namespace Audio
         // ---------------------------------------------------------
         // SFX
         // ---------------------------------------------------------
-        public void PlaySfx(SfxType type)
+        public void PlaySfx(SfxType type, bool canOverlap = true)
         {
-            if (!_sfxMap.TryGetValue(type, out var entry) || entry.Clip == null) return;
+            if (!_sfxMap.TryGetValue(type, out var entry) || entry.Clip == null)
+                return;
+
+            float now = Time.time;
+
+            // Only apply cooldown if overlapping is NOT allowed
+            if (!canOverlap)
+            {
+                if (_lastSfxTime.TryGetValue(type, out float lastTime))
+                {
+                    if (now - lastTime < entry.Cooldown)
+                        return; // too soon → skip
+                }
+
+                _lastSfxTime[type] = now;
+            }
+
             float finalVolume = _sfxVolume * entry.Volume;
             _sfxAudioSource.PlayOneShot(entry.Clip, finalVolume);
         }
+
+
 
 
 

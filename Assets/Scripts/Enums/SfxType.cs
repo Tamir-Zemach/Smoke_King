@@ -7,6 +7,8 @@ namespace Enums
         PlayerAttack,
         PlayerJump,
         BossGettingHit,
-        SmokeAttackWhoosh
+        SmokeAttackWhoosh,
+        ParticleHittingPlayer,
+        PlayerGettingHurt
     }
 }

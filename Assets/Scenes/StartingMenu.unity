@@ -211,6 +211,37 @@ Transform:
   - {fileID: 2010439324}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &26652293
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 26652294}
+  m_Layer: 0
+  m_Name: -------DontDestroyOnLoad------
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &26652294
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26652293}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.77842, y: -1.81507, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &102595626
 GameObject:
   m_ObjectHideFlags: 0
@@ -5761,21 +5792,31 @@ MonoBehaviour:
   - Type: 0
     Clip: {fileID: 8300000, guid: 8e48364687021104e97626be17886f24, type: 3}
     Volume: 1
+    Cooldown: 0.05
   - Type: 1
     Clip: {fileID: 8300000, guid: db80748c41717454593580ce276e8f90, type: 3}
     Volume: 1
+    Cooldown: 0.05
   - Type: 2
     Clip: {fileID: 8300000, guid: 71a450ff16308ae40a9608d4284b5702, type: 3}
-    Volume: 1
+    Volume: 0.822
+    Cooldown: 0.05
   - Type: 3
     Clip: {fileID: 8300000, guid: 48f3f99ca3588b645bba3bb882127c86, type: 3}
-    Volume: 1
+    Volume: 0.547
+    Cooldown: 0.05
   - Type: 4
     Clip: {fileID: 8300000, guid: 906c7243cc40d18439b3d81c783c5ff9, type: 3}
     Volume: 1
+    Cooldown: 0.05
   - Type: 5
     Clip: {fileID: 8300000, guid: f1f3f88d7a6bb4b47ae531aea9c194b5, type: 3}
     Volume: 1
+    Cooldown: 0.05
+  - Type: 6
+    Clip: {fileID: 8300000, guid: 3ded03a4ccc105944ab00f5359e15706, type: 3}
+    Volume: 1
+    Cooldown: 1
   _fadeDuration: 0.3
   _musicVolume: 1
   _sfxVolume: 0.7
@@ -31969,5 +32010,6 @@ SceneRoots:
   - {fileID: 1651257276}
   - {fileID: 839245947}
   - {fileID: 1803267080}
+  - {fileID: 26652294}
   - {fileID: 1282897303}
   - {fileID: 650470699}

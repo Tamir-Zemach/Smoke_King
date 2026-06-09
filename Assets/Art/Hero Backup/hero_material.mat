@@ -71,11 +71,11 @@ Material:
     m_Ints: []
     m_Floats:
     - _Color_A: 0.021
-    - _Color_A_Saturation: 3.72
+    - _Color_A_Saturation: 0
     - _Color_B: 0.793
-    - _Color_B_Saturation: 4
+    - _Color_B_Saturation: 0
     - _GlowStrength: 0
-    - _Polarity: 0
+    - _Polarity: 1
     m_Colors:
     - White: {r: 1, g: 1, b: 1, a: 1}
     - _GlowA: {r: 0.64375305, g: 0, b: 1, a: 1}
