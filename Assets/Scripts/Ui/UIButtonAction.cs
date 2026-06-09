@@ -1,4 +1,5 @@
 using System.Collections;
+using Audio;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,6 +18,7 @@ namespace Ui
         public void LoadMainMenu()
         {
             Time.timeScale = 1f;
+            AudioManager.Instance.PlayMainMenuWithFade();
             SceneManager.LoadScene("StartingMenu");
         }
         
@@ -37,6 +39,7 @@ namespace Ui
             SmokeTransition.PlayTransitionToRight(() =>
             {
                 finished = true;
+                AudioManager.Instance.FadeOut(1f);
             });
             
             // Wait until smoke animation finishes

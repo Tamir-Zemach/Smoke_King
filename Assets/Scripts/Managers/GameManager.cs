@@ -14,8 +14,8 @@ namespace Managers
         [SerializeField] private PlayerHealthManager _playerHealthManager;
         [SerializeField] private BossHealthManager _bossHealthManager;
         [SerializeField] private UiManager _uiManager;
-
-        
+            
+            
         public Action OnGameOver;
         public Action OnWinGame;
         public bool GameIsPaused { get; private set; }
@@ -43,7 +43,6 @@ namespace Managers
         private void GameOver()
         {
             OnGameOver?.Invoke();
-            GameIsPaused = true;
         }
 
         private void WinGame()
@@ -54,9 +53,15 @@ namespace Managers
 
         private void Update()
         {
-            //CHANGE!!!!!!!
+            if (_playerHealthManager.IsInDeathSequence)
+            {
+                GameIsPaused = false;
+                return;
+            }
+
             GameIsPaused = _uiManager.Paused;
         }
+
 
 
     }

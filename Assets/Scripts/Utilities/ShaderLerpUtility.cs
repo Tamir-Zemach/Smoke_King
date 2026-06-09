@@ -20,6 +20,9 @@ namespace Utilities
             }
         }
 
+        // ---------------------------------------------------------
+        // SCALED TIME (original)
+        // ---------------------------------------------------------
         public static Coroutine LerpFloat(Material mat, string property, float target, float duration)
         {
             return Runner.StartCoroutine(LerpFloatRoutine(mat, property, target, duration));
@@ -32,7 +35,31 @@ namespace Utilities
 
             while (t < duration)
             {
-                t += Time.deltaTime;
+                t += Time.deltaTime; // scaled
+                float lerp = Mathf.Lerp(start, target, t / duration);
+                mat.SetFloat(property, lerp);
+                yield return null;
+            }
+
+            mat.SetFloat(property, target);
+        }
+
+        // ---------------------------------------------------------
+        // UNSCALED TIME (new)
+        // ---------------------------------------------------------
+        public static Coroutine LerpFloatUnscaled(Material mat, string property, float target, float duration)
+        {
+            return Runner.StartCoroutine(LerpFloatRoutineUnscaled(mat, property, target, duration));
+        }
+
+        private static IEnumerator LerpFloatRoutineUnscaled(Material mat, string property, float target, float duration)
+        {
+            float start = mat.GetFloat(property);
+            float t = 0f;
+
+            while (t < duration)
+            {
+                t += Time.unscaledDeltaTime; // unscaled
                 float lerp = Mathf.Lerp(start, target, t / duration);
                 mat.SetFloat(property, lerp);
                 yield return null;

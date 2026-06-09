@@ -11,6 +11,7 @@ namespace Player
 {
     public class PlayerHealthManager : HealthBase, IDamageable, IInvincible
     {
+        public bool _1life = false;
         [SerializeField] private PlayerData _playerData;
 
         public UnityEvent OnInvisible;
@@ -21,6 +22,8 @@ namespace Player
         private PlayerStateManager _playerStateManager;
         public Action OnDying;
         public Action OnGettingDamage;
+        public bool IsInDeathSequence;
+
 
         protected override void Awake()
         {
@@ -30,8 +33,9 @@ namespace Player
                 Debug.LogWarning("PlayerData is missing on " + gameObject.name);
 
             _maxHealth = _playerData.MaxHealth;
-            _currentHealth = _maxHealth;
+            _currentHealth = _1life ? 1 : _maxHealth;
             _playerStateManager = GetComponent<PlayerStateManager>();
+            
         }
 
         public int maxHealth { get; set; }
@@ -43,10 +47,9 @@ namespace Player
             TakeDamage(damage, stateType, transform.position);
         }
 
-        // NEW signature with hit point
         public void TakeDamage(int damage, StateType stateType, Vector3 hitPoint)
         {
-            if (IsInvincible) return;
+            if (IsInvincible || IsInDeathSequence) return;
             if (_playerStateManager.CurrentStateType == stateType) return;
 
             SubtractHealth(damage);

@@ -19,9 +19,17 @@ namespace Player
         {
             _playerInput = GetComponent<PlayerInput>();
             _playerInput.OnStateSwitch += OnStateSwitch;
+
             CurrentStateType = StateType.State1;
-            ShaderLerpUtility.LerpFloat(PlayerMaterial, "_Polarity", 0, 0.001f);
+
+            // Reset polarity
+            ShaderLerpUtility.LerpFloat(PlayerMaterial, "_Polarity", 0f, 0.001f);
+
+            // Reset saturation (after death)
+            ShaderLerpUtility.LerpFloat(PlayerMaterial, "_Color_A_Saturation", 3.72f, 0.001f);
+            ShaderLerpUtility.LerpFloat(PlayerMaterial, "_Color_B_Saturation", 4f, 0.001f);
         }
+
         
 
         private void OnStateSwitch()

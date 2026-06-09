@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d12d1ace5b34cb4af4256b0813668c1, type: 3}
+  m_Name: Player Death Data
+  m_EditorClassIdentifier: Assembly-CSharp::Data.PlayerDeathData
+  DesaturateDuration: 3
+  MoveToCenterDuration: 1.5
+  PreLerpDelay: 4
+  LightFadeDuration: 0.3
+  EndLightDelay: 1
+  EndLightCloseDuration: 1.2
+  CameraShakeIntensity: 0.05
+  CameraShakeDuration: 20
+  PlayerShakeIntensity: 0.05
+  PlayerShakeDuration: 20
+  ParticleYOffset: 1
+  GameOverSceneName: GameOver

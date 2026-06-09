@@ -30,7 +30,6 @@ namespace Ui
         private void GameOverUi()
         {
             CursorController.Instance.ShowCursor();
-            SceneManager.LoadScene("GameOver");
         }
 
         private void OnDestroy()

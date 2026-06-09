@@ -5866,7 +5866,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1072865946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11372,7 +11372,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4943435599214366836, guid: b8d522376ef4f044c9b7621b1bc02913, type: 3}
       propertyPath: m_Pivot.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4943435599214366836, guid: b8d522376ef4f044c9b7621b1bc02913, type: 3}
       propertyPath: m_AnchorMax.x
@@ -11432,7 +11432,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4943435599214366836, guid: b8d522376ef4f044c9b7621b1bc02913, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 105
+      value: 160
       objectReference: {fileID: 0}
     - target: {fileID: 4943435599214366836, guid: b8d522376ef4f044c9b7621b1bc02913, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -11445,6 +11445,18 @@ PrefabInstance:
     - target: {fileID: 4943435599214366836, guid: b8d522376ef4f044c9b7621b1bc02913, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5570329966533718827, guid: b8d522376ef4f044c9b7621b1bc02913, type: 3}
+      propertyPath: OnFinish.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5570329966533718827, guid: b8d522376ef4f044c9b7621b1bc02913, type: 3}
+      propertyPath: OnFinish.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 731910789}
+    - target: {fileID: 5570329966533718827, guid: b8d522376ef4f044c9b7621b1bc02913, type: 3}
+      propertyPath: OnFinish.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Exit
       objectReference: {fileID: 0}
     - target: {fileID: 5739526128040914922, guid: b8d522376ef4f044c9b7621b1bc02913, type: 3}
       propertyPath: m_Sprite
