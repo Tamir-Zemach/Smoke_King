@@ -5756,10 +5756,29 @@ MonoBehaviour:
   _bossIntro: {fileID: 8300000, guid: 01cc5b078c70d6f49be4017114692116, type: 3}
   _winMusic: {fileID: 8300000, guid: ea3eb473a54cdb841a0a19e81408c7b6, type: 3}
   _gameOverMusic: {fileID: 8300000, guid: 59b4e52b03f1deb4caf35a6677ebbfe4, type: 3}
-  _buttonPressed: {fileID: 8300000, guid: 8e48364687021104e97626be17886f24, type: 3}
-  _smokeTransition: {fileID: 8300000, guid: db80748c41717454593580ce276e8f90, type: 3}
+  _playerDeathSequence: {fileID: 8300000, guid: f8c4cfa10203c5e498e74f20d8beb8ec, type: 3}
+  _sfxEntries:
+  - Type: 0
+    Clip: {fileID: 8300000, guid: 8e48364687021104e97626be17886f24, type: 3}
+    Volume: 1
+  - Type: 1
+    Clip: {fileID: 8300000, guid: db80748c41717454593580ce276e8f90, type: 3}
+    Volume: 1
+  - Type: 2
+    Clip: {fileID: 8300000, guid: 71a450ff16308ae40a9608d4284b5702, type: 3}
+    Volume: 1
+  - Type: 3
+    Clip: {fileID: 8300000, guid: 48f3f99ca3588b645bba3bb882127c86, type: 3}
+    Volume: 1
+  - Type: 4
+    Clip: {fileID: 8300000, guid: 906c7243cc40d18439b3d81c783c5ff9, type: 3}
+    Volume: 1
+  - Type: 5
+    Clip: {fileID: 8300000, guid: f1f3f88d7a6bb4b47ae531aea9c194b5, type: 3}
+    Volume: 1
   _fadeDuration: 0.3
   _musicVolume: 1
+  _sfxVolume: 0.7
 --- !u!4 &650470699
 Transform:
   m_ObjectHideFlags: 0

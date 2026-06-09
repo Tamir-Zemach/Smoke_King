@@ -117,6 +117,7 @@ namespace End
             seq.OnComplete(() =>
             {
                 CursorController.Instance.ShowCursor();
+                AudioManager.Instance.PlayWinMusicWithFade();
 
                 SceneManager.LoadScene(_finalSceneName);
             });

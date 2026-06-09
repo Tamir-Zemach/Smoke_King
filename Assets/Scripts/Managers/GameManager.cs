@@ -56,10 +56,12 @@ namespace Managers
             if (_playerHealthManager.IsInDeathSequence)
             {
                 GameIsPaused = false;
+                AudioListener.pause = false;
                 return;
             }
 
             GameIsPaused = _uiManager.Paused;
+            AudioListener.pause = GameIsPaused;
         }
 
 

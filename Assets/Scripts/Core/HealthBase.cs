@@ -9,6 +9,8 @@ namespace Core
         protected int _currentHealth;
         protected int _maxHealth;
 
+        private bool _isDead = false;
+
         public int CurrentHealth => _currentHealth;
         public int MaxHealth => _maxHealth;
 
@@ -16,6 +18,7 @@ namespace Core
         {
             _currentHealth = 1;
             _maxHealth = 1;
+            _isDead = false;
         }
 
         public event Action OnHealthChanged;
@@ -30,11 +33,17 @@ namespace Core
 
         protected virtual void SubtractHealth(int amount)
         {
+            if (_isDead) return; // already dead, ignore further damage
+
             _currentHealth -= Math.Max(0, amount);
 
             OnHealthChanged?.Invoke();
 
-            if (_currentHealth <= 0) HandleDeath();
+            if (_currentHealth <= 0)
+            {
+                _isDead = true;
+                HandleDeath();
+            }
         }
 
         public virtual void IncreaseMaxHealth(int amount)
@@ -52,6 +61,7 @@ namespace Core
         public virtual void FullHealth()
         {
             _currentHealth = _maxHealth;
+            _isDead = false; // revive
             OnHealthChanged?.Invoke();
         }
 
@@ -60,7 +70,6 @@ namespace Core
             HealthUtils.DisplayHealthInConsole(_currentHealth, _maxHealth, label);
         }
 
-        // Every subclass MUST define what happens when it dies
         protected abstract void HandleDeath();
     }
 }

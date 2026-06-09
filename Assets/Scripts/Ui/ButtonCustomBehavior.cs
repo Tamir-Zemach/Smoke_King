@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using DG.Tweening;
+using Enums;
 using UnityEngine.Events;
 
 namespace Ui
@@ -101,7 +102,7 @@ namespace Ui
 
             _cg.blocksRaycasts = false;
             _cg.interactable = false;
-            AudioManager.Instance.PlayButtonSFX();
+            AudioManager.Instance.PlaySfx(SfxType.Button);
 
             _scaleTween = transform
                 .DOScale(_originalScale * ClickScale, ClickDuration)

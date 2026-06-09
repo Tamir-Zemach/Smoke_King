@@ -1,5 +1,7 @@
 using System.Collections;
+using Audio;
 using Data;
+using Enums;
 using UnityEngine;
 using Utilities;
 
@@ -68,6 +70,7 @@ namespace Player
             yield return new WaitForSeconds(_playerData.DelayBeforeHitBox);
 
             // 2. Play particles
+            AudioManager.Instance.PlaySfx(SfxType.PlayerAttack);
             PlayParticle(_isAttacking);
 
             // 3. Enable hitbox for a short window

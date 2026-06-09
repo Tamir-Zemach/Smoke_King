@@ -2,6 +2,7 @@ using System;
 using Art.Ui;
 using Audio;
 using DG.Tweening;
+using Enums;
 using Ui;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,67 +11,99 @@ namespace Tutorial
 {
     public class TutorialUI : MonoBehaviour
     {
-// -----------------------------
-// Public pulse methods (clean + SFX)
-// -----------------------------
+        // ---------------------------------------------------------
+        // Pulse SFX flags (play only once per panel)
+        // ---------------------------------------------------------
+        private bool _leftPulsed;
+        private bool _rightPulsed;
+        private bool _jumpPulsed;
+        private bool _attackPulsed;
+        private bool _upAttackPulsed;
+        private bool _stateSwitchPulsed;
+
+        // ---------------------------------------------------------
+        // Public pulse methods (clean + SFX)
+        // ---------------------------------------------------------
         public void PulseLeft()
         {
-            AudioManager.Instance.PlayButtonSFX();
+            if (!_leftPulsed)
+            {
+                AudioManager.Instance.PlaySfx(SfxType.Button);
+                _leftPulsed = true;
+            }
             _leftPulse?.TryPulse(0f, 2f, 0.15f);
         }
 
         public void PulseRight()
         {
-            AudioManager.Instance.PlayButtonSFX();
+            if (!_rightPulsed)
+            {
+                AudioManager.Instance.PlaySfx(SfxType.Button);
+                _rightPulsed = true;
+            }
             _rightPulse?.TryPulse(0f, 2f, 0.15f);
         }
 
         public void PulseAttack()
         {
-            AudioManager.Instance.PlayButtonSFX();
+            if (!_attackPulsed)
+            {
+                AudioManager.Instance.PlaySfx(SfxType.Button);
+                _attackPulsed = true;
+            }
             _attackPulse?.TryPulse(0f, 2f, 0.15f);
         }
 
         public void PulseJump()
         {
-            AudioManager.Instance.PlayButtonSFX();
+            if (!_jumpPulsed)
+            {
+                AudioManager.Instance.PlaySfx(SfxType.Button);
+                _jumpPulsed = true;
+            }
             _jumpPulse?.TryPulse(0f, 2f, 0.15f);
         }
 
         public void PulseStateSwitch()
         {
-            AudioManager.Instance.PlayButtonSFX();
+            if (!_stateSwitchPulsed)
+            {
+                AudioManager.Instance.PlaySfx(SfxType.Button);
+                _stateSwitchPulsed = true;
+            }
             _stateSwitchPulse?.TryPulse(0f, 2f, 0.15f);
         }
 
         public void PulseUpAttackGroup()
         {
-            AudioManager.Instance.PlayButtonSFX();
+            if (!_upAttackPulsed)
+            {
+                AudioManager.Instance.PlaySfx(SfxType.Button);
+                _upAttackPulsed = true;
+            }
+
             _upAttackPulse1?.TryPulse(0f, 2f, 0.15f);
             _upAttackPulse2?.TryPulse(0f, 2f, 0.15f);
             _upAttackPulse3?.TryPulse(0f, 2f, 0.15f);
         }
 
-
-        // -----------------------------
+        // ---------------------------------------------------------
         // Panels
-        // -----------------------------
+        // ---------------------------------------------------------
         [Header("Panels (PNG overlays)")]
         [SerializeField] private CanvasGroup _backGroundCanvasGroup;
         [SerializeField] private GameObject _moveJumpPanel;
         [SerializeField] private GameObject _attackPanel;
         [SerializeField] private GameObject _stateSwitchPanel;
-        
+
         [Header("Skip Tutorial")]
         [SerializeField] private GameObject _skipTutorialPanel;
         [SerializeField] private Button _skipYesButton;
         [SerializeField] private Button _skipNoButton;
 
-        
-
-        // -----------------------------
+        // ---------------------------------------------------------
         // Pulse components
-        // -----------------------------
+        // ---------------------------------------------------------
         [Header("Pulse settings")]
         [SerializeField] private EmissionPulse _leftPulse;
         [SerializeField] private EmissionPulse _rightPulse;
@@ -118,23 +151,17 @@ namespace Tutorial
             if (panel == null)
                 return null;
 
-            // Get ALL images under the panel
             Image[] images = panel.GetComponentsInChildren<Image>(true);
             if (images.Length == 0)
                 return null;
 
-            // Reset visuals before animating
             ResetPanelVisuals(panel, images);
 
             Sequence seq = DOTween.Sequence().SetUpdate(true);
 
-            // 1. Pulse (scale up)
             seq.Append(UiMovementUtility.Pulse(panel.transform, 1.2f, 0.15f));
-
-            // 2. Shrink (scale down)
             seq.Append(UiMovementUtility.ShrinkTo(panel.transform, 0.15f, 0.8f));
 
-            // 3. Fade ALL images
             foreach (var img in images)
                 seq.Join(UiMovementUtility.Fade(img, 0.25f));
 
@@ -150,7 +177,6 @@ namespace Tutorial
             if (images.Length == 0)
                 return null;
 
-            // Start invisible & small
             foreach (var img in images)
             {
                 var c = img.color;
@@ -162,14 +188,10 @@ namespace Tutorial
 
             Sequence seq = DOTween.Sequence().SetUpdate(true);
 
-            // 1. Fade in all images (JOIN)
             foreach (var img in images)
                 seq.Join(img.DOFade(1f, 0.3f));
 
-            // 2. Scale up at the SAME TIME (JOIN, not Append)
             seq.Join(panel.transform.DOScale(1.15f, 0.25f).SetEase(Ease.OutQuad));
-
-            // 3. Settle pulse
             seq.Append(panel.transform.DOScale(1f, 0.1f));
 
             return seq;
@@ -177,10 +199,8 @@ namespace Tutorial
 
         private void ResetPanelVisuals(GameObject panel, Image[] images)
         {
-            // Reset scale
             panel.transform.localScale = Vector3.one;
 
-            // Reset alpha on ALL images
             foreach (var img in images)
             {
                 var c = img.color;
@@ -198,7 +218,18 @@ namespace Tutorial
             if (_attackPanel) _attackPanel.SetActive(false);
             if (_stateSwitchPanel) _stateSwitchPanel.SetActive(false);
 
+            ResetPulseFlags();
             _pulsing = false;
+        }
+
+        private void ResetPulseFlags()
+        {
+            _leftPulsed = false;
+            _rightPulsed = false;
+            _jumpPulsed = false;
+            _attackPulsed = false;
+            _upAttackPulsed = false;
+            _stateSwitchPulsed = false;
         }
 
         public Tween ShowMoveJump()
@@ -274,8 +305,7 @@ namespace Tutorial
                 _stateSwitchRect.position = worldUIPos;
             }
         }
-        
-        
+
         public Tween ShowSkipTutorial(Action onYes, Action onNo)
         {
             HideAll();
@@ -290,8 +320,8 @@ namespace Tutorial
 
             _skipYesButton.onClick.AddListener(() => onYes?.Invoke());
             _skipNoButton.onClick.AddListener(() => onNo?.Invoke());
-            return SpawnPanel(_skipTutorialPanel);
 
+            return SpawnPanel(_skipTutorialPanel);
         }
 
         public void HideSkipTutorial()
@@ -305,7 +335,6 @@ namespace Tutorial
             if (_backGroundCanvasGroup == null)
                 return null;
 
-            // If fading IN → ensure object is active
             if (to > 0f)
                 _backGroundCanvasGroup.gameObject.SetActive(true);
 
@@ -313,7 +342,6 @@ namespace Tutorial
                 .DOFade(to, duration)
                 .SetUpdate(true);
 
-            // If fading OUT → disable after fade completes
             if (to <= 0f)
             {
                 t.OnComplete(() =>
@@ -324,9 +352,6 @@ namespace Tutorial
 
             return t;
         }
-
-
-
 
         // ---------------------------------------------------------
         // Looping pulse for state switch
@@ -339,8 +364,5 @@ namespace Tutorial
             float s = 1f + Mathf.Sin(Time.unscaledTime * _pulseSpeed) * (_pulseScale - 1f);
             _stateSwitchRect.localScale = new Vector3(s, s, 1f);
         }
-        
-        
-        
     }
 }

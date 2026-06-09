@@ -4,6 +4,7 @@ using Audio;
 using Cameras;
 using UnityEngine;
 using DG.Tweening;
+using Enums;
 using Particles;
 
 namespace Ui
@@ -97,7 +98,7 @@ namespace Ui
                     {
                         _soundPlayed = true;
 
-                        AudioManager.Instance.PlaySmokeTransition();
+                        AudioManager.Instance.PlaySfx(SfxType.SmokeTransition);
 
                         if (BlackCurtain != null)
                         {

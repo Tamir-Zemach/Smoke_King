@@ -82,7 +82,7 @@ namespace Player
             _rb.simulated = false;
             _health.IsInvincible = true;
 
-            AudioManager.Instance.PlayGameOverMusicWithFade();
+            AudioManager.Instance.PlayPlayerDeathSequenceWithFade();
 
             // ---------------------------------------------------------
             // PHASE 2 — FX (ALL AT ONCE)
@@ -202,6 +202,7 @@ namespace Player
             // ---------------------------------------------------------
             // PHASE 7 — STOP SHAKE + LOAD SCENE
             // ---------------------------------------------------------
+            AudioManager.Instance.PlayGameOverMusicWithFade();
 
             if (_shakeTween != null)
                 _shakeTween.Kill();

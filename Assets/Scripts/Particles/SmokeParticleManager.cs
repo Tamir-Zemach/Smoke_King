@@ -1,3 +1,4 @@
+using Audio;
 using Enums;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -80,6 +81,7 @@ namespace Particles
 
         public void Fly()
         {
+            AudioManager.Instance.PlaySfx(SfxType.SmokeAttackWhoosh);
             ParticleMovementUtility.Fly(
                 transform,
                 MovementData.FlyDistance,

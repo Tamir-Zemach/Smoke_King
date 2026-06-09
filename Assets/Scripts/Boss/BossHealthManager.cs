@@ -1,4 +1,5 @@
 using System;
+using Audio;
 using Core;
 using Enums;
 using Interfaces;
@@ -36,6 +37,7 @@ namespace Boss
 
             SubtractHealth(damage);
             OnBossHit?.Invoke(hitPoint, stateType);
+            AudioManager.Instance.PlaySfx(SfxType.BossGettingHit);
 
             StartCoroutine(HealthUtils.Invisibility(this, _invisibilityTime));
         }

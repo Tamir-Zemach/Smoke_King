@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Enums;
 using Utilities;
 
 namespace Audio
@@ -17,32 +19,24 @@ namespace Audio
         [SerializeField] private AudioClip _bossIntro;
         [SerializeField] private AudioClip _winMusic;
         [SerializeField] private AudioClip _gameOverMusic;
+        [SerializeField] private AudioClip _playerDeathSequence;
 
         [Header("SFX Clips")]
-        [SerializeField] private AudioClip _buttonPressed;
-        [SerializeField] private AudioClip _smokeTransition;
+        [SerializeField] private List<SfxEntry> _sfxEntries;
 
         [Header("Settings")]
         [SerializeField] private float _fadeDuration = 0.3f;
         [SerializeField] private float _musicVolume = 1f;
+        [SerializeField] private float _sfxVolume = 0.7f;
 
+        private Dictionary<SfxType, SfxEntry> _sfxMap;
         private Sequence _musicSequence;
 
         protected override void Awake()
         {
             base.Awake();
-
-            // Make sure audio ignores Time.timeScale
-            if (_themeAudioSource != null)
-                _themeAudioSource.ignoreListenerPause = true;
-
-            if (_sfxAudioSource != null)
-                _sfxAudioSource.ignoreListenerPause = true;
-
-            // Ensure global audio is never paused
-            AudioListener.pause = false;
+            BuildSfxDictionary();
         }
-
 
         private void Start()
         {
@@ -61,18 +55,28 @@ namespace Audio
         }
 
         // ---------------------------------------------------------
-        // Helpers
+        // Build SFX dictionary
         // ---------------------------------------------------------
+        private void BuildSfxDictionary()
+        {
+            _sfxMap = new Dictionary<SfxType, SfxEntry>();
 
+            foreach (var entry in _sfxEntries)
+            {
+                if (!_sfxMap.ContainsKey(entry.Type))
+                    _sfxMap.Add(entry.Type, entry);
+            }
+        }
+
+
+        // ---------------------------------------------------------
+        // Music Helpers
+        // ---------------------------------------------------------
         private void EnsureMusicSequence()
         {
             if (_musicSequence == null || !_musicSequence.IsActive())
                 _musicSequence = DOTween.Sequence().SetUpdate(true);
         }
-
-        // ---------------------------------------------------------
-        // Instant Music Switch (no fade)
-        // ---------------------------------------------------------
 
         public void PlayMusic(AudioClip clip)
         {
@@ -88,29 +92,20 @@ namespace Audio
             });
         }
 
-        // ---------------------------------------------------------
-        // Fade Music Switch
-        // ---------------------------------------------------------
-
-        // Default fade using inspector value
         public void PlayMusicWithFade(AudioClip clip)
             => PlayMusicWithFade(clip, _fadeDuration, 0f);
 
-        // Custom fade + optional delay
         public void PlayMusicWithFade(AudioClip clip, float fadeDuration, float delayBeforeFade = 0f)
         {
             if (clip == null) return;
 
             EnsureMusicSequence();
 
-            // Fade out current music
             _musicSequence.Append(_themeAudioSource.DOFade(0f, fadeDuration));
 
-            // Optional delay
             if (delayBeforeFade > 0)
                 _musicSequence.AppendInterval(delayBeforeFade);
 
-            // Switch clip
             _musicSequence.AppendCallback(() =>
             {
                 _themeAudioSource.clip = clip;
@@ -118,13 +113,8 @@ namespace Audio
                 _themeAudioSource.Play();
             });
 
-            // Fade in new music
             _musicSequence.Append(_themeAudioSource.DOFade(_musicVolume, fadeDuration));
         }
-
-        // ---------------------------------------------------------
-        // Manual Fade Controls
-        // ---------------------------------------------------------
 
         public void FadeOut(float duration, float delay = 0f)
         {
@@ -148,60 +138,43 @@ namespace Audio
         // ---------------------------------------------------------
         // SFX
         // ---------------------------------------------------------
-
-        public void PlaySFX(AudioClip clip)
+        public void PlaySfx(SfxType type)
         {
-            if (clip == null) return;
-            _sfxAudioSource.PlayOneShot(clip);
+            if (!_sfxMap.TryGetValue(type, out var entry) || entry.Clip == null) return;
+            float finalVolume = _sfxVolume * entry.Volume;
+            _sfxAudioSource.PlayOneShot(entry.Clip, finalVolume);
         }
 
-        public void PlayButtonSFX() => PlaySFX(_buttonPressed);
-        public void PlaySmokeTransition() => PlaySFX(_smokeTransition);
+
+
 
         // ---------------------------------------------------------
-        // Helper / Extension-style Music Methods
+        // Music Shortcuts
         // ---------------------------------------------------------
+        public void PlayMainMenuInstant() => PlayMusic(_mainMenuMusic);
+        public void PlayMainMenuWithFade(float fade, float delay = 0f) => PlayMusicWithFade(_mainMenuMusic, fade, delay);
+        public void PlayMainMenuWithFade() => PlayMusicWithFade(_mainMenuMusic);
 
-        public void PlayMainMenuInstant()
-            => PlayMusic(_mainMenuMusic);
-        public void PlayMainMenuWithFade(float fade, float delay = 0f)
-            => PlayMusicWithFade(_mainMenuMusic, fade, delay);
-        public void PlayMainMenuWithFade()
-            => PlayMusicWithFade(_mainMenuMusic);
+        public void PlayTutorialThemeInstant() => PlayMusic(_tutorialLoop);
+        public void PlayTutorialThemeWithFade(float fade, float delay = 0f) => PlayMusicWithFade(_tutorialLoop, fade, delay);
+        public void PlayTutorialThemeWithFade() => PlayMusicWithFade(_tutorialLoop);
 
-        public void PlayTutorialThemeInstant()
-            => PlayMusic(_tutorialLoop);
-        public void PlayTutorialThemeWithFade(float fade, float delay = 0f)
-            => PlayMusicWithFade(_tutorialLoop, fade, delay);
-        public void PlayTutorialThemeWithFade()
-            => PlayMusicWithFade(_tutorialLoop);
+        public void PlayGameThemeInstant() => PlayMusic(_gameMusic);
+        public void PlayGameThemeWithFade(float fade, float delay = 0f) => PlayMusicWithFade(_gameMusic, fade, delay);
+        public void PlayGameThemeWithFade() => PlayMusicWithFade(_gameMusic);
 
-        public void PlayGameThemeInstant()
-            => PlayMusic(_gameMusic);
-        public void PlayGameThemeWithFade(float fade, float delay = 0f)
-            => PlayMusicWithFade(_gameMusic, fade, delay);
-        public void PlayGameThemeWithFade()
-            => PlayMusicWithFade(_gameMusic);
+        public void PlayBossIntroInstant() => PlayMusic(_bossIntro);
+        public void PlayBossIntroWithFade(float fade, float delay = 0f) => PlayMusicWithFade(_bossIntro, fade, delay);
+        public void PlayBossIntroWithFade() => PlayMusicWithFade(_bossIntro);
 
-        public void PlayBossIntroInstant()
-            => PlayMusic(_bossIntro);
-        public void PlayBossIntroWithFade(float fade, float delay = 0f)
-            => PlayMusicWithFade(_bossIntro, fade, delay);
-        public void PlayBossIntroWithFade()
-            => PlayMusicWithFade(_bossIntro);
+        public void PlayWinMusicInstant() => PlayMusic(_winMusic);
+        public void PlayWinMusicWithFade(float fade, float delay = 0f) => PlayMusicWithFade(_winMusic, fade, delay);
+        public void PlayWinMusicWithFade() => PlayMusicWithFade(_winMusic);
 
-        public void PlayWinMusicInstant()
-            => PlayMusic(_winMusic);
-        public void PlayWinMusicWithFade(float fade, float delay = 0f)
-            => PlayMusicWithFade(_winMusic, fade, delay);
-        public void PlayWinMusicWithFade()
-            => PlayMusicWithFade(_winMusic);
+        public void PlayGameOverMusicInstant() => PlayMusic(_gameOverMusic);
+        public void PlayGameOverMusicWithFade(float fade, float delay = 0f) => PlayMusicWithFade(_gameOverMusic, fade, delay);
+        public void PlayGameOverMusicWithFade() => PlayMusicWithFade(_gameOverMusic);
 
-        public void PlayGameOverMusicInstant()
-            => PlayMusic(_gameOverMusic);
-        public void PlayGameOverMusicWithFade(float fade, float delay = 0f)
-            => PlayMusicWithFade(_gameOverMusic, fade, delay);
-        public void PlayGameOverMusicWithFade()
-            => PlayMusicWithFade(_gameOverMusic);
+        public void PlayPlayerDeathSequenceWithFade() => PlayMusicWithFade(_playerDeathSequence);
     }
 }

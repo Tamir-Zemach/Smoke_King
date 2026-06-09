@@ -1,5 +1,7 @@
 using System.Collections;
+using Audio;
 using Data;
+using Enums;
 using Interfaces;
 using UnityEngine;
 
@@ -175,6 +177,7 @@ namespace Player
             // Normal jump
             if (_isGrounded)
             {
+                AudioManager.Instance.PlaySfx(SfxType.PlayerJump);                
                 _rb.AddForce(Vector2.up * _playerData.JumpForce, ForceMode2D.Impulse);
                 return;
             }
