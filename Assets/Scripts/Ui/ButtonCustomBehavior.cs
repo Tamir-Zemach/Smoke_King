@@ -122,6 +122,32 @@ namespace Ui
                         });
                 });
         }
+        public void ResetButton()
+        {
+            // Kill any running scale tween
+            if (_scaleTween != null)
+            {
+                _scaleTween.Kill();
+                _scaleTween = null;
+            }
+            // Restore CanvasGroup
+            if (_cg == null) _cg = GetComponent<CanvasGroup>();
+            _cg.alpha = 1f;
+            _cg.interactable = true;      // <-- clears click-lock
+            _cg.blocksRaycasts = true;    // <-- allows hover & click again
+            // Restore original scale
+            transform.localScale = _originalScale;
+            
+
+            // Reset emission intensity on the material
+            if (_pulse.TryGetComponent<Image>(out var img) && img.material != null)
+                img.material.SetFloat("_EmissionIntensity", 0);
+
+            // Optionally re-enable the Button component
+            if (_targetButton != null)
+                _targetButton.enabled = true;
+        }
+
 
         // -----------------------------
         // HOVER LOOP

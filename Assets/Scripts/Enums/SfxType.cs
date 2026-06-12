@@ -9,6 +9,7 @@ namespace Enums
         BossGettingHit,
         SmokeAttackWhoosh,
         ParticleHittingPlayer,
-        PlayerGettingHurt
+        PlayerGettingHurt,
+        StateSwitch
     }
 }

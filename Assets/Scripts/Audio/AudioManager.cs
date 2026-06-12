@@ -26,8 +26,9 @@ namespace Audio
 
         [Header("Settings")]
         [SerializeField] private float _fadeDuration = 0.3f;
-        [SerializeField] private float _musicVolume = 1f;
-        [SerializeField] private float _sfxVolume = 0.7f;
+        public float MusicVolume { get; private set; } = 1f;
+        public float SfxVolume { get; private set; } = 0.7f;
+
 
         private Dictionary<SfxType, SfxEntry> _sfxMap;
         private Dictionary<SfxType, float> _lastSfxTime = new();
@@ -42,11 +43,21 @@ namespace Audio
         private void Start()
         {
             if (_themeAudioSource == null)
+            {
                 Debug.LogError("AudioManager: Theme AudioSource is missing!");
+            }
 
             if (_sfxAudioSource == null)
+            {
                 Debug.LogError("AudioManager: SFX AudioSource is missing!");
+            }
+            
+            MusicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
+            SfxVolume = PlayerPrefs.GetFloat("SfxVolume", 0.7f);
+            _themeAudioSource.volume = MusicVolume;
+            _sfxAudioSource.volume = SfxVolume;
 
+            _themeAudioSource.volume = MusicVolume;
             PlayMainMenuInstant();
         }
 
@@ -68,8 +79,27 @@ namespace Audio
                     _sfxMap.Add(entry.Type, entry);
             }
         }
+        
+        public void SetMusicVolume(float value)
+        {
+            MusicVolume = value;
+            _themeAudioSource.volume = value;
+            PlayerPrefs.SetFloat("MusicVolume", value);
+            PlayerPrefs.Save(); // <-- important
+        }
+
+        public void SetSfxVolume(float value)
+        {
+            SfxVolume = value;
+            PlayerPrefs.SetFloat("SfxVolume", value);
+            PlayerPrefs.Save(); // <-- important
+        }
 
 
+        
+        
+        
+        
         // ---------------------------------------------------------
         // Music Helpers
         // ---------------------------------------------------------
@@ -88,7 +118,7 @@ namespace Audio
             _musicSequence.AppendCallback(() =>
             {
                 _themeAudioSource.clip = clip;
-                _themeAudioSource.volume = _musicVolume;
+                _themeAudioSource.volume = MusicVolume;
                 _themeAudioSource.Play();
             });
         }
@@ -114,7 +144,7 @@ namespace Audio
                 _themeAudioSource.Play();
             });
 
-            _musicSequence.Append(_themeAudioSource.DOFade(_musicVolume, fadeDuration));
+            _musicSequence.Append(_themeAudioSource.DOFade(MusicVolume, fadeDuration));
         }
 
         public void FadeOut(float duration, float delay = 0f)
@@ -133,7 +163,7 @@ namespace Audio
                     _themeAudioSource.Play();
             });
 
-            _musicSequence.Append(_themeAudioSource.DOFade(_musicVolume, duration).SetDelay(delay));
+            _musicSequence.Append(_themeAudioSource.DOFade(MusicVolume, duration).SetDelay(delay));
         }
 
         // ---------------------------------------------------------
@@ -158,7 +188,7 @@ namespace Audio
                 _lastSfxTime[type] = now;
             }
 
-            float finalVolume = _sfxVolume * entry.Volume;
+            float finalVolume = SfxVolume * entry.Volume;
             _sfxAudioSource.PlayOneShot(entry.Clip, finalVolume);
         }
 

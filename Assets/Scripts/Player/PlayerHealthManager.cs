@@ -74,6 +74,7 @@ namespace Player
 
             SubtractHealth(damage);
             OnGettingDamage?.Invoke();
+            AudioManager.Instance.PlaySfx(SfxType.PlayerGettingHurt);
 
             StartCoroutine(HealthUtils.Invisibility(this, InvisibilityTime));
         }

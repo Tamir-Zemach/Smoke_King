@@ -1,4 +1,5 @@
 using System;
+using Audio;
 using Enums;
 using UnityEngine;
 using Utilities;
@@ -50,6 +51,7 @@ namespace Player
             }
 
             OnStateChange?.Invoke();
+            AudioManager.Instance.PlaySfx(SfxType.StateSwitch);
             ShaderLerpUtility.LerpFloat(PlayerMaterial, "_Polarity", targetPolarity, 0.3f);
         }
 
