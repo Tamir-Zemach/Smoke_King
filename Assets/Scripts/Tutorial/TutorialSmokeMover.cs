@@ -1,5 +1,7 @@
 using System.Collections;
+using Audio;
 using Cameras;
+using Enums;
 using UnityEngine;
 
 namespace Tutorial
@@ -14,11 +16,12 @@ namespace Tutorial
         public float ShakeIntensity = 0.15f;
         public float ShakeSpeed = 25f;
         public float CameraShakeIntensity = 1f;
-        public float _yOffset = 2;
+        public float YOffset = 2;
 
-        private bool _frozen = false;
-        private bool _flying = false;
-        private bool _cameraShakeStarted = false;
+        private bool _frozen;
+        private bool _flying;
+        private bool _cameraShakeStarted;
+        private bool _playedSfxOnce;
 
         private float _shakeTimer = 0f;
         private Vector3 _originalPos;
@@ -27,6 +30,8 @@ namespace Tutorial
         {
             _player = FindAnyObjectByType<Player.PlayerMovementManager>().transform;
             _originalPos = transform.position;
+            AudioManager.Instance.PlaySfx(SfxType.TutorialShake);
+
         }
 
         private void Update()
@@ -66,12 +71,18 @@ namespace Tutorial
 
         private void FlyTowardPlayer()
         {
+            if (!_playedSfxOnce)
+            {
+                AudioManager.Instance.PlaySfx(SfxType.SmokeAttackWhoosh, canOverlap: false);
+                _playedSfxOnce = true;
+            }
             transform.position = Vector2.MoveTowards(
                 transform.position,
-                _player.position + new Vector3(0, _yOffset, 0),
+                _player.position + new Vector3(0, YOffset, 0),
                 Speed * Time.deltaTime
             );
         }
+
 
         public void Freeze()
         {

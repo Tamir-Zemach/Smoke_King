@@ -178,6 +178,7 @@ namespace Player
             if (_isGrounded)
             {
                 AudioManager.Instance.PlaySfx(SfxType.PlayerJump);                
+
                 _rb.AddForce(Vector2.up * _playerData.JumpForce, ForceMode2D.Impulse);
                 return;
             }
@@ -188,6 +189,7 @@ namespace Player
                 _controlFactor = 0f;
 
                 var opposite = _onWallLeft ? 1 : -1;
+                AudioManager.Instance.PlaySfx(SfxType.PlayerJump);                
 
                 var forceDir = new Vector2(
                     opposite * _playerData.JumpForceFromWallX,
@@ -201,6 +203,7 @@ namespace Player
 
                 Invoke(nameof(GainControl), 0.25f);
             }
+
         }
 
 

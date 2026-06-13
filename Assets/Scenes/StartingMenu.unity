@@ -6083,8 +6083,8 @@ MonoBehaviour:
     Cooldown: 0.05
   - Type: 5
     Clip: {fileID: 8300000, guid: f1f3f88d7a6bb4b47ae531aea9c194b5, type: 3}
-    Volume: 1
-    Cooldown: 0.05
+    Volume: 0.6
+    Cooldown: 0.1
   - Type: 6
     Clip: {fileID: 8300000, guid: 3ded03a4ccc105944ab00f5359e15706, type: 3}
     Volume: 1
@@ -6096,6 +6096,26 @@ MonoBehaviour:
   - Type: 8
     Clip: {fileID: 8300000, guid: dea661af08444fb4a95b9985c1807b9e, type: 3}
     Volume: 0.7
+    Cooldown: 1
+  - Type: 9
+    Clip: {fileID: 8300000, guid: d87dbf20685579a44a75fb9f4d87d295, type: 3}
+    Volume: 0.6
+    Cooldown: 1
+  - Type: 10
+    Clip: {fileID: 8300000, guid: 044c6844f95a309419d8e74e4054f38f, type: 3}
+    Volume: 0.5
+    Cooldown: 1
+  - Type: 11
+    Clip: {fileID: 8300000, guid: 421bc638fa068e74898b5927701b1a34, type: 3}
+    Volume: 0.6
+    Cooldown: 1
+  - Type: 12
+    Clip: {fileID: 8300000, guid: 658eb1418c10b6b4f986670d71b46a02, type: 3}
+    Volume: 0.35
+    Cooldown: 1
+  - Type: 13
+    Clip: {fileID: 8300000, guid: e118529bdf8209045ae3fed9da48755b, type: 3}
+    Volume: 1
     Cooldown: 1
   _fadeDuration: 0.3
 --- !u!4 &650470699

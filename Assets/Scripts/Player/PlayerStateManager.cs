@@ -51,7 +51,6 @@ namespace Player
             }
 
             OnStateChange?.Invoke();
-            AudioManager.Instance.PlaySfx(SfxType.StateSwitch);
             ShaderLerpUtility.LerpFloat(PlayerMaterial, "_Polarity", targetPolarity, 0.3f);
         }
 

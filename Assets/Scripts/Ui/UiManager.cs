@@ -1,4 +1,5 @@
 
+using Audio;
 using Interfaces;
 using Managers;
 using Player;
@@ -57,6 +58,16 @@ namespace Ui
             }
 
         }
+        
+        public void LoadMainMenuWithoutPause()
+        {
+            AudioManager.Instance.FadeOut(0.1f);
+            AudioManager.Instance.PlayMainMenuWithFade();
+            Time.timeScale = 1f;
+            Paused = false;
+            SceneManager.LoadScene("StartingMenu");
+        }
+
         
 
         

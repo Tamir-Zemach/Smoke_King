@@ -4864,7 +4864,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cc54b6361fa471b9c762c06606ae1af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Particles.BossParticle
-  PS: {fileID: 0}
 --- !u!1 &4381288291076300120
 GameObject:
   m_ObjectHideFlags: 0
@@ -9681,8 +9680,8 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 591355203
-  m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingLayer: 4
+  m_SortingOrder: 9999
   m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0

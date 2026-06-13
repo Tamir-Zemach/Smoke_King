@@ -173,7 +173,10 @@ namespace Tutorial
             if (t1 != null)
                 yield return t1.WaitForCompletion();
             _step = TutorialStep.MoveJump;
-            BlockAllInput(false);
+            var blocker = _playerInput.TutorialBlocker;
+            blocker.BlockMovement = false;
+            blocker.BlockJump = false;
+            blocker.BlockAttack = false;
             _playerMovement.UnfreezeFacing();
             _playerAnimation.UnfreezeAnimations();
 
@@ -367,6 +370,7 @@ namespace Tutorial
             void OnStateSwitch()
             {
                 _stateSwitchPressed = true;
+                blocker.BlockStateSwitch =  true;
             }
 
             _playerInput.OnStateSwitch += OnStateSwitch;
@@ -374,6 +378,8 @@ namespace Tutorial
             while (!_stateSwitchPressed)
                 yield return null;
 
+            
+            
             _playerInput.OnStateSwitch -= OnStateSwitch;
 
             _ui.PulseStateSwitch();
@@ -384,7 +390,9 @@ namespace Tutorial
             yield return PulseAndHideUI();
 
             yield return StartCoroutine(LerpTimeScale(0f, 1f, 0.01f));
+            AudioManager.Instance.PlaySfx(SfxType.StateSwitch);
             yield return new WaitForSecondsRealtime(1f);
+
 
             _playerZoomCamera.Priority = 2;
             _gameplayCam.Priority = 30;
@@ -415,6 +423,7 @@ namespace Tutorial
                 Time.timeScale = Mathf.Lerp(from, to, t / duration);
                 yield return null;
             }
+
             Time.timeScale = to;
         }
 

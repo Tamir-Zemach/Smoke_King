@@ -171,6 +171,7 @@ namespace Audio
         // ---------------------------------------------------------
         public void PlaySfx(SfxType type, bool canOverlap = true)
         {
+
             if (!_sfxMap.TryGetValue(type, out var entry) || entry.Clip == null)
                 return;
 
@@ -179,6 +180,7 @@ namespace Audio
             // Only apply cooldown if overlapping is NOT allowed
             if (!canOverlap)
             {
+
                 if (_lastSfxTime.TryGetValue(type, out float lastTime))
                 {
                     if (now - lastTime < entry.Cooldown)

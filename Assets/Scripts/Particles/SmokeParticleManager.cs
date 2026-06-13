@@ -81,7 +81,7 @@ namespace Particles
 
         public void Fly()
         {
-            AudioManager.Instance.PlaySfx(SfxType.SmokeAttackWhoosh);
+            AudioManager.Instance.PlaySfx(SfxType.SmokeAttackWhoosh, canOverlap: false);
             ParticleMovementUtility.Fly(
                 transform,
                 MovementData.FlyDistance,

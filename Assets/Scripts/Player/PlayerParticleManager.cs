@@ -1,3 +1,4 @@
+using Audio;
 using Data;
 using Enums;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace Player
     public class PlayerParticleManager : MonoBehaviour
     {
         [SerializeField] private PlayerData _playerData;
+        [SerializeField] private PlayerInput _playerInput;
         [SerializeField] private ParticleSystem _horAttackParSystem;
         [SerializeField] private ParticleSystem _verticalAttackParSystem;
         [SerializeField] private ParticleSystem _circleOnStateChangeParSystem;
@@ -48,6 +50,7 @@ namespace Player
             _diagonalMover.Move();
             ApplyColor(_circleOnStateChangeRenderer);
             _circleOnStateChangeParSystem.Play();
+            AudioManager.Instance.PlaySfx(SfxType.StateSwitch);
         }
 
         private void ApplyColor(ParticleSystemRenderer particleSystemRenderer)
@@ -74,8 +77,14 @@ namespace Player
         public void PlayHorAttackPar()
         {
             ApplyMaterial(_horAttackRenderer);
+
+            var scale = _horAttackParSystem.transform.localScale;
+            scale.x = _playerInput.FacingRight ? 1 : -1;
+            _horAttackParSystem.transform.localScale = scale;
+
             _horAttackParSystem.Play();
         }
+
 
         public void PlayVerAttackPar()
         {

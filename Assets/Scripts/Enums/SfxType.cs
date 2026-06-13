@@ -10,6 +10,11 @@ namespace Enums
         SmokeAttackWhoosh,
         ParticleHittingPlayer,
         PlayerGettingHurt,
-        StateSwitch
+        StateSwitch,
+        BossSpawn,
+        BossVanish,
+        BossSnap,
+        BossPortalSpawn,
+        TutorialShake
     }
 }

@@ -13,6 +13,7 @@ namespace Managers.Boss
         [SerializeField] private BossMovementManager _movementManager;
         [SerializeField] private BossAnimManager _animManager;
         [SerializeField] private BossParticlesManager _particlesManager;
+        [SerializeField] private BossSoundManager _soundManager;
         [SerializeField] private BossHealthManager _healthManager;
         [SerializeField] private BossColliderManager _colliderManager;
 
@@ -107,6 +108,7 @@ namespace Managers.Boss
             if (IsInEndSequence)
                 return; // ❗ Do NOT respawn during end sequence
 
+            _soundManager.PlaySfx(SfxType.BossVanish);
             _colliderManager.UnAbleCol();
             var randomIndex = Random.Range(0, _movementManager.TeleportSpots.Count);
             _movementManager.TeleportToSpot(randomIndex);
@@ -128,6 +130,7 @@ namespace Managers.Boss
         private void PlayParticles(BossParticles bossParticles)
         {
             _particlesManager.PlayParticles(bossParticles);
+            _soundManager.PlaySfxByParticles(bossParticles);
         }
         
         public void StartEndSequence()
