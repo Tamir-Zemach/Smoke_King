@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Cannon Attack Data
   m_EditorClassIdentifier: Assembly-CSharp::Data.LinearCannonData
   CannonPrefab: {fileID: 244740690672622912, guid: d04ca321735ee614b9e06f225d712e0d, type: 3}
-  DelayBetweenCannonSpawns: 1
+  DelayBetweenCannonSpawns: 0.7
   MaxDistance: 18
-  DelayBeforeFire: 0.8
+  DelayBeforeFire: 0.7
   BeamDuration: 0.8
   WallLayer:
     serializedVersion: 2

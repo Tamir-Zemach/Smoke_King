@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tracking Cannon Data
   m_EditorClassIdentifier: Assembly-CSharp::Data.TrackingCannonData
   CannonPrefab: {fileID: 244740690672622912, guid: dc352826d276eee4dbd3ae6eedb08749, type: 3}
-  DelayBetweenCannonSpawns: 2
+  DelayBetweenCannonSpawns: 1
   MaxDistance: 18
   DelayBeforeFire: 0.8
   BeamDuration: 0.8
@@ -27,7 +27,7 @@ MonoBehaviour:
   - Type: 1
     Material: {fileID: 2100000, guid: deeeb0ad70cc640f9a01dcc1b5b2add3, type: 2}
     Color: {r: 0.105882354, g: 0.8901961, b: 0.16862746, a: 0.83137256}
-  TrackingDuration: 1.5
+  TrackingDuration: 0.7
   LockDuration: 0.5
   RotationSpeed: 180
   Yoffset: 1

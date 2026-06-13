@@ -66,7 +66,7 @@ namespace Managers.Boss
 
         private IEnumerator InitialSpawn()
         {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(0.7f);
             _animManager.TriggerTeleportAnimation();
             PlaySpawnAnim();
         }
@@ -78,7 +78,7 @@ namespace Managers.Boss
 
             _colliderManager.EnableCol();
             _currentBossAttack = EnumUtility.GetNextValueInEnum(_currentBossAttack);
-            StartCoroutine(TimerForAttack(2));
+            StartCoroutine(TimerForAttack(1));
         }
 
 
@@ -91,7 +91,7 @@ namespace Managers.Boss
         }
         private void StartTimerAndTriggerAttack(BossAttacksTypes attack)
         {
-            StartCoroutine(TimerForTeleport(2));
+            StartCoroutine(TimerForTeleport(0.3f));
             _attacksManager.TriggerAttack(attack);
         }
 

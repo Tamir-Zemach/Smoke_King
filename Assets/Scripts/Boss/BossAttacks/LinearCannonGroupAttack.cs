@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Data;
 using Enums;
 using Interfaces;
 using UnityEngine;
@@ -11,7 +12,7 @@ namespace Boss.BossAttacks
     public class LinearCannonGroupAttack : MonoBehaviour, IBossAttack
     {
         [SerializeField] private int _loopCount = 3;
-
+        
         private readonly List<LinearCannonGroup> _groups = new();
         private Coroutine _routine;
 

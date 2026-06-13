@@ -18,6 +18,6 @@ MonoBehaviour:
   ShakeStrength: 0.8
   ShakeVibrato: 12
   FlyDistance: 18
-  FlyDuration: 1
+  FlyDuration: 0.6
   RateOverDistanceMin: 7
   RateOverDistanceMax: 12
