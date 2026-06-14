@@ -131,7 +131,8 @@ PrefabInstance:
       value: 180
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1378379993263085373, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2040246890718593267, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}
@@ -165,7 +166,7 @@ MonoBehaviour:
   ShakeIntensity: 0.15
   ShakeSpeed: 25
   CameraShakeIntensity: 0.05
-  _yOffset: 1
+  YOffset: 2
 --- !u!114 &6262874701279604007 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2167317090031244697, guid: f662f3d9c403e49048c52d8e9f00b20e, type: 3}

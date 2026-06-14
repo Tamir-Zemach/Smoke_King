@@ -1,7 +1,6 @@
 using Audio;
 using Enums;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 using Data;
 using Utilities;
 
@@ -11,39 +10,63 @@ namespace Particles
     {
         public ParticleMovementData MovementData;
 
+        [Header("Material Testing")]
+        [SerializeField] private bool _useSharedMaterial = true;
+
         private ParticleDamage2D _parDamage;
         private ParticleSystemRenderer _parRenderer;
-        private Light2D _parLight;
         private ParticleSystem _parSystem;
 
-        private void GetParticleComponents()
+        private void Awake()
+        {
+            CacheParticleComponents();
+        }
+
+        private void CacheParticleComponents()
         {
             _parSystem = GetComponent<ParticleSystem>();
             _parDamage = GetComponent<ParticleDamage2D>();
             _parRenderer = GetComponent<ParticleSystemRenderer>();
-            _parLight = GetComponentInChildren<Light2D>();
+        }
+
+        private void EnsureComponents()
+        {
+            if (_parSystem == null)
+                _parSystem = GetComponent<ParticleSystem>();
+
+            if (_parDamage == null)
+                _parDamage = GetComponent<ParticleDamage2D>();
+
+            if (_parRenderer == null)
+                _parRenderer = GetComponent<ParticleSystemRenderer>();
         }
 
         public void Init(Color color, Material material, StateType state)
         {
-            GetParticleComponents();
+            EnsureComponents();
+
+            if (_parSystem != null)
+            {
+                var collision = _parSystem.collision;
+                collision.enabled = true;
+            }
 
             if (_parRenderer != null)
             {
-                _parRenderer.material = material;
-            }
-
-            if (_parLight != null)
-            {
-                _parLight.enabled = true;
-                _parLight.color = color;
+                if (_useSharedMaterial)
+                {
+                    _parRenderer.sharedMaterial = material;
+                }
+                else
+                {
+                    _parRenderer.material = material;
+                }
             }
 
             if (_parDamage != null)
             {
                 _parDamage.Init(state, material, color, Stop);
             }
-
 
             SetRateOverDistance();
         }
@@ -52,19 +75,21 @@ namespace Particles
         {
             ParticleMovementUtility.ResetPosition(transform, pos);
         }
-        
+
         private void Stop()
         {
-            if (_parSystem == null|| _parLight == null)
+            EnsureComponents();
+
+            if (_parSystem != null)
             {
-                GetParticleComponents();
+                // Stop new emission, but let existing particles fade naturally.
+                _parSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+
+                // Disable collision after a valid hit so fading particles do not keep firing callbacks.
+                var collision = _parSystem.collision;
+                collision.enabled = false;
             }
-
-            // Stop emitting but let existing particles die naturally
-            _parSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-            _parLight.enabled = false;
         }
-
 
         public void MoveInCircle(float duration)
         {
@@ -75,13 +100,11 @@ namespace Particles
                 duration
             );
         }
-        
-
-
 
         public void Fly()
         {
             AudioManager.Instance.PlaySfx(SfxType.SmokeAttackWhoosh, canOverlap: false);
+
             ParticleMovementUtility.Fly(
                 transform,
                 MovementData.FlyDistance,
@@ -91,8 +114,10 @@ namespace Particles
 
         private void SetRateOverDistance()
         {
+            EnsureComponents();
+
             if (_parSystem == null)
-                GetParticleComponents();
+                return;
 
             var emission = _parSystem.emission;
             var rate = emission.rateOverDistance;
