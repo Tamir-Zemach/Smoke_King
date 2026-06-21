@@ -3,6 +3,7 @@ using Audio;
 using Data;
 using Enums;
 using Interfaces;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Player
@@ -40,6 +41,7 @@ namespace Player
             _collider = GetComponent<CapsuleCollider2D>();
             _playerHealthManager = GetComponent<PlayerHealthManager>();
         }
+        
         protected override void SubscribeToInputEvents()
         {
             Input.OnJump += Jump;
@@ -53,7 +55,7 @@ namespace Player
         }
 
 
-        
+
         private void Update()
         {
             CheckForGround();

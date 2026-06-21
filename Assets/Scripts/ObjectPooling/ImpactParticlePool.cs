@@ -28,7 +28,7 @@ namespace ObjectPooling
         {
             var obj = _pool.Get();
             obj.gameObject.SetActive(true);
-            obj.PlayAt(position, material, color, p => _pool.Return(p));
+            obj.PlayAt(position, material, p => _pool.Return(p));
         }
     }
 }

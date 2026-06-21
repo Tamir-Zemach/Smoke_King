@@ -11,7 +11,6 @@ namespace Particles
     {
         private ParticleSystem _ps;
         private ParticleSystemRenderer _parRenderer;
-        private Light2D _light;
 
         private Action<ImpactParticle> _onFinished;
 
@@ -19,17 +18,15 @@ namespace Particles
         {
             _ps = GetComponent<ParticleSystem>();
             _parRenderer = GetComponent<ParticleSystemRenderer>();
-            _light = GetComponentInChildren<Light2D>();
 
         }
 
-        public void PlayAt(Vector3 position,Material material, Color color,Action<ImpactParticle> onFinished)
+        public void PlayAt(Vector3 position,Material material,Action<ImpactParticle> onFinished)
         {
             _onFinished = onFinished;
 
             transform.position = position;
             _parRenderer.material = material;
-            _light.color = color;
             gameObject.SetActive(true);
             _ps.Play();
             
