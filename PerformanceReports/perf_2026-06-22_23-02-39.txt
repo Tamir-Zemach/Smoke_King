@@ -1,0 +1,52 @@
+=== SMOKE KING PERFORMANCE REPORT ===
+Time:  6/22/2026 11:02:39 PM
+Scene: Game
+
+=== HARDWARE ===
+CPU:  Intel(R) Core(TM) i5-14500 (20 cores)
+GPU:  NVIDIA GeForce RTX 4060 (7957 MB VRAM)
+RAM:  32535 MB
+Res:  1920x1080 @ 60 Hz
+Fullscreen: False
+
+=== FRAME STATS ===
+FPS (current): 106.4
+FPS min/max:   0.3 / 163.6
+Avg CPU frame: 9.39 ms
+GPU frame:     3.79 ms
+
+=== PERCENTILES (last 300 frames) ===
+P50:   9.19 ms
+P95:   11.68 ms
+P99:   13.10 ms
+Worst: 21.51 ms
+
+=== SPIKES ===
+Threshold: 25 ms
+Total:     9
+Worst:  3791.0 ms
+Avg:    617.1 ms
+Recent: 3791.0, 1122.4, 61.7, 25.5, 26.5, 65.8, 394.3, 37.9, 28.4
+
+=== MEMORY ===
+Mono used/heap: 753.30 / 1043.66 MB
+Unity alloc:    838.70 MB
+Unity reserved: 1325.71 MB
+GPU driver:     426.93 MB
+Total GC alloc: 151.488 MB
+
+=== SCENE OBJECTS ===
+Particle systems (active): 24
+Particles (active):        256
+Lights (active):           0
+Audio sources (playing):   1
+GameObjects:               265
+Cameras:                   1
+
+=== PER-SCENE BREAKDOWN ===
+[StartingMenu]
+  Avg 129.7 fps  |  Min 0.3  Max 163.6
+  Spikes 6  |  Worst 3791.0 ms
+[Game]
+  Avg 108.2 fps  |  Min 102.4  Max 161.7
+  Spikes 3  |  Worst 394.3 ms
